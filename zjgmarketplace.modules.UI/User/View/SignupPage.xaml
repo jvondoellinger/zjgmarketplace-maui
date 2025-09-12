@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="zjgmarketplace.Modules.UI.User.View.SignupPage">
+    <VerticalStackLayout
+        VerticalOptions="Center"
+        HorizontalOptions="Center"
+        Spacing="20"
+        Margin="50">
+        <Label 
+            Text="You're new here. Create an account and enjoy our marketplace!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        
+        <Entry
+            Placeholder="Fullname: (ex: Jorge Armando)"
+            MinimumWidthRequest="150"/>
+
+        <Entry
+            Placeholder="Email: (ex: example@domain.com)"
+            MinimumWidthRequest="150"/>
+
+        <Entry
+            Placeholder="Password: "
+            MinimumWidthRequest="150"
+            IsPassword="True"/>
+
+        <Grid ColumnSpacing="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Entry
+                Placeholder="CC"
+                Grid.Column="1"/>
+
+            <Entry
+                Placeholder="DDD"
+                Grid.Column="2"/>
+            <Entry
+                Placeholder="Number"
+                Grid.Column="3"/>
+        </Grid>
+        
+
+        <Entry
+            Placeholder="CPF: (ex: 123.456.789.09)"
+            MinimumWidthRequest="150"/>
+        
+        <Label Text="Select your birth date: "/>
+        <DatePicker
+            MinimumWidthRequest="150"
+            Format="dd/MM/yyyy"/>
+        
+        <Button
+            Text="Signup"
+            MinimumWidthRequest="150"
+            Padding="10"/>
+        <!-- Adiocionar evento para subir pop-up e alterar cor do botão -->
+    </VerticalStackLayout>
+</ContentPage>

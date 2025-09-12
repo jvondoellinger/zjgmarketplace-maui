@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="zjgmarketplace.Modules.UI.User.View.LoginPage">
+    <VerticalStackLayout
+        VerticalOptions="Center"
+        HorizontalOptions="Center"
+        Spacing="20">
+        <Label 
+            Text="Login in your account"
+            HorizontalOptions="Center"
+            Grid.Row="0"/>
+
+        <Entry
+            Placeholder="Email: (ex: example@domain.com)"
+            MinimumWidthRequest="250"
+            Text="{Binding LoginModel.Email, Mode=TwoWay}"/>
+
+        <Entry
+            Placeholder="Password: "
+            MinimumWidthRequest="250"
+            IsPassword="True"
+            Text="{Binding LoginModel.Password, Mode=TwoWay}"/>
+
+        <Button
+            Text="Login"
+            MinimumWidthRequest="250"
+            Padding="10"/> <!-- Adiocionar evento para subir pop-up e alterar cor do botão -->
+
+        <Label VerticalOptions="End"
+               HorizontalOptions="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span 
+                        Text="Não possui uma conta? "/>
+                    <Span 
+                        Text="Crie aqui."
+                        TextColor="Purple"/>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+    </VerticalStackLayout>
+</ContentPage>
