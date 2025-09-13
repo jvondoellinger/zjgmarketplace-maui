@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using zjgmarketplace.Modules.UI.Model;
+using zjgmarketplace.Modules.UI.Product.Model;
 
 namespace zjgmarketplace.Modules.UI.ViewModels
 {

@@ -13,6 +13,7 @@ namespace zjgmarketplace.Modules.UI.User.Model.Login
             {
                 if(!value.Equals(_email))
                 {
+                    Debug.WriteLine(value);
                     _email = value;
                     OnPropertyChanged(nameof(Email));
                 }
@@ -25,6 +26,7 @@ namespace zjgmarketplace.Modules.UI.User.Model.Login
             {
                 if(!value.Equals(_password))
                 {
+                    Debug.WriteLine(value);
                     _password = value;
                     OnPropertyChanged(nameof(Password));
                 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:zjgmarketplace.Modules.UI.Controls.Views.Content"
              x:Class="zjgmarketplace.Modules.UI.User.View.SignupPage">
     <VerticalStackLayout
         VerticalOptions="Center"
@@ -33,17 +34,15 @@
             </Grid.ColumnDefinitions>
             <Entry
                 Placeholder="CC"
-                Grid.Column="1"/>
-
+                Grid.Column="0"/>
             <Entry
                 Placeholder="DDD"
-                Grid.Column="2"/>
+                Grid.Column="1"/>
             <Entry
                 Placeholder="Number"
-                Grid.Column="3"/>
+                Grid.Column="2"/>
         </Grid>
         
-
         <Entry
             Placeholder="CPF: (ex: 123.456.789.09)"
             MinimumWidthRequest="150"/>
@@ -56,7 +55,11 @@
         <Button
             Text="Signup"
             MinimumWidthRequest="150"
-            Padding="10"/>
+            Padding="10"
+            VerticalOptions="End"
+            Clicked="SignupButton_Clicked"/>
+        <controls:LoadingGrid 
+            x:Name="LoadingControl"/>
         <!-- Adiocionar evento para subir pop-up e alterar cor do botão -->
     </VerticalStackLayout>
 </ContentPage>

@@ -6,4 +6,11 @@ public partial class SignupPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private async void SignupButton_Clicked(object sender, EventArgs e)
+    {
+        LoadingControl.Start();
+        await Task.Delay(1200);
+        LoadingControl.Stop();
+    }
 }

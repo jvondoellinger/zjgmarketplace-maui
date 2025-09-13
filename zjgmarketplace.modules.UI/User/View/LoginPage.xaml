@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:zjgmarketplace.Modules.UI.Controls.Views.Content"
              x:Class="zjgmarketplace.Modules.UI.User.View.LoginPage">
     <VerticalStackLayout
         VerticalOptions="Center"
@@ -25,10 +26,15 @@
         <Button
             Text="Login"
             MinimumWidthRequest="250"
-            Padding="10"/> <!-- Adiocionar evento para subir pop-up e alterar cor do botão -->
+            Padding="10"
+            Clicked="LoginButton_Clicked"/> <!-- Adiocionar evento para subir pop-up e alterar cor do botão -->
 
         <Label VerticalOptions="End"
                HorizontalOptions="Center">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding SignupRedirect}"/>
+            </Label.GestureRecognizers>
+            
             <Label.FormattedText>
                 <FormattedString>
                     <Span 
@@ -39,6 +45,7 @@
                 </FormattedString>
             </Label.FormattedText>
         </Label>
-
+        <controls:LoadingGrid 
+            x:Name="LoadingControl"/>
     </VerticalStackLayout>
 </ContentPage>
