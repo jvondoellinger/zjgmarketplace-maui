@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="zjgmarketplace.Modules.UI.View.ProductsPage">
+    <Grid
+        Padding="20">
+        <CollectionView 
+            ItemsSource="{Binding Products}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" 
+                                 Span="2"
+                                 VerticalItemSpacing="15"
+                                 HorizontalItemSpacing="15"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame>
+                        <VerticalStackLayout>
+                            <Image 
+                                Source="{Binding ImageURL}"
+                                Aspect="AspectFill" 
+                                HeightRequest="150"
+                                WidthRequest="150"/> <!-- Image -->
+                                <Label 
+                                    Text="{Binding Title}" 
+                                    HorizontalOptions="Center"/> <!-- Title -->
+                                <Label 
+                                    Text="{Binding Price, StringFormat='Preço: {0:C}'}"
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Center"/> <!-- Price -->
+                                <Button
+                                    Text="Buy"/> <!-- Add cart -->                            
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

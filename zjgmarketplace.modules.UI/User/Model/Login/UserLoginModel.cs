@@ -6,11 +6,6 @@ namespace zjgmarketplace.Modules.UI.User.Model.Login
 {
     public class UserLoginModel : INotifyPropertyChanged
     {
-        public UserLoginModel()
-        {
-            
-        }
-
         public string Email
         { 
             get => _email; 

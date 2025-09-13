@@ -1,7 +1,11 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
+<<<<<<< HEAD
 namespace zjgmarketplace.Modules.UI.Platforms.MacCatalyst
+=======
+namespace zjgmarketplace.modules.UI
+>>>>>>> origin/main
 {
     public class Program
     {
