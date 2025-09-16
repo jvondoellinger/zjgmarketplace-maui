@@ -1,4 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
+using zjgmarketplace.Modules.UI.DependecyInjection;
+using zjgmarketplace.Modules.UI.Order.Model.Tests;
+using zjgmarketplace.Modules.UI.Order.ViewModel;
 
 namespace zjgmarketplace.modules.UI
 {
@@ -18,8 +21,11 @@ namespace zjgmarketplace.modules.UI
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
-
+            builder
+                .Services
+                .AddAllDependencies();
             return builder.Build();
         }
     }
 }
+

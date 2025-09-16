@@ -9,8 +9,7 @@
         Spacing="20">
         <Label 
             Text="Login in your account"
-            HorizontalOptions="Center"
-            Grid.Row="0"/>
+            HorizontalOptions="Center"/>
 
         <Entry
             Placeholder="Email: (ex: example@domain.com)"
@@ -46,6 +45,7 @@
             </Label.FormattedText>
         </Label>
         <controls:LoadingGrid 
-            x:Name="LoadingControl"/>
+            x:Name="LoadingControl" 
+            VerticalOptions="End"/>
     </VerticalStackLayout>
 </ContentPage>

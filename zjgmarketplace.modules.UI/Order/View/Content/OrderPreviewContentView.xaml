@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="zjgmarketplace.Modules.UI.Order.View.Content.OrderPreviewContentView">
+    <Frame
+        BackgroundColor="#F0F0F0"
+        HorizontalOptions="Fill"
+        CornerRadius="12">
+        <Frame.GestureRecognizers>
+            <TapGestureRecognizer Tapped="RedirectOrderPageButton_Clicked"/>
+        </Frame.GestureRecognizers>
+        <Grid 
+            HorizontalOptions="Fill"
+            Margin="0" 
+            RowDefinitions="*,*" 
+            ColumnDefinitions="*,*,*">
+
+            <Label 
+                Text="{Binding Id, StringFormat='Nº: {0}'}"
+                Grid.Column="0"
+                Grid.Row="0"
+                HorizontalOptions="Start"/>
+            <Label 
+                Text="{Binding Title}"
+                Grid.Column="1"
+                Grid.Row="1"
+                HorizontalOptions="Center"/>
+            <Label 
+                Text="{Binding Price, StringFormat='R$ {0:F2}'}"
+                Grid.Column="0"
+                Grid.Row="1"
+                HorizontalOptions="Start"
+                FontSize="12"/>
+            <Label 
+                Text="{Binding CreatedAt, StringFormat='{0:dd/MM/yyyy}'}"
+                Grid.Column="2"
+                Grid.Row="2"
+                HorizontalOptions="End"
+                FontSize="10"/>
+
+        </Grid>
+    </Frame>
+</ContentView>

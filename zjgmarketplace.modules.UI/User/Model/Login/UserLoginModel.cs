@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using zjgmarketplace.Modules.UI.Global.BaseModel;
 
 namespace zjgmarketplace.Modules.UI.User.Model.Login
 {
-    public class UserLoginModel : INotifyPropertyChanged
+    public class UserLoginModel : PropertyNotifier
     {
         public string Email
         { 
@@ -35,11 +36,5 @@ namespace zjgmarketplace.Modules.UI.User.Model.Login
 
         private string _email;
         private string _password;
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

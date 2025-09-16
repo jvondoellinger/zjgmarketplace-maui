@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="zjgmarketplace.Modules.UI.Order.View.OrderPage">
+    <ScrollView>
+        <Grid 
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"
+            Padding="20"
+            RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,*"
+            RowSpacing="10"
+            BackgroundColor="#F6F6F6">
+            <Label 
+                Text="{Binding OrderModel.OrderId, StringFormat='Nº {0}'}"
+                FontSize="Small"
+                FontAttributes="Bold"
+                HorizontalOptions="Start"
+                Grid.Row="0"/>
+            <Label 
+                Text="{Binding OrderModel.CreatedAt, StringFormat='{0:dd/MM/yyyy}'}"
+                FontAttributes="Bold"
+                FontSize="Micro"
+                HorizontalOptions="End"
+                Grid.Row="0"/>
+            <Label 
+                Text="{Binding OrderModel.Title}"
+                FontSize="Subtitle"
+                FontAttributes="Bold"
+                HorizontalOptions="Start"
+                Grid.Row="1"/>
+            <Frame 
+                Grid.Row="2" 
+                MaximumHeightRequest="300"
+                HorizontalOptions="Center">
+                <Image 
+                    Source="fallback.png"
+                    HorizontalOptions="Fill"/>
+            </Frame>
+
+            <Label 
+                Text="{Binding OrderModel.Price, StringFormat='R$ {0:F2}'}"
+                FontSize="Default"
+                FontAttributes="Bold"
+                HorizontalOptions="End"
+                Grid.Row="3"/>
+            <Label 
+                BackgroundColor="WhiteSmoke"
+                Padding="10"
+                Text="{Binding OrderModel.Status, StringFormat='STATUS DO PEDIDO -> {0} '} "
+                FontSize="Body"
+                FontAttributes="Bold"
+                HorizontalOptions="Fill"
+                Grid.Row="4"/>
+            <Picker
+                Title="[ Selecione a forma de pagamento ]"
+                HorizontalOptions="Fill"
+                HorizontalTextAlignment="Center"
+                ItemsSource="{Binding OrderModel.PaymentMethodsDisplay}"
+                Grid.Row="5"/>
+            <Button
+                Text="Close Order"
+                Grid.Row="6"
+                Command="{Binding CloseOrderCommand}"
+                HorizontalOptions="Fill"/>
+            <Label
+                VerticalOptions="End"
+                HorizontalOptions="Center"
+                Grid.Row="7">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ContactUsCommandRedirect}"/>
+                </Label.GestureRecognizers>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span 
+                            Text="Alguma dúvida sobre a compra? "/>
+                        <Span 
+                            Text="Fale conosco."
+                            TextColor="Purple"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </Grid>
+    </ScrollView>
+</ContentPage>
