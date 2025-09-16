@@ -13,6 +13,5 @@ public partial class OrderPreviewContentView : ContentView
     private async void RedirectOrderPageButton_Clicked(object sender, TappedEventArgs e)
     {
 		await Navigation.PushAsync(new OrderPage(new ()));
-		// Atualizando 
     }
 }
