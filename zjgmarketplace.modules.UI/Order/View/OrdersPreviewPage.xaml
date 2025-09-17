@@ -26,6 +26,7 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <local:OrderPreviewContentView
+                        OrderPreviewModel="{Binding .}"
                         Scale="0.95"/>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

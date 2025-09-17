@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using zjgmarketplace.Modules.UI.Order.ValueObjects.Payment;
+﻿using zjgmarketplace.Modules.UI.Order.ValueObjects.Payment;
+using zjgmarketplace.Modules.UI.Order.ViewModel;
 
-namespace zjgmarketplace.Modules.UI.Order.Model.Tests
+namespace zjgmarketplace.Modules.UI.Order.ViewModel.Tests
 {
-    public class OrderModelTest
+    public class OrderModelViewTest
     {
-        internal static OrderModel Load()
+        internal static OrderModelView Load()
         {
-            var item = new OrderModel()
+            var item = new OrderModelView()
             {
                 CreatedAt = DateTime.Now,
                 OrderId = 10,

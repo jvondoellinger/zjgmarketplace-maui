@@ -4,8 +4,13 @@
              x:Class="zjgmarketplace.Modules.UI.User.View.ProfilePage"
              Title="Profile">
 
-    <CollectionView Margin="10"
-        ItemsSource="{Binding ProfileSections}">
+    <CollectionView 
+        Margin="10"
+        ItemsSource="{Binding ProfileSectionViewModel}"
+        SelectedItem="{Binding SelectedProfileSectionViewModel, Mode=TwoWay}"
+        SelectionMode="Single"
+        SelectionChanged="CollectionView_SelectionChanged"
+        BackgroundColor="AliceBlue">
         <CollectionView.ItemsLayout>
             <GridItemsLayout 
                 VerticalItemSpacing="5"
@@ -17,10 +22,11 @@
                 <Frame
                     CornerRadius="2"
                     BackgroundColor="#F5F5F5"
-                    Padding="10"
+                    Padding="15"
+                    InputTransparent="False"
                     HorizontalOptions="Fill">
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Command}"/>
+                        <TapGestureRecognizer Command="{Binding RedirectCommand}"/>
                     </Frame.GestureRecognizers>
                     <Label 
                         Text="{Binding Name}"

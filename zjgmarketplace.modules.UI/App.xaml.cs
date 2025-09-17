@@ -8,7 +8,6 @@ namespace zjgmarketplace.modules.UI
         {
             InitializeComponent();
             MainPage = new AppShell();
-            Routing.RegisterRoute(OrderPage.Route, typeof(OrderPage));
         }
     }
 }

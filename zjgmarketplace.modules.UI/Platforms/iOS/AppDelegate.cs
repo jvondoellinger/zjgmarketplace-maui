@@ -1,12 +1,7 @@
 ﻿using Foundation;
-<<<<<<< HEAD
 using zjgmarketplace.modules.UI;
 
-namespace zjgmarketplace.Modules.UI.Platforms.iOS
-=======
-
 namespace zjgmarketplace.modules.UI
->>>>>>> origin/main
 {
     [Register("AppDelegate")]
     public class AppDelegate : MauiUIApplicationDelegate

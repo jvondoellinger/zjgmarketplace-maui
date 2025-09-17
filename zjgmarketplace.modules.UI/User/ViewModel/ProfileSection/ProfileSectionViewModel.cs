@@ -1,12 +1,10 @@
-﻿using System.Collections.ObjectModel;
-using zjgmarketplace.Modules.UI.User.Model.ProfileSection;
+﻿using System.Windows.Input;
 
 namespace zjgmarketplace.Modules.UI.User.ViewModel.ProfileSection
 {
-    public class ProfileSectionViewModel
+    public abstract class ProfileSectionViewModel
     {
-        public ProfileSectionViewModel() { }
-
-        public ObservableCollection<ProfileSectionModel> ProfileSections { get; } = new (ProfileSectionModelTest.Load());
+        public string Name { get; init; }
+        public ICommand RedirectCommand { get; init; }
     }
 }

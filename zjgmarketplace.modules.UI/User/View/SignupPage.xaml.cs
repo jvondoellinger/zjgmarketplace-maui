@@ -4,10 +4,15 @@ namespace zjgmarketplace.Modules.UI.User.View;
 
 public partial class SignupPage : ContentPage
 {
-	public SignupPage()
+    public UserSignupViewModel UserSignupViewModel { get; set; }
+    public SignupPage()
 	{
 		InitializeComponent();
-        BindingContext = new UserSignupViewModel();
+
+        // Temporary data loader
+        UserSignupViewModel = new();
+
+        BindingContext = this;
 
     }
 

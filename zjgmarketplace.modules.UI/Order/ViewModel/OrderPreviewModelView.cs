@@ -2,26 +2,25 @@
 using System.Diagnostics;
 using System.Windows.Input;
 using zjgmarketplace.Modules.UI.Global.BaseModel;
-using zjgmarketplace.Modules.UI.Order.Model;
-using zjgmarketplace.Modules.UI.Order.Model.Tests;
-using zjgmarketplace.Modules.UI.Order.Singleton;
-using zjgmarketplace.Modules.UI.Order.View;
 
 namespace zjgmarketplace.Modules.UI.Order.ViewModel
 {
     public class OrderPreviewModelView : PropertyNotifier   
     {
-        public ObservableCollection<OrderPreviewModel> OrderPreviews { get; } = new (OrderPreviewModelTest.Load());
-        private OrderPreviewModel selectedOrder;
-        public OrderPreviewModel SelectedOrder
+        public long Id { get; init; }
+        public decimal Price { get; init; }
+        public string Title { get; init; }
+        public DateTime CreatedAt { get; init; }
+
+        private OrderPreviewModelView selectedOrder;
+        public OrderPreviewModelView SelectedOrder
         {
             get => selectedOrder;
             set
             {
                 if (!value.Equals(selectedOrder))
                 {
-                    Debug.WriteLine(value.Title);
-                    StoreOrder.StorePreviewModel(value);
+                    Debug.WriteLine(value);
                     selectedOrder = value;
                     OnPropertyChanged(nameof(SelectedOrder));
                 }

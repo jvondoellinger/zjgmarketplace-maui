@@ -9,10 +9,9 @@
     Shell.FlyoutBehavior="Disabled"
     Title="zjgmarketplace.modules.UI">
 
-
     <ShellContent
-        ContentTemplate="{DataTemplate order:OrdersPreviewPage}"
-        Route="MainPage" />
+        ContentTemplate="{DataTemplate local:ProfilePage}"
+        Route="MainPages" />
     <ShellContent
         ContentTemplate="{DataTemplate order:OrdersPreviewPage}"
         Route="OrdersPage" />

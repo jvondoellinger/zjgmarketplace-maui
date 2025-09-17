@@ -14,13 +14,13 @@
         <Entry
             Placeholder="Email: (ex: example@domain.com)"
             MinimumWidthRequest="250"
-            Text="{Binding LoginModel.Email, Mode=TwoWay}"/>
+            Text="{Binding UserLoginViewModel.Email, Mode=TwoWay}"/>
 
         <Entry
             Placeholder="Password: "
             MinimumWidthRequest="250"
             IsPassword="True"
-            Text="{Binding LoginModel.Password, Mode=TwoWay}"/>
+            Text="{Binding UserLoginViewModel.Password, Mode=TwoWay}"/>
 
         <Button
             Text="Login"
@@ -31,7 +31,7 @@
         <Label VerticalOptions="End"
                HorizontalOptions="Center">
             <Label.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding SignupRedirect}"/>
+                <TapGestureRecognizer Command="{Binding UserLoginViewModel.SignupRedirect}"/>
             </Label.GestureRecognizers>
             
             <Label.FormattedText>

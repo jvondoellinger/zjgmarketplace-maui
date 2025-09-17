@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using zjgmarketplace.Modules.UI.Controls.Views.Content;
 using zjgmarketplace.Modules.UI.User.ViewModel.Login;
 
@@ -5,10 +6,17 @@ namespace zjgmarketplace.Modules.UI.User.View;
 
 public partial class LoginPage : ContentPage
 {
-	public LoginPage()
+    public static string Route { get; } = nameof(LoginPage);
+    public UserLoginViewModel UserLoginViewModel { get; set; }
+
+    public LoginPage()
 	{
 		InitializeComponent();
-		BindingContext = new UserLoginViewModel();
+
+        //Temporary data loader
+        UserLoginViewModel = new();
+
+        BindingContext = this;
 
     }
 

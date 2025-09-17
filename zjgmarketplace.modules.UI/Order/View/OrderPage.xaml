@@ -12,19 +12,19 @@
             RowSpacing="10"
             BackgroundColor="#F6F6F6">
             <Label 
-                Text="{Binding OrderModel.OrderId, StringFormat='Nº {0}'}"
+                Text="{Binding OrderId, StringFormat='Nº {0}'}"
                 FontSize="Small"
                 FontAttributes="Bold"
                 HorizontalOptions="Start"
                 Grid.Row="0"/>
             <Label 
-                Text="{Binding OrderModel.CreatedAt, StringFormat='{0:dd/MM/yyyy}'}"
+                Text="{Binding CreatedAt, StringFormat='{0:dd/MM/yyyy}'}"
                 FontAttributes="Bold"
                 FontSize="Micro"
                 HorizontalOptions="End"
                 Grid.Row="0"/>
             <Label 
-                Text="{Binding OrderModel.Title}"
+                Text="{Binding Title}"
                 FontSize="Subtitle"
                 FontAttributes="Bold"
                 HorizontalOptions="Start"
@@ -39,7 +39,7 @@
             </Frame>
 
             <Label 
-                Text="{Binding OrderModel.Price, StringFormat='R$ {0:F2}'}"
+                Text="{Binding Price, StringFormat='R$ {0:F2}'}"
                 FontSize="Default"
                 FontAttributes="Bold"
                 HorizontalOptions="End"
@@ -47,7 +47,7 @@
             <Label 
                 BackgroundColor="WhiteSmoke"
                 Padding="10"
-                Text="{Binding OrderModel.Status, StringFormat='STATUS DO PEDIDO -> {0} '} "
+                Text="{Binding Status, StringFormat='STATUS DO PEDIDO -> {0} '} "
                 FontSize="Body"
                 FontAttributes="Bold"
                 HorizontalOptions="Fill"
@@ -56,7 +56,7 @@
                 Title="[ Selecione a forma de pagamento ]"
                 HorizontalOptions="Fill"
                 HorizontalTextAlignment="Center"
-                ItemsSource="{Binding OrderModel.PaymentMethodsDisplay}"
+                ItemsSource="{Binding PaymentMethodsDisplay}"
                 Grid.Row="5"/>
             <Button
                 Text="Close Order"
