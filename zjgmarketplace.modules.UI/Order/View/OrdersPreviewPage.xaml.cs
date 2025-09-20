@@ -7,11 +7,10 @@ namespace zjgmarketplace.Modules.UI.Order.View;
 public partial class OrdersPreviewPage : ContentPage
 {
     public static string Route { get; } = nameof(OrdersPreviewPage);
-	public ObservableCollection<OrderPreviewModelView> OrderPreviews { get; } = new ObservableCollection<OrderPreviewModelView>();
+	public ObservableCollection<OrderPreviewModelView> OrderPreviews { get; } = [];
     public OrdersPreviewPage() 
 	{
 		InitializeComponent();
-
         // Temporary data loader 
         OrderPreviewModelTest.Load()
             .ForEach(OrderPreviews.Add);

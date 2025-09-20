@@ -3,30 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="zjgmarketplace.Modules.UI.Controls.Views.Content.NavBar">
     <Grid 
-        RowDefinitions="Auto,Auto,Auto"
-        ColumnDefinitions="*,*,*"
-        Padding="5">
-        <Frame 
-            Grid.Column="0"
-            Grid.Row="0">
-            <Label 
-                Text="Main"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"/>
-        </Frame>
-        <Frame Grid.Column="1"
-               Grid.Row="0">
-            <Label 
-                Text="Cart"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"/>
-        </Frame>
-        <Frame Grid.Column="2"
-               Grid.Row="0">
-            <Label 
-                Text="Account"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"/>
-        </Frame>
+        x:Name="NavGrid"
+        ColumnSpacing="0"
+        HorizontalOptions="Fill"
+        Padding="0"
+        BindableLayout.ItemsSource="{Binding ProductViewModels}"
+        RowDefinitions="Auto">
+        
+        <BindableLayout.ItemTemplate>
+            <DataTemplate>
+                <Grid>
+                    <Frame
+                        BackgroundColor="LightGray"
+                        CornerRadius="0"
+                        Padding="10"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill">
+
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding CommandRedirect}"
+                                CommandParameter="{Binding .}" />
+                        </Frame.GestureRecognizers>
+
+                        <Label 
+                            Text="{Binding Title}"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+                    </Frame>
+                </Grid>
+            </DataTemplate>
+        </BindableLayout.ItemTemplate>
     </Grid>
 </ContentView>

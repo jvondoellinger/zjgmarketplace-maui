@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:zjgmarketplace.Modules.UI.Controls.Views.Content"
+             xmlns:product="clr-namespace:zjgmarketplace.Modules.UI.Product.Content"
              x:Class="zjgmarketplace.Modules.UI.Product.View.ProductsPage">
     <Grid
-        Padding="20">
+        Padding="20"
+        RowDefinitions="*,Auto">
         <CollectionView 
-            ItemsSource="{Binding ProductViewModels}">
+            ItemsSource="{Binding ProductViewModels}"
+            Grid.Row="0">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical" 
                                  Span="2"
@@ -14,26 +18,13 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame>
-                        <VerticalStackLayout>
-                            <Image 
-                                Source="{Binding ImageURL}"
-                                Aspect="AspectFill" 
-                                HeightRequest="150"
-                                WidthRequest="150"/> <!-- Image -->
-                                <Label 
-                                    Text="{Binding Title}" 
-                                    HorizontalOptions="Center"/> <!-- Title -->
-                                <Label 
-                                    Text="{Binding Price, StringFormat='Preço: {0:C}'}"
-                                    FontAttributes="Bold"
-                                    HorizontalOptions="Center"/> <!-- Price -->
-                                <Button
-                                    Text="Buy"/> <!-- Add cart -->                            
-                        </VerticalStackLayout>
-                    </Frame>
+                    <product:ProductCard ProductViewModel="{Binding .}"/>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        <controls:NavBar 
+            Grid.Row="1"
+            VerticalOptions="End"
+            HorizontalOptions="Fill"/>
     </Grid>
 </ContentPage>

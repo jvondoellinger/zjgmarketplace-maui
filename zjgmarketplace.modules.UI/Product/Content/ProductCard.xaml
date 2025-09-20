@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="zjgmarketplace.Modules.UI.Product.Content.ProductCard">
+    <Frame>
+        <VerticalStackLayout>
+            <Image 
+                Source="{Binding ImageURL}"
+                Aspect="AspectFill" 
+                HeightRequest="150"
+                WidthRequest="150"/>
+            <Label 
+                Text="{Binding Title}" 
+                HorizontalOptions="Center"/>
+            <!-- Title -->
+            <Label 
+                Text="{Binding Price, StringFormat='Preço: {0:C}'}"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"/>
+            <!-- Price -->
+            <Button
+                Text="Buy"
+                Clicked="ButtonRedirectToOrderPage_Clicked"/>
+            <!-- Add cart -->
+        </VerticalStackLayout>
+    </Frame>
+</ContentView>

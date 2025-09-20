@@ -32,4 +32,9 @@ public partial class OrderPage : ContentPage
 	{
 		InitializeComponent();
 	}
+    public OrderPage(OrderModelView orderModelView)
+    {
+        InitializeComponent();
+		OrderModelView = orderModelView;
+    }
 }

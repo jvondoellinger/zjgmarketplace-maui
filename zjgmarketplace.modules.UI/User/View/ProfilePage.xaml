@@ -6,11 +6,7 @@
 
     <CollectionView 
         Margin="10"
-        ItemsSource="{Binding ProfileSectionViewModel}"
-        SelectedItem="{Binding SelectedProfileSectionViewModel, Mode=TwoWay}"
-        SelectionMode="Single"
-        SelectionChanged="CollectionView_SelectionChanged"
-        BackgroundColor="AliceBlue">
+        ItemsSource="{Binding ProfileSectionViewModel}">
         <CollectionView.ItemsLayout>
             <GridItemsLayout 
                 VerticalItemSpacing="5"
@@ -20,14 +16,14 @@
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <Frame
-                    CornerRadius="2"
+                    CornerRadius="4"
                     BackgroundColor="#F5F5F5"
                     Padding="15"
                     InputTransparent="False"
                     HorizontalOptions="Fill">
-                    <Frame.GestureRecognizers>
+                    <Frame.GestureRecognizers> <!-- TROCAR POR EVENTO DE TROCA DE SELEÇÃO DE ITEM-->
                         <TapGestureRecognizer Command="{Binding RedirectCommand}"/>
-                    </Frame.GestureRecognizers>
+                    </Frame.GestureRecognizers> 
                     <Label 
                         Text="{Binding Name}"
                         HorizontalOptions="Fill"/>

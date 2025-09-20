@@ -6,11 +6,16 @@
     xmlns:local="clr-namespace:zjgmarketplace.Modules.UI.User.View"
     xmlns:order="clr-namespace:zjgmarketplace.Modules.UI.Order.View"
     xmlns:product="clr-namespace:zjgmarketplace.Modules.UI.Product.View"
+    xmlns:controls="clr-namespace:zjgmarketplace.Modules.UI.Controls.Views.Content"
     Shell.FlyoutBehavior="Disabled"
     Title="zjgmarketplace.modules.UI">
 
     <ShellContent
-        ContentTemplate="{DataTemplate local:ProfilePage}"
+        ContentTemplate="{DataTemplate product:ProductPage}"
+        Route="MainPage" />
+
+    <ShellContent
+        ContentTemplate="{DataTemplate product:ProductsPage}"
         Route="MainPages" />
     <ShellContent
         ContentTemplate="{DataTemplate order:OrdersPreviewPage}"
@@ -27,4 +32,5 @@
     <ShellContent
         Route="ProductsPage"
         ContentTemplate="{DataTemplate product:ProductsPage}"/>
+
 </Shell>

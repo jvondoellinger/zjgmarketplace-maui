@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="zjgmarketplace.Modules.UI.Product.View.ProductPage">
+    <ScrollView>
+        <Grid 
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"
+            BackgroundColor="#F5F5F5"
+            RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
+            Padding="25">
+            <Label 
+                FontSize="Large"
+                FontAttributes="Bold"
+                Text="{Binding ProductViewModel.Title}" 
+                HorizontalOptions="Center"
+                Grid.Row="0"/>
+            <CollectionView 
+                ItemsSource="{Binding ProductViewModel.ImagesURL}"
+                HorizontalOptions="Center"
+                HeightRequest="200"
+                Grid.Row="1">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout 
+                        Orientation="Horizontal" 
+                        ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Image 
+                            Source="{Binding .}"
+                            Aspect="AspectFill"
+                            Margin="10"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button
+                Text="Adicionar ao carrinho"
+                BackgroundColor="Green"
+                TextColor="White"
+                HeightRequest="60"
+                HorizontalOptions="Fill"
+                Grid.Row="2" />
+            <Label 
+                Text="{Binding ProductViewModel.Price, StringFormat='R$ {0:F2}'}"
+                FontSize="Body"
+                HorizontalOptions="End"
+                Grid.Row="3" />
+            <Label 
+                Text="{Binding ProductViewModel.Description}" 
+                HorizontalOptions="Fill" 
+                Grid.Row="4"/>
+            
+        </Grid>
+    </ScrollView>
+
+</ContentPage>
