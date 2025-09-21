@@ -11,7 +11,7 @@
     Title="zjgmarketplace.modules.UI">
 
     <ShellContent
-        ContentTemplate="{DataTemplate product:ProductPage}"
+        ContentTemplate="{DataTemplate product:ProductsPage}"
         Route="MainPage" />
 
     <ShellContent

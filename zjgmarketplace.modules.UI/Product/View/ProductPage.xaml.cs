@@ -6,7 +6,7 @@ namespace zjgmarketplace.Modules.UI.Product.View;
 
 public partial class ProductPage : ContentPage
 {
-	public ProductViewModel ProductViewModel { get; init; }
+	public ProductViewModel ProductViewModel { get; set; }
 	public ProductPage()
 	{
 		InitializeComponent();
@@ -15,7 +15,13 @@ public partial class ProductPage : ContentPage
         ProductViewModel = ProductModelTest.Load2();
 
         BindingContext = this;
+    }
 
+    public ProductPage(ProductViewModel productViewModel)
+    {
+        InitializeComponent();
+        ProductViewModel = productViewModel;
+        BindingContext = this;
 
-	}
+    }
 } 

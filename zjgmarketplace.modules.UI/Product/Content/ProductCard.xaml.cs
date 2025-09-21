@@ -1,5 +1,8 @@
+using System.Diagnostics;
 using System.Threading.Tasks;
 using zjgmarketplace.Modules.UI.Order.View;
+using zjgmarketplace.Modules.UI.Product.Mapper;
+using zjgmarketplace.Modules.UI.Product.View;
 using zjgmarketplace.Modules.UI.Product.ViewModel;
 
 namespace zjgmarketplace.Modules.UI.Product.Content;
@@ -13,9 +16,11 @@ public partial class ProductCard : ContentView
 		default(PreviewProductViewModel),
 		propertyChanged: OnProductViewModelChanged);
 
-
-	private PreviewProductViewModel product;
-    public PreviewProductViewModel ProductViewModel { get; set; }
+    public PreviewProductViewModel ProductViewModel
+    {
+        get => (PreviewProductViewModel)GetValue(ProductViewModelProperty);
+        set => SetValue(ProductViewModelProperty, value);
+    }
 
     public ProductCard()
 	{
@@ -32,6 +37,7 @@ public partial class ProductCard : ContentView
 
     private async void ButtonRedirectToOrderPage_Clicked(object sender, EventArgs e)
     {
-        await Task.Delay(10);
+        var model = ProductViewModelMapper.Map(ProductViewModel); // Interface que vai capturar esse item no backend/cache do app (usando o padrão proxy)
+        await Navigation.PushAsync(new ProductPage(model));
     }
 }
