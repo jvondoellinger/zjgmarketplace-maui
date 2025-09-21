@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using zjgmarketplace.Modules.UI.Product.ViewModel;
+using zjgmarketplace.Modules.UI.Products.ViewModel;
+using zjgmarketplace.Products.Core;
+using zjgmarketplace.Products.Core.Entity;
 
-namespace zjgmarketplace.Modules.UI.Product.Mapper;
+namespace zjgmarketplace.Modules.UI.Products.Mapper;
 
 public class ProductViewModelMapper
 {
@@ -19,4 +21,16 @@ public class ProductViewModelMapper
             Description = "Descrição não disponível"
         };
     }
+    internal static ProductViewModel Map(Product product)
+    {
+        return new ProductViewModel()
+        {
+            ImagesURL = product.ImagesURL,
+            Price = product.Price,
+            Title = product.Title,
+            Description = product.Description,
+            Id = product.Id.ToString()
+        };
+    }
+
 }

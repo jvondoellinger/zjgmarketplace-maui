@@ -5,18 +5,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:zjgmarketplace.Modules.UI.User.View"
     xmlns:order="clr-namespace:zjgmarketplace.Modules.UI.Order.View"
-    xmlns:product="clr-namespace:zjgmarketplace.Modules.UI.Product.View"
+    xmlns:product="clr-namespace:zjgmarketplace.Modules.UI.Products.View"
     xmlns:controls="clr-namespace:zjgmarketplace.Modules.UI.Controls.Views.Content"
     Shell.FlyoutBehavior="Disabled"
     Title="zjgmarketplace.modules.UI">
 
     <ShellContent
-        ContentTemplate="{DataTemplate product:ProductsPage}"
+        ContentTemplate="{DataTemplate product:PreviewProductsPage}"
         Route="MainPage" />
 
-    <ShellContent
-        ContentTemplate="{DataTemplate product:ProductsPage}"
-        Route="MainPages" />
     <ShellContent
         ContentTemplate="{DataTemplate order:OrdersPreviewPage}"
         Route="OrdersPage" />
@@ -29,8 +26,5 @@
     <ShellContent
         Route="ProfileSection"
         ContentTemplate="{DataTemplate local:ProfilePage}"/>
-    <ShellContent
-        Route="ProductsPage"
-        ContentTemplate="{DataTemplate product:ProductsPage}"/>
 
 </Shell>

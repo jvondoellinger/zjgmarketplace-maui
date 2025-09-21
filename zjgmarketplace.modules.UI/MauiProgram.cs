@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 using zjgmarketplace.Modules.UI.DependecyInjection;
 using zjgmarketplace.Modules.UI.Order.ViewModel;
 
@@ -20,10 +21,17 @@ namespace zjgmarketplace.modules.UI
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+
             builder
                 .Services
                 .AddAllDependencies();
-            return builder.Build();
+            var builded = builder.Build();
+            var hash = builded.Services.GetHashCode();
+
+            // App.Services = builded.Services;
+            
+            Debug.WriteLine(hash);
+            return builded;
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Foundation;
 using zjgmarketplace.modules.UI;
 
-namespace zjgmarketplace.modules.UI
+namespace zjgmarketplace.Modules.UI.Platforms.iOS
 {
     [Register("AppDelegate")]
     public class AppDelegate : MauiUIApplicationDelegate

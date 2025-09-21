@@ -1,6 +1,4 @@
-﻿using zjgmarketplace.Modules.UI.Product.ViewModel;
-
-namespace zjgmarketplace.Modules.UI.Product.ViewModel.Test;
+﻿namespace zjgmarketplace.Modules.UI.Products.ViewModel.Test;
 public class ProductModelTest
 {
     public static List<PreviewProductViewModel> Load()
@@ -10,6 +8,7 @@ public class ProductModelTest
         {
             list.Add(new PreviewProductViewModel()
             {
+                Id = i.ToString(),
                 ImageURL = "fallback.png",
                 Price = decimal.Parse("123.11"),
                 Title = "Test"

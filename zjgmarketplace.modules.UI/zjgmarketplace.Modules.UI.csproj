@@ -63,8 +63,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\zjgmarketplace.Products.Core\zjgmarketplace.Products.Core.csproj" />
+	  <ProjectReference Include="..\zjgmarketplace.Products.Infrastructure\zjgmarketplace.Products.Infrastructure.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Compile Update="Order\View\OrdersPreviewPage.xaml.cs">
 	    <DependentUpon>OrdersPreviewPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Products\View\PreviewProductsPage.xaml.cs">
+	    <DependentUpon>PreviewProductsPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -87,16 +95,16 @@
 	  <MauiXaml Update="Order\View\OrdersPreviewPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Product\Content\ProductCard.xaml">
+	  <MauiXaml Update="Products\Content\ProductCard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Product\View\ProductPage.xaml">
+	  <MauiXaml Update="Products\View\ProductPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="User\View\LoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Product\View\ProductsPage.xaml">
+	  <MauiXaml Update="Products\View\PreviewProductsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="User\View\ProfilePage.xaml">

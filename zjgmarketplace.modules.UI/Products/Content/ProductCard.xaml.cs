@@ -1,11 +1,6 @@
-using System.Diagnostics;
-using System.Threading.Tasks;
-using zjgmarketplace.Modules.UI.Order.View;
-using zjgmarketplace.Modules.UI.Product.Mapper;
-using zjgmarketplace.Modules.UI.Product.View;
-using zjgmarketplace.Modules.UI.Product.ViewModel;
+using zjgmarketplace.Modules.UI.Products.ViewModel;
 
-namespace zjgmarketplace.Modules.UI.Product.Content;
+namespace zjgmarketplace.Modules.UI.Products.Content;
 
 public partial class ProductCard : ContentView
 {
@@ -24,8 +19,8 @@ public partial class ProductCard : ContentView
 
     public ProductCard()
 	{
-		InitializeComponent();
-	}
+        InitializeComponent();
+    }
 
     public static void OnProductViewModelChanged(BindableObject bindable, object oldValue, object newValue)
     {
@@ -37,7 +32,8 @@ public partial class ProductCard : ContentView
 
     private async void ButtonRedirectToOrderPage_Clicked(object sender, EventArgs e)
     {
-        var model = ProductViewModelMapper.Map(ProductViewModel); // Interface que vai capturar esse item no backend/cache do app (usando o padrão proxy)
-        await Navigation.PushAsync(new ProductPage(model));
+        //var model = ProductViewModelMapper.Map(ProductViewModel); // Interface que vai capturar esse item no backend/cache do app (usando o padrão proxy)
+        // state.SelectProduct(ProductViewModel.Id);
+        // await Navigation.PushAsync(productPage);
     }
 }

@@ -1,9 +1,24 @@
 ﻿using zjgmarketplace.Modules.UI.Global.BaseModel;
+using zjgmarketplace.Products.Core.Interface;
 
-namespace zjgmarketplace.Modules.UI.Product.ViewModel;
+namespace zjgmarketplace.Modules.UI.Products.ViewModel;
 
-public class ProductViewModel : PropertyNotifier
+public class ProductViewModel : PropertyNotifier, IProductIdentifierGetter
 {
+    private string id;
+    public string Id
+    {
+        get => id;
+        set
+        {
+            if (!value.Equals(id))
+            {
+                id = value;
+                OnPropertyChanged(nameof(Id));
+            }
+        }
+    }
+
     private List<string> imagesURL;
     public List<string> ImagesURL
     {
@@ -57,5 +72,10 @@ public class ProductViewModel : PropertyNotifier
                 OnPropertyChanged(nameof(Description));
             }
         }
+    }
+
+    public string GetId()
+    {
+        return Id;
     }
 }

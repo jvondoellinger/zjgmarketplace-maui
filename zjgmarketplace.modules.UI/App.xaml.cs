@@ -4,8 +4,10 @@ namespace zjgmarketplace.modules.UI
 {
     public partial class App : Application
     {
-        public App()
+        public static IServiceProvider Services { get; private set; }
+        public App(IServiceProvider provider)
         {
+            Services = provider;
             InitializeComponent();
             MainPage = new AppShell();
         }

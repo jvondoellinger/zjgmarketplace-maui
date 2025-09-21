@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{F914FAC8-9710-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zjgmarketplace.Modules.UI", "zjgmarketplace.modules.UI\zjgmarketplace.Modules.UI.csproj", "{4AD62E2F-4CB2-4D29-AC76-C7166E77D599}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zjgmarketplace.Products.Infrastructure", "zjgmarketplace.Products.Infrastructure\zjgmarketplace.Products.Infrastructure.csproj", "{FB7026BF-8E35-4A57-B521-0D4AA9BC84D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{4AD62E2F-4CB2-4D29-AC76-C7166E77D599}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AD62E2F-4CB2-4D29-AC76-C7166E77D599}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4AD62E2F-4CB2-4D29-AC76-C7166E77D599}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{FB7026BF-8E35-4A57-B521-0D4AA9BC84D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB7026BF-8E35-4A57-B521-0D4AA9BC84D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB7026BF-8E35-4A57-B521-0D4AA9BC84D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB7026BF-8E35-4A57-B521-0D4AA9BC84D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +67,7 @@ Global
 		{4C025B78-D1B9-4142-B7E2-8465CBF825C1} = {DC436189-419C-464F-8ECB-BA048BDDF9B9}
 		{F914FAC8-9710-4127-95CC-837B95A04EC8} = {45D54E4E-9DFE-46F3-84DB-B1D4389A059A}
 		{4AD62E2F-4CB2-4D29-AC76-C7166E77D599} = {F914FAC8-9710-4127-95CC-837B95A04EC8}
+		{FB7026BF-8E35-4A57-B521-0D4AA9BC84D4} = {9FAC035C-6D0C-41D9-A639-9B8922E508B2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {33C4E48B-8203-45A8-B721-742AD24B066D}
