@@ -4,17 +4,17 @@ namespace zjgmarketplace.Modules.UI.Products.Content;
 
 public partial class ProductCard : ContentView
 {
-	public static BindableProperty ProductViewModelProperty = BindableProperty.Create(
-		nameof(ProductViewModel),
+	public static BindableProperty PreviewProductViewModelProperty = BindableProperty.Create(
+		nameof(PreviewProductViewModel),
 		typeof(PreviewProductViewModel),
 		typeof(ProductCard),
 		default(PreviewProductViewModel),
 		propertyChanged: OnProductViewModelChanged);
 
-    public PreviewProductViewModel ProductViewModel
+    public PreviewProductViewModel PreviewProductViewModel
     {
-        get => (PreviewProductViewModel)GetValue(ProductViewModelProperty);
-        set => SetValue(ProductViewModelProperty, value);
+        get => (PreviewProductViewModel)GetValue(PreviewProductViewModelProperty);
+        set => SetValue(PreviewProductViewModelProperty, value);
     }
 
     public ProductCard()

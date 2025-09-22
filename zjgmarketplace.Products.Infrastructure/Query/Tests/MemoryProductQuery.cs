@@ -10,7 +10,7 @@ public class MemoryProductQuery : IProductQuery
     {
         return ProductMemoryRepositoryTest
             .Products
-            .Find(p => p.Id.Equals(id));
+            .Find(p => p.Id.ToString().Equals(id));
     }
 
     public async Task<List<Product>> QueryPagination(int offset, int limit)

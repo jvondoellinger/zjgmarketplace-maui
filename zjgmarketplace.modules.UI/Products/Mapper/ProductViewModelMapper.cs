@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,10 +24,14 @@ public class ProductViewModelMapper
     }
     internal static ProductViewModel Map(Product product)
     {
+        if (product == null)
+        {
+            Debug.WriteLine("PRODUTO É NULL CARALHO");
+        }
         return new ProductViewModel()
         {
             ImagesURL = product.ImagesURL,
-            Price = product.Price,
+            Price = product.Price, 
             Title = product.Title,
             Description = product.Description,
             Id = product.Id.ToString()

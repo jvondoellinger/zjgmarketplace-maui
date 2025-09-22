@@ -9,7 +9,8 @@ public static class RepositoryDI
 {
     public static IServiceCollection AddProductLayerInfrastructure(this IServiceCollection services)
     {
-        services.AddRepositoryDI();
+        services
+            .AddRepositoryDI();
         return services;
     }
     internal static IServiceCollection AddRepositoryDI(this IServiceCollection services)

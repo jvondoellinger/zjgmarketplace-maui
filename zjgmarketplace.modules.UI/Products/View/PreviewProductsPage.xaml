@@ -18,9 +18,9 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <product:ProductCard ProductViewModel="{Binding .}">
+                    <product:ProductCard PreviewProductViewModel="{Binding .}">
                         <product:ProductCard.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                            <TapGestureRecognizer Tapped="OnCardClicked_Tapped"/>
                         </product:ProductCard.GestureRecognizers>
                     </product:ProductCard>
                 </DataTemplate>

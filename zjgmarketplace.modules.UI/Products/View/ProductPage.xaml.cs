@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using zjgmarketplace.Modules.UI.Products.Mapper;
 using zjgmarketplace.Modules.UI.Products.ViewModel;
 using zjgmarketplace.Modules.UI.Products.ViewModel.Test;
@@ -10,42 +11,39 @@ public partial class ProductPage : ContentPage
 {
     public static readonly string Route = nameof(ProductPage);
 
-    private readonly IProductState productState;
-    private readonly IProductQuery productQuery;
+    private readonly IProductState state;
+    private readonly IProductQuery query;
 
     public ProductViewModel ProductViewModel { get; set; }
-	public ProductPage(IProductState productState, IProductQuery productQuery)
+	public ProductPage(IProductState state, IProductQuery query)
     {
-        this.productState = productState;
-        this.productQuery = productQuery;
+        this.state = state;
+        this.query = query;
 
         InitializeComponent();
 
-        // Temporary data loader 
-        //ProductViewModel = ProductModelTest.Load2();
-        _ = Task.Run(async () => await DataLoader());
-
-
-        // Verificar posteriormente uma forma async de carregamento de dados na UI
+        //_ = Task.Run(async () => await DataLoader());
+        _ = DataLoader();
 
         BindingContext = this;
     }
 
-/*    public ProductPage(ProductViewModel productViewModel)
-    {
-        InitializeComponent();
-        ProductViewModel = productViewModel;
-        BindingContext = this;
-    }*/
-
     private async Task DataLoader()
     {
-        if (productState.SelectedProductId == null) return;
+        Debug.WriteLine("STARTING DATA LOADER: ");
 
-        var entity = await productQuery.Find(productState.SelectedProductId);
+        if (state.SelectedProductId == null)
+        {
+            Debug.WriteLine("Current object: " + state.GetHashCode());
+            Debug.WriteLine("STARTING DATA LOADER: 2");
+        }
+        else
+        {
+            Debug.WriteLine("STARTING DATA LOADER: 3");
+        }
 
-        // Mapping entity to view model ...
-
+        var entity = await query.Find(state.SelectedProductId);
+        Debug.WriteLine("DEscription: "+entity.Description);
         ProductViewModel = ProductViewModelMapper.Map(entity);
     }
 } 

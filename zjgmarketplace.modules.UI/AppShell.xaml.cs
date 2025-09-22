@@ -12,7 +12,7 @@ namespace zjgmarketplace.modules.UI
             InitializeComponent();
             RegisterRoutes();
             var page = App.Services.GetService<PreviewProductsPage>();
-            _ = Task.Run(async () => await Shell.Current.Navigation.PushAsync(page));
+            this.MainPage.Content = page;
         }
 
         private void RegisterRoutes()

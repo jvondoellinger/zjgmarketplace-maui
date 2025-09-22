@@ -1,11 +1,7 @@
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Threading.Tasks;
 using zjgmarketplace.modules.UI;
-using zjgmarketplace.Modules.UI.Products.Content;
 using zjgmarketplace.Modules.UI.Products.Mapper;
 using zjgmarketplace.Modules.UI.Products.ViewModel;
-using zjgmarketplace.Modules.UI.Products.ViewModel.Test;
 using zjgmarketplace.Products.Core.Interface;
 
 namespace zjgmarketplace.Modules.UI.Products.View;
@@ -19,16 +15,6 @@ public partial class PreviewProductsPage : ContentPage
 
     public ObservableCollection<PreviewProductViewModel> ProductViewModels { get; private set; }
 
-/*    public PreviewProductsPage()
-	{
-        InitializeComponent();
-
-        // Temporary data loader
-        ProductModelTest.Load().ForEach(ProductViewModels.Add);
-
-        BindingContext = this;
-    }*/
-
     public PreviewProductsPage(IProductQuery query, IProductState state)
     {
         this.query = query;
@@ -36,8 +22,8 @@ public partial class PreviewProductsPage : ContentPage
 
         InitializeComponent();
 
-        _ = Task.Run(async () => await DataLoader());
-
+        // _ = Task.Run(async () => await DataLoader());
+        _ = DataLoader();
         BindingContext = this;
     }
             
@@ -49,21 +35,17 @@ public partial class PreviewProductsPage : ContentPage
 
     }
 
-    private void Button_Clicked(object sender, EventArgs e)
+    private async void OnCardClicked_Tapped(object sender, TappedEventArgs e)
     {
-        Debug.WriteLine(sender.GetType());
-    }
+        var ve = (ContentView) sender; // (ContentView) or (VisualElement) to cast sender
 
-    private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
-    {
-        var ve = (VisualElement) sender;
-        var vm = ve.BindingContext as PreviewProductViewModel;
+        if (ve.BindingContext is not PreviewProductViewModel vm) return;
 
-        if (vm != null)
-        {
-            var page = App.Services.GetRequiredService<ProductPage>();
-            state.SelectProduct(vm.Id);
-            await Shell.Current.Navigation.PushAsync(page);
-        }
+        state.SelectProduct(vm.Id); // Select productId in state
+
+        var page = App.Services.GetRequiredService<ProductPage>(); // Data loader is active in Ctor from the page, when the state in the same insance (singleton). 
+
+        await Shell.Current.Navigation.PushAsync(page); // Navigate to ProductPage
+
     }
 }
