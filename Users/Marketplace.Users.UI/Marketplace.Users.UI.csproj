@@ -24,8 +24,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Views\" />
-	  <Folder Include="ViewModels\" />
+	  <Compile Update="Views\UserSignupPage.xaml.cs">
+	    <DependentUpon>UserSignupPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\UserLoginPage.xaml.cs">
+	    <DependentUpon>UserLoginPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\UserSignupPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\UserLoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

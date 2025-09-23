@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Marketplace.Users.UI.Views.UserSignupPage"
+             Title="NewPage1">
+    <ScrollView VerticalScrollBarVisibility="Never">
+        <VerticalStackLayout
+             VerticalOptions="Center"
+             HorizontalOptions="Center"
+             Spacing="20"
+             Margin="50">
+            <Label 
+                 Text="You're new here. Create an account and enjoy our marketplace!"
+                 VerticalOptions="Center" 
+                 HorizontalOptions="Center" />
+
+            <Entry
+                 Placeholder="Fullname: (ex: Jorge Armando)"
+                 Text="{Binding UserSignupViewModel.Fullname, Mode=TwoWay}"
+                 MinimumWidthRequest="150"/>
+
+            <Entry
+                 Placeholder="Email: (ex: example@domain.com)"
+                 Text="{Binding UserSignupViewModel.Email, Mode=TwoWay}"
+                 MinimumWidthRequest="150"/>
+
+            <Entry
+                 Placeholder="Password: "
+                 MinimumWidthRequest="150"
+                 Text="{Binding UserSignupViewModel.Password, Mode=TwoWay}"
+                 IsPassword="True"/>
+
+            <Grid 
+                 ColumnSpacing="10"
+                 ColumnDefinitions="Auto,Auto,*">
+                <Entry
+                     Placeholder="CC"
+                     Text="+55"
+                     Keyboard="Numeric"
+                     Grid.Column="0"
+                     MaxLength="4"/>
+                <Entry
+                     Placeholder="DDD"
+                     Grid.Column="1"
+                     MaxLength="4"
+                     Keyboard="Numeric"/>
+                <Entry
+                     Placeholder="Number"
+                     Keyboard="Numeric"
+                     MaxLength="9"
+                     Grid.Column="2"/>
+            </Grid>
+
+
+            <Grid
+                 HorizontalOptions="Fill"
+                 RowDefinitions="*,*"
+                 RowSpacing="10"
+                 ColumnDefinitions="*,*"
+                 ColumnSpacing="1">
+                <Label 
+                     Text="Select your birth date: "
+                     Grid.Row="0"
+                     Grid.Column="0"/>
+                <DatePicker
+                     Date="{Binding UserSignupViewModel.BirthDate, Mode=TwoWay}"
+                     MinimumWidthRequest="150"
+                     Format="dd/MM/yyyy"
+                     Grid.Row="1"
+                     Grid.Column="0"/>
+                <Label 
+                     Text="CPF: "
+                     Grid.Row="0"
+                     Grid.Column="1"/>
+                <Entry
+                     Placeholder="CPF: (ex: 123.456.789.09)"
+                     Keyboard="Numeric"
+                     MinimumWidthRequest="150"
+                     Text="{Binding UserSignupViewModel.CPF, Mode=TwoWay}"
+                     MaxLength="11"
+                     Grid.Row="1"
+                     Grid.Column="1"/>
+            </Grid>
+            <Button
+                 Text="Signup"
+                 MinimumWidthRequest="150"
+                 Padding="10"
+                 Clicked="SignupButton_Clicked"/>
+
+            <Label 
+                VerticalOptions="End"
+                HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Label.GestureRecognizers>
+
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span 
+                            Text="Já possui uma conta? "/>
+                        <Span 
+                            Text="Entre aqui."
+                            TextColor="Purple"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <!-- Adiocionar evento para subir pop-up e alterar cor do botão -->
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
