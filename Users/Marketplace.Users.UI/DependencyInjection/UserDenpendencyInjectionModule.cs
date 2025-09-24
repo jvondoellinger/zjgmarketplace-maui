@@ -9,6 +9,7 @@ public static class ProductDenpendencyInjectionModule
     {
         services.AddScoped<UserLoginPage>();
         services.AddScoped<UserSignupPage>();
+        services.AddScoped<AccountDashboardView>();
         services.AddSingleton<IPageResolver, PageResolver>();
 
         return services;

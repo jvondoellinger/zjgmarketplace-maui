@@ -22,7 +22,7 @@
         <ShellContent
             Title="Perfil"
             Icon="fallback.png"
-            ContentTemplate="{DataTemplate user:UserLoginPage}"
+            ContentTemplate="{DataTemplate user:AccountDashboardView}"
             Route="UserLoginPage" />
     </TabBar>
 
