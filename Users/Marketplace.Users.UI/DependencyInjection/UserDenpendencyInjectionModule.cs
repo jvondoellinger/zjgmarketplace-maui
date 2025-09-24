@@ -20,8 +20,8 @@ public static class ProductDenpendencyInjectionModule
 
     private static IServiceCollection AddDashboardItems(this IServiceCollection services)
     {
-        services.AddScoped<IDashboardItem, OrdersDashboardItem>();
-        services.AddScoped<IDashboardItem, TicketsDashboardItem>();
+        services.AddScoped<DashboardItem, OrdersDashboardItem>();
+        services.AddScoped<DashboardItem, TicketsDashboardItem>();
         return services;
     }
 }

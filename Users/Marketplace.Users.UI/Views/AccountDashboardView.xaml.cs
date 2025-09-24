@@ -6,10 +6,10 @@ namespace Marketplace.Users.UI.Views;
 
 public partial class AccountDashboardView : ContentPage, IDataLoader
 {
-    private readonly List<IDashboardItem> items;
+    private readonly List<DashboardItem> items;
 
-    public ObservableCollection<IDashboardItem> Items { get; private set; }
-    public AccountDashboardView(IEnumerable<IDashboardItem> items)
+    public ObservableCollection<DashboardItem> Items { get; private set; }
+    public AccountDashboardView(IEnumerable<DashboardItem> items)
 	{
 		InitializeComponent();
         this.items = [..items];

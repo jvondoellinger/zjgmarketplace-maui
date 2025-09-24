@@ -27,17 +27,17 @@
             MinimumWidthRequest="250"
             Padding="10"
             Clicked="LoginButton_Clicked"/>
-        <!-- Adiocionar evento para subir pop-up e alterar cor do botão -->
 
-        <Label VerticalOptions="End"
-               HorizontalOptions="Center">
+        <Label
+            VerticalOptions="End"
+            HorizontalOptions="Center">
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding SingupRediredtCommand}"/>
             </Label.GestureRecognizers>
 
             <Label.FormattedText>
                 <FormattedString>
-                    <Span 
+                    <Span
                         Text="Não possui uma conta? "/>
                     <Span 
                         Text="Crie aqui."

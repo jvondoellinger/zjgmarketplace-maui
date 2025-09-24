@@ -1,24 +1,18 @@
 ﻿using Marketplace.Users.Core.Interfaces;
 using Marketplace.Users.UI.Views;
-using System.Windows.Input;
 
 namespace Marketplace.Users.UI.ViewModels.Dashboard;
 
-public class OrdersDashboardItem : IDashboardItem
+public class OrdersDashboardItem : DashboardItem
 {
-    private readonly IPageResolver resolver;
 
     public OrdersDashboardItem(IPageResolver resolver)
     {
-        this.resolver = resolver;
-
+        Title = "Pedidos";
         Command = new Command(async () =>
         {
-            var page = resolver.Resolve<UserLoginPage>(); //TEste
+            var page = resolver.Resolve<UserLoginPage>();
             await Shell.Current.Navigation.PushAsync(page);
         });
     }
-    public string Title { get; } = "Pedidos";
-
-    public ICommand Command { get; }
 }
