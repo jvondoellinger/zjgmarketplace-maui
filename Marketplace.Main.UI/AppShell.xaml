@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Marketplace.Main.UI"
     xmlns:products="clr-namespace:Marketplace.Products.UI.Views;assembly=Marketplace.Products.UI"
+    xmlns:user="clr-namespace:Marketplace.Users.UI.Views;assembly=Marketplace.Users.UI"
     Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
@@ -18,6 +19,11 @@
             Icon="fallback.png"
             ContentTemplate="{DataTemplate products:ProductCategoriesPage}"
             Route="ProductsCategoriesPage" />
+        <ShellContent
+            Title="Perfil"
+            Icon="fallback.png"
+            ContentTemplate="{DataTemplate user:UserLoginPage}"
+            Route="UserLoginPage" />
     </TabBar>
 
 </Shell>

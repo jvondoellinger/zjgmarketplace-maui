@@ -65,6 +65,8 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\Products\Marketplace.Products.Infrastructure\Marketplace.Products.Infrastructure.csproj" />
 	  <ProjectReference Include="..\Products\Marketplace.Products.UI\Marketplace.Products.UI.csproj" />
+	  <ProjectReference Include="..\Users\Marketplace.Users.Infrastructure\Marketplace.Users.Infrastructure.csproj" />
+	  <ProjectReference Include="..\Users\Marketplace.Users.UI\Marketplace.Users.UI.csproj" />
 	</ItemGroup>
 
 </Project>

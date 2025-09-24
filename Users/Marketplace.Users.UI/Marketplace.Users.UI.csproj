@@ -24,6 +24,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\Marketplace.Users.Core\Marketplace.Users.Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Controls\LoadingControl.xaml.cs">
+	    <DependentUpon>LoadingControl.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\UserSignupPage.xaml.cs">
 	    <DependentUpon>UserSignupPage.xaml</DependentUpon>
 	  </Compile>
@@ -33,6 +40,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Controls\LoadingControl.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\UserSignupPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
