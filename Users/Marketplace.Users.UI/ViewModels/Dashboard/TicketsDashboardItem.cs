@@ -4,21 +4,17 @@ using System.Windows.Input;
 
 namespace Marketplace.Users.UI.ViewModels.Dashboard;
 
-public class OrdersDashboardItem : IDashboardItem
+public class TicketsDashboardItem : IDashboardItem
 {
-    private readonly IPageResolver resolver;
-
-    public OrdersDashboardItem(IPageResolver resolver)
+    public TicketsDashboardItem(IPageResolver resolver)
     {
-        this.resolver = resolver;
-
         Command = new Command(async () =>
         {
             var page = resolver.Resolve<UserLoginPage>(); //TEste
             await Shell.Current.Navigation.PushAsync(page);
         });
     }
-    public string Title { get; } = "Pedidos";
+    public string Title { get; } = "Tickets";
 
     public ICommand Command { get; }
 }

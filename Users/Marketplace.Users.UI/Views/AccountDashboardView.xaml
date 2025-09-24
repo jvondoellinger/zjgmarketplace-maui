@@ -3,24 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Marketplace.Users.UI.Views.AccountDashboardView"
              Title="Dashboard">
-    <VerticalStackLayout>
-        <Frame
-            CornerRadius="15"
-            VerticalOptions="Start" 
-            HorizontalOptions="Fill" >
-            <Label 
-                Text="Welcome to your account dashboard!"
-                HorizontalOptions="Center" 
-                Padding="5"/>
-        </Frame>
-        <Frame
-            VerticalOptions="Start" 
-            HorizontalOptions="Fill" >
-            <Label 
-                Text="Welcome to your account dashboard!"
-                HorizontalOptions="Center" 
-                Padding="5"/>
-        </Frame>
-
-    </VerticalStackLayout>
+    <CollectionView ItemsSource="{Binding Items}">
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout
+                Orientation="Vertical"
+                VerticalItemSpacing="5"
+                Span="1" />
+        </CollectionView.ItemsLayout>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Frame
+                    Margin="10,0,10,0"
+                    CornerRadius="15"
+                    VerticalOptions="Start" 
+                    HorizontalOptions="Fill" >
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Command}"/>
+                    </Frame.GestureRecognizers>
+                    <Label 
+                        Text="{Binding Title}"
+                        HorizontalOptions="Center" 
+                        Padding="0"/>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>
