@@ -8,7 +8,7 @@ namespace Marketplace.Products.UI.Mapper;
 
 public class ProductViewModelMapper
 {
-    internal static ProductViewModel Map(PreviewProductViewModel previewProductViewModel)
+    internal static ProductViewModel Map(ProductCardViewModel previewProductViewModel)
     {
         return new ProductViewModel()
         {

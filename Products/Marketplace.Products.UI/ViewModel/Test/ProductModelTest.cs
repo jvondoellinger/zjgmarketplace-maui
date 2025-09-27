@@ -5,12 +5,12 @@ using zjgmarketplace.Modules.UI.Products.ViewModel;
 namespace Marketplace.Products.UI.ViewModel.Test;
 public class ProductModelTest
 {
-    public static List<PreviewProductViewModel> Load()
+    public static List<ProductCardViewModel> Load()
     {
-        var list = new List<PreviewProductViewModel>();
+        var list = new List<ProductCardViewModel>();
         for (int i = 0; i < 10; i++)
         {
-            list.Add(new PreviewProductViewModel()
+            list.Add(new ProductCardViewModel()
             {
                 Id = i.ToString(),
                 ImageURL = "fallback.png",

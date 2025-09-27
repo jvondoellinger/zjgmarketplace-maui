@@ -10,14 +10,11 @@ public partial class ProductCategoriesPage : ContentPage, IDataLoader
 {
     private readonly IProductCategoryQuery query;
 
-    public ObservableCollection<ProductCategoryViewModel> ProductCategoryModelViews { get; private set; }
+    public IReadOnlyList<ProductCategoryViewModel> ProductCategoryModelViews { get; private set; }
 
     public ProductCategoriesPage(IProductCategoryQuery query)
 	{
         this.query = query;
-
-        NavigationPage.SetHasNavigationBar(this, true);
-
 
         InitializeComponent();
 

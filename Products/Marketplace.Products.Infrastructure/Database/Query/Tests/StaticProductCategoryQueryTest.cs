@@ -16,6 +16,7 @@ public class StaticProductCategoryQueryTest : IProductCategoryQuery
             {
                 Id = Guid.NewGuid().ToString(),
                 Title = $"Category {i}",
+
             };
             lis.Add(item);
         }

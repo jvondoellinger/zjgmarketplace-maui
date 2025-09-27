@@ -2,15 +2,16 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Marketplace.Products.UI.Views.Content.CategoryCard">
-    <Frame 
-        BackgroundColor="#F1F2F2"
-        CornerRadius="8">
+    <Border 
+        StrokeShape="RoundRectangle 8"
+        Padding="15">
         <Label
+            BackgroundColor="#F6F6F6"
             Text="{Binding Title}" 
             FontAttributes="Bold"
             FontSize="Medium"
             TextTransform="Uppercase"
             HorizontalOptions="Center"
             VerticalOptions="Center"/>
-    </Frame>
+    </Border>
 </ContentView>

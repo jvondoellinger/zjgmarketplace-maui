@@ -28,13 +28,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\ProductCardsPage.xaml.cs">
+	    <DependentUpon>ProductCardsPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Views\Content\CategoryCard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Content\ProductCard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\PreviewProductsPage.xaml">
+	  <MauiXaml Update="Views\ProductCardsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ProductCartPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ProductCategoriesPage.xaml">

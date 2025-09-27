@@ -12,7 +12,7 @@
         <ShellContent
             Title="Produtos"
             Icon="fallback.png"
-            ContentTemplate="{DataTemplate products:PreviewProductsPage}"
+            ContentTemplate="{DataTemplate products:ProductCardsPage}"
             Route="ProductsPage" />
         <ShellContent
             Title="Categorias"
@@ -24,6 +24,11 @@
             Icon="fallback.png"
             ContentTemplate="{DataTemplate user:UserLoginPage}"
             Route="UserLoginPage" />
+        <ShellContent
+            Title="Carrinho"
+            Icon="fallback.png"
+            ContentTemplate="{DataTemplate products:ProductCartPage}"
+            Route="AccountDashboardPage" />
         <ShellContent
             Title="Dashboard"
             Icon="fallback.png"

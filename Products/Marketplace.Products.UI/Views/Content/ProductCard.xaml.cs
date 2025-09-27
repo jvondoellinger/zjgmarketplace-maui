@@ -1,21 +1,22 @@
+using Marketplace.Products.Core.Model;
+using Marketplace.Products.Core.State;
 using zjgmarketplace.Modules.UI.Products.ViewModel;
 
 namespace Marketplace.Products.UI.Views.Content;
 
 public partial class ProductCard : ContentView
 {
-
-    public static BindableProperty PreviewProductViewModelProperty = BindableProperty.Create(
-        nameof(PreviewProductViewModel),
-        typeof(PreviewProductViewModel),
+    public static BindableProperty ProductCardViewModelProperty = BindableProperty.Create(
+        nameof(ProductCardViewModel),
+        typeof(ProductCardViewModel),
         typeof(ProductCard),
-        default(PreviewProductViewModel),
+        default(ProductCardViewModel),
         propertyChanged: OnProductViewModelChanged);
 
-    public PreviewProductViewModel PreviewProductViewModel
+    public ProductCardViewModel ProductCardViewModel
     {
-        get => (PreviewProductViewModel)GetValue(PreviewProductViewModelProperty);
-        set => SetValue(PreviewProductViewModelProperty, value);
+        get => (ProductCardViewModel)GetValue(ProductCardViewModelProperty);
+        set => SetValue(ProductCardViewModelProperty, value);
     }
 
     public static void OnProductViewModelChanged(BindableObject bindable, object oldValue, object newValue)
@@ -31,8 +32,8 @@ public partial class ProductCard : ContentView
 		InitializeComponent();
 	}
 
-    private void ButtonRedirectToOrderPage_Clicked(object sender, EventArgs e)
+    private void ButtonAddToCart_Clicked(object sender, EventArgs e)
     {
-
+        
     }
 }

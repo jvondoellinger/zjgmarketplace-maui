@@ -1,5 +1,4 @@
 ﻿using Marketplace.Products.Core.Interfaces;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Marketplace.Products.Infrastructure.DependecyInjection;
 

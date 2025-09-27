@@ -1,16 +1,17 @@
 ﻿using Marketplace.Products.Core.Model;
+using Marketplace.Products.Core.State;
 using zjgmarketplace.Modules.UI.Products.ViewModel;
 
 namespace Marketplace.Products.UI.Mapper;
 
-internal class PreviewProductViewModelMapper
+internal class ProductCardViewModelMapper
 {
-    internal static List<PreviewProductViewModel> Map(List<Product> products)
+    internal static List<ProductCardViewModel> Map(IEnumerable<Product> products)
     {
         return [..
         products.Select((product) =>
         {
-            return new PreviewProductViewModel()
+            return new ProductCardViewModel()
             {
                 ImageURL = product.ImagesURL.FirstOrDefault(),
                 Price = product.Price,

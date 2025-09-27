@@ -11,15 +11,15 @@ using zjgmarketplace.Modules.UI.Products.ViewModel;
 
 namespace Marketplace.Products.UI.Views;
 
-public partial class PreviewProductsPage : ContentPage, IDataLoader
+public partial class ProductCardsPage : ContentPage, IDataLoader
 {
     private readonly IProductQuery query;
     private readonly IProductState state;
     private readonly IPageResolver pageResolver;
 
-    private PreviewProductViewModel selectedProductViewModel;
+    private ProductCardViewModel selectedProductViewModel;
 
-    public PreviewProductViewModel SelectedProductViewModel
+    public ProductCardViewModel SelectedProductViewModel
     {
         get => selectedProductViewModel;
         set
@@ -29,9 +29,9 @@ public partial class PreviewProductsPage : ContentPage, IDataLoader
         }
     }
 
-    public ObservableCollection<PreviewProductViewModel> ProductViewModels { get; private set; }
+    public ObservableCollection<ProductCardViewModel> ProductViewModels { get; private set; }
 
-    public PreviewProductsPage(IProductQuery query, IProductState state, IPageResolver pageResolver)
+    public ProductCardsPage(IProductQuery query, IProductState state, IPageResolver pageResolver)
 	{
         InitializeComponent();
 
@@ -48,12 +48,12 @@ public partial class PreviewProductsPage : ContentPage, IDataLoader
     {
         var data = await query.QueryPagination(0, 10);
 
-        var models = PreviewProductViewModelMapper.Map(data);
+        var models = ProductCardViewModelMapper.Map(data);
 
         ProductViewModels = [.. models];
     }
 
-    private async Task RedirectToProductPage(PreviewProductViewModel viewModel)
+    private async Task RedirectToProductPage(ProductCardViewModel viewModel)
     {
         state.SelectProduct(viewModel.Id); // Select productId in state
 
@@ -61,5 +61,17 @@ public partial class PreviewProductsPage : ContentPage, IDataLoader
 
         await Shell.Current.Navigation.PushAsync(page); // Navigate to ProductPage
 
+    }
+
+    private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    {
+        Debug.WriteLine("Clicked");
+        if (sender is VisualElement ve)
+        {
+            if (ve.BindingContext is ProductCardViewModel vm)
+            {
+                SelectedProductViewModel = vm;
+            }
+        }
     }
 }

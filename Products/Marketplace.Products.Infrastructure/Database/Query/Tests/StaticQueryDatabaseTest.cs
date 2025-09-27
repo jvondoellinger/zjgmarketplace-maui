@@ -14,10 +14,11 @@ public class StaticQueryDatabaseTest : IProductQuery
 
         for (int i = 0; i < 50; i++)
         {
+            var id = Guid.NewGuid().ToString();
             var item = new Product(
                 Guid.NewGuid(),
                 "Monitor Gamer SuperFrame Prisma V2 — SFPFW‑27185‑QHD‑PRO ",
-                "",
+                id+id+id+id+id+id,
                 decimal.Parse("123.11"),
                 "Eletronicos",
                 ["fallback.png", randomURL, randomURL, randomURL, randomURL]);
