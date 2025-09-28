@@ -1,4 +1,5 @@
 using Marketplace.Products.Core.Query;
+using Marketplace.Products.Core.Workers;
 using Marketplace.Products.UI.Interfaces;
 using Marketplace.Products.UI.Mapper;
 using Marketplace.Products.UI.ViewModel;
@@ -18,7 +19,7 @@ public partial class ProductCategoriesPage : ContentPage, IDataLoader
 
         InitializeComponent();
 
-        _ = LoadDataContext();
+        AsyncWorker.RunAsync(LoadDataContext);
 
         BindingContext = this;
     }

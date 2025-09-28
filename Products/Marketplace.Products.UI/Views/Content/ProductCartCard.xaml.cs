@@ -2,8 +2,9 @@ using Marketplace.Products.UI.ViewModel.Cards;
 
 namespace Marketplace.Products.UI.Views.Content;
 
-public partial class ProductCard : ContentView
+public partial class ProductCartCard : ContentView
 {
+	
     public static BindableProperty ProductCardViewModelProperty = BindableProperty.Create(
         nameof(ProductCardViewModel),
         typeof(ProductCardViewModel),
@@ -13,7 +14,7 @@ public partial class ProductCard : ContentView
 
     public ProductCardViewModel ProductCardViewModel
     {
-        get => (ProductCardViewModel)GetValue(ProductCardViewModelProperty);
+        get => (ProductCardViewModel) GetValue(ProductCardViewModelProperty);
         set => SetValue(ProductCardViewModelProperty, value);
     }
 
@@ -25,13 +26,13 @@ public partial class ProductCard : ContentView
         }
     }
 
-    public ProductCard()
+    public ProductCartCard()
 	{
 		InitializeComponent();
 	}
 
-    private void ButtonAddToCart_Clicked(object sender, EventArgs e)
+    private void RemoveOnCartViewButton_Clicked(object sender, EventArgs e)
     {
-        
+
     }
 }

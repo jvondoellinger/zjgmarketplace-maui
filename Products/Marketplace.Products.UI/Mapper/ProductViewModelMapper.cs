@@ -1,8 +1,7 @@
 ﻿using Marketplace.Products.Core.Model;
 using Marketplace.Products.UI.ViewModel;
-using System.Collections.Generic;
+using Marketplace.Products.UI.ViewModel.Cards;
 using System.Diagnostics;
-using zjgmarketplace.Modules.UI.Products.ViewModel;
 
 namespace Marketplace.Products.UI.Mapper;
 

@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Marketplace.Products.UI.Views.Content.ProductCard">
-    <Border 
-        Padding="15"
-        Background="Transparent"
-        StrokeShape="RoundRectangle 12">
-        <VerticalStackLayout>
+             x:Class="Marketplace.Products.UI.Views.Content.ProductCartCard">
+    <SwipeView>
+        <SwipeView.RightItems>
+            <SwipeItems>
+                <SwipeItem
+                    Text="Excluir"
+                    Command="{Binding Command}"
+                    BackgroundColor="Red"/>
+            </SwipeItems>
+        </SwipeView.RightItems>
+        <Border 
+            Padding="15"
+            Background="Transparent"
+            StrokeShape="RoundRectangle 12">
+            <VerticalStackLayout>
                 <Image 
                     Source="{Binding ImageURL}"
                     Aspect="AspectFit" 
@@ -14,20 +23,12 @@
                 <Label 
                     Text="{Binding Title}" 
                     HorizontalOptions="Center"/>
-                <!-- Title -->
                 <Label 
                     Text="{Binding Price, StringFormat='Preço: {0:C}'}"
                     FontAttributes="Bold"
                     Margin="0,5,0,0"
                     HorizontalOptions="Center"/>
-                <!-- Price -->
-                <Button
-                    x:Name="AddOnCartViewButton"
-                    Margin="0,5,0,0"
-                    Text="Buy"
-                    Command="{Binding Command}"
-                    Clicked="ButtonAddToCart_Clicked"/>
-                <!-- Add cart -->
             </VerticalStackLayout>
-    </Border>
+        </Border>
+    </SwipeView>
 </ContentView>

@@ -1,13 +1,12 @@
 using Marketplace.Products.Core.Interfaces;
 using Marketplace.Products.Core.Query;
 using Marketplace.Products.Core.State;
+using Marketplace.Products.Core.Workers;
 using Marketplace.Products.UI.Interfaces;
 using Marketplace.Products.UI.Mapper;
+using Marketplace.Products.UI.ViewModel.Cards;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using zjgmarketplace.Modules.UI.Products.ViewModel;
 
 namespace Marketplace.Products.UI.Views;
 
@@ -39,7 +38,7 @@ public partial class ProductCardsPage : ContentPage, IDataLoader
         this.state = state;
         this.pageResolver = pageResolver;
 
-        _ = LoadDataContext();
+        AsyncWorker.RunAsync(LoadDataContext);
 
         BindingContext = this;
     }
@@ -48,7 +47,7 @@ public partial class ProductCardsPage : ContentPage, IDataLoader
     {
         var data = await query.QueryPagination(0, 10);
 
-        var models = ProductCardViewModelMapper.Map(data);
+        var models = ProductCardViewModelMapper.MapToBuyCard(data);
 
         ProductViewModels = [.. models];
     }

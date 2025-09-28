@@ -1,16 +1,14 @@
-﻿using Marketplace.Products.UI.ViewModel;
-using System.Collections.Generic;
-using zjgmarketplace.Modules.UI.Products.ViewModel;
+﻿using Marketplace.Products.UI.ViewModel.Cards;
 
 namespace Marketplace.Products.UI.ViewModel.Test;
 public class ProductModelTest
 {
-    public static List<ProductCardViewModel> Load()
+    public static List<ProductCardViewModel> LoadBuyViewModels()
     {
         var list = new List<ProductCardViewModel>();
         for (int i = 0; i < 10; i++)
         {
-            list.Add(new ProductCardViewModel()
+            list.Add(new ProductCardBuyViewModel()
             {
                 Id = i.ToString(),
                 ImageURL = "fallback.png",

@@ -7,6 +7,13 @@
     <Grid
         Padding="10"
         RowDefinitions="Auto,*,Auto">
+        <Label 
+            Text="*Arraste o item para a esqueda para removcr do carrinho"
+            FontSize="Small"
+            FontAttributes="Bold"
+            TextColor="LightGrey"
+            Margin="0,0,0,15"
+            Grid.Row="0"/>
         <CollectionView
             x:Name="ItemCollection"
             HorizontalOptions="Start"
@@ -22,11 +29,12 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <card:ProductCard
-                        x:Name="Card"
-                        InputTransparent="True"
-                        BackgroundColor="#F2F2F2"
-                        ProductCardViewModel="{Binding .}"/>
+                    <card:ProductCartCard
+                                x:Name="Card"
+                                InputTransparent="False"
+                                BackgroundColor="#F2F2F2"
+                                ProductCardViewModel="{Binding .}"
+                                Grid.Row="0"/>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
