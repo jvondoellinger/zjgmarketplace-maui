@@ -23,9 +23,9 @@
             <CollectionView
                 Margin="10"
                 BackgroundColor="Transparent"
-                ItemsSource="{Binding ProductViewModels}"
-                SelectedItem="{Binding SelectedProductViewModel, Mode=OneWayToSource}"
-                SelectionMode="Single">
+                SelectedItem="{Binding SelectedItem}"
+                SelectionMode="Single"
+                ItemsSource="{Binding ProductViewModels}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout
                         Orientation="Vertical"
@@ -37,7 +37,8 @@
                     <DataTemplate>
                         <product:ProductCard
                             BackgroundColor="#F6F6F6"
-                            ProductCardViewModel="{Binding .}"/>
+                            ProductCardViewModel="{Binding .}">
+                        </product:ProductCard>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

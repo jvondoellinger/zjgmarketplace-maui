@@ -1,4 +1,5 @@
-﻿using Marketplace.Products.Core.State;
+﻿using Marketplace.Products.Core.Model;
+using Marketplace.Products.Core.State;
 using System.Diagnostics;
 
 namespace Marketplace.Products.UI.ViewModel.Cards;
@@ -9,8 +10,8 @@ public class ProductCartCardViewModel : ProductCardViewModel
     {
         Command = new Command(() =>
         {
-            ProductStateComposite.Instance.RemoveState(Id);
-            Debug.WriteLine($"Removing product with ID: {Id} from cart");
+            Debug.WriteLine($"Deleting card with id: {Id}");
+            ProductCart.Instance.Remove(Id);
         });
     }
 }

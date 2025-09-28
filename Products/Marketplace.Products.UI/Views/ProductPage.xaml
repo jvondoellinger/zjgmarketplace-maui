@@ -16,11 +16,11 @@
                 <Label 
                     FontSize="Large"
                     FontAttributes="Bold"
-                    Text="{Binding ProductViewModel.Title}" 
+                    Text="{Binding Title}" 
                     HorizontalOptions="Center"
                     Grid.Row="0"/>
                 <CollectionView
-                    ItemsSource="{Binding ProductViewModel.ImagesURL}"
+                    ItemsSource="{Binding ImagesURL}"
                     HorizontalOptions="Center"
                     HeightRequest="200"
                     HorizontalScrollBarVisibility="Never"

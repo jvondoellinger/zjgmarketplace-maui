@@ -30,14 +30,20 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <card:ProductCartCard
-                                x:Name="Card"
-                                InputTransparent="False"
                                 BackgroundColor="#F2F2F2"
                                 ProductCardViewModel="{Binding .}"
                                 Grid.Row="0"/>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        <Label
+            Text="{Binding TotalPrice, StringFormat='Total: {0:C}'}"
+            FontSize="Medium"
+            FontAttributes="Bold"
+            HorizontalOptions="Start"
+            VerticalOptions="Center"
+            Margin="10,5,10,5"
+            Grid.Row="2"/>
         <Button
             Margin="10,5,10,5"
             Text="Proceed to checkout"

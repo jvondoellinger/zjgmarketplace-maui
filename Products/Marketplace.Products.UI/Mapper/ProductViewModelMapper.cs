@@ -19,15 +19,11 @@ public class ProductViewModelMapper
     }
     internal static ProductViewModel Map(Product product)
     {
-        if (product == null)
-        {
-            Debug.WriteLine("PRODUTO É NULL CARALHO");
-        }
         return new ProductViewModel()
         {
             ImagesURL = product.ImagesURL,
             Price = product.Price, 
-            Title = product.Title,
+            Title = product.Title?? "Batta",
             Description = product.Description,
             Id = product.Id.ToString()
         };

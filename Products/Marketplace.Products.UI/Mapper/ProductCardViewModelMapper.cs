@@ -1,16 +1,18 @@
-﻿using Marketplace.Products.Core.Model;
+﻿using Marketplace.Products.Core.Interfaces;
+using Marketplace.Products.Core.Model;
+using Marketplace.Products.Core.State;
 using Marketplace.Products.UI.ViewModel.Cards;
 
 namespace Marketplace.Products.UI.Mapper;
 
 internal class ProductCardViewModelMapper
 {
-    internal static List<ProductCardViewModel> MapToBuyCard(IEnumerable<Product> products)
+    internal static List<ProductCardViewModel> MapToBuyCard(IEnumerable<Product> products, IPageResolver resolver, IProductState state)
     {
         return [..
         products.Select((product) =>
         {
-            return new ProductCardBuyViewModel()
+            return new ProductCardBuyViewModel(resolver, state)
             {
                 ImageURL = product.ImagesURL.FirstOrDefault(),
                 Price = product.Price,

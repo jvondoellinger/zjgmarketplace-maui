@@ -29,9 +29,4 @@ public partial class ProductCard : ContentView
 	{
 		InitializeComponent();
 	}
-
-    private void ButtonAddToCart_Clicked(object sender, EventArgs e)
-    {
-        
-    }
 }

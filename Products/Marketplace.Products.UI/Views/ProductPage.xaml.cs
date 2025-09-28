@@ -4,12 +4,12 @@ using Marketplace.Products.Core.Workers;
 using Marketplace.Products.UI.Interfaces;
 using Marketplace.Products.UI.Mapper;
 using Marketplace.Products.UI.ViewModel;
+using System.Diagnostics;
 
 namespace Marketplace.Products.UI.Views;
 
 public partial class ProductPage : ContentPage, IDataLoader
 {
-    private bool isRunning = false;
     private readonly IProductState state;
     private readonly IProductQuery query;
 
@@ -23,7 +23,7 @@ public partial class ProductPage : ContentPage, IDataLoader
 
         AsyncWorker.RunAsync(LoadDataContext);
 
-        BindingContext = this;
+        BindingContext = ProductViewModel;
 
     }
 
@@ -31,9 +31,8 @@ public partial class ProductPage : ContentPage, IDataLoader
     {
         var selected = state.SelectedProductId;
 
-        if (selected == null) return;
-
         var data = await query.Find(selected);
+
         var mapped = ProductViewModelMapper.Map(data);
         ProductViewModel = mapped;
     }

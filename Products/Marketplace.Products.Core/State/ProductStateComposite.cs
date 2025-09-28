@@ -24,31 +24,31 @@ public sealed class ProductStateComposite
 
 
     // Composite operations ==================================================
-    public void AddState(IProductState state)
+    public void Add(IProductState state)
     {
         ArgumentNullException.ThrowIfNull(state); // Validate input
         if (ProductStates.Contains(state)) return; // If already exists, do nothing.
         ProductStates.Add(state);
-        OnAddedState?.Invoke(state); // Trigger event
+        AddedState?.Invoke(state); // Trigger event
     }
-    public void RemoveState(IProductState state)
+    public void Remove(IProductState state)
     {
         ArgumentNullException.ThrowIfNull(state);
         if (!ProductStates.Contains(state)) return;
         ProductStates.Remove(state);
-        OnRemoveState?.Invoke(state);
+        RemoveState?.Invoke(state);
     }
-    public void RemoveState(string productId)
+    public void Remove(string productId)
     {
         if (string.IsNullOrWhiteSpace(productId)) return;
-        
-        ProductStates.RemoveAll(x =>
+
+        ProductStates.RemoveAll((Predicate<IProductState>) (x =>
         {
             var isEquals = productId.Equals(x.SelectedProductId);
             if (!isEquals) return false;
-            OnRemoveState?.Invoke(x);
+            RemoveState?.Invoke(x);
             return true;
-        });
+        }));
     }
     public void ClearStates()
     {
@@ -56,28 +56,6 @@ public sealed class ProductStateComposite
     }
 
     // Events ===========================================================
-    private event Action<IProductState> OnAddedState;
-    private event Action<IProductState> OnRemoveState;
-
-    // Subscribers ======================================================
-    public void AddAddedStateSubscriber(IAddProductStateEvent stateEvent)
-    {
-        OnAddedState += async (state)
-            => await stateEvent.AddStateAsync(state);
-    }
-    public void RemoveStateSubscribe(IRemoveProductStateEvent stateEvent)
-    {
-        OnRemoveState += async (state)
-            => await stateEvent.RemoveStateAsync(state);
-    }
-    public void Unsubscribe(IAddProductStateEvent stateEvent)
-    {
-        OnAddedState -= async (state)
-            => await stateEvent.AddStateAsync(state);
-    }
-    public void Unsubscribe(IRemoveProductStateEvent stateEvent)
-    {
-        OnRemoveState -= async (state)
-            => await stateEvent.RemoveStateAsync(state);
-    }
+    public event Action<IProductState> AddedState;
+    public event Action<IProductState> RemoveState;
 }
