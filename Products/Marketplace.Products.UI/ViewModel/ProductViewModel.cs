@@ -1,81 +1,63 @@
-﻿using Marketplace.Products.UI.ViewModel.Notifiers;
-using System.Collections.Generic;
+﻿using Marketplace.Products.Core.Model;
+using Marketplace.Products.Core.Query;
+using Marketplace.Products.Core.State;
+using Marketplace.Products.Core.Workers;
+using Marketplace.Products.UI.ViewModel.Notifiers;
+using System.Windows.Input;
 
 namespace Marketplace.Products.UI.ViewModel;
 
 public class ProductViewModel : PropertyNotifier
 {
-    private string id;
-    public string Id
+    private readonly IProductState state;
+    private readonly IProductQuery query;
+    private Product? product;
+
+    public ProductViewModel(IProductQuery query, IProductState state)
     {
-        get => id;
-        set
-        {
-            if (!value.Equals(id))
-            {
-                id = value;
-                OnPropertyChanged(nameof(Id));
-            }
-        }
+        this.query = query;
+        this.state = state;
+
+        AsyncWorker.RunAsync(LoadDataContext);
     }
 
-    private List<string> imagesURL;
-    public List<string> ImagesURL
+    // Properties ==================================================
+    public string Id { get; private set; }
+    public List<string> ImagesURL { get; private set; }
+    public string Title { get; private set; }
+    public decimal Price { get; private set; }
+    public string Description { get; private set; }
+    public ICommand ButtonCommand { get; private set; }
+
+
+    // Methods ==================================================
+    public async Task LoadDataContext()
     {
-        get => imagesURL; 
-        set
+        var selected = state.SelectedProductId;
+        var data = await query.Find(selected) ?? throw new Exception("Product can't be null");
+        LoadProperties(data);
+    }
+
+    private void LoadProperties(Product product)
+    {
+        if (product == null) 
+            return; // Do nothing.
+        Id = product.Id.ToString();
+        Title = product.Title;
+        Description = product.Description;
+        Price = product.Price;
+        ImagesURL = product.ImagesURL;
+        ButtonCommand = new Command(() =>
         {
-            if (!value.Equals(imagesURL))
+            var input = new ProductCartInput()
             {
-                imagesURL = value;
-                OnPropertyChanged(nameof(ImagesURL));
-            }
-        }
+                ProductId = Id,
+                Price = Price,
+                Title = Title
+            };
+            ProductCart.Instance.Add(input);
+        });
     }
 
 
-    public string Title { get; init; }
-    private string title
-    {
-        get => title;
-        set
-        {
-            if (!value.Equals(title))
-            {
-                title = value;
-                OnPropertyChanged(nameof(Title));
-            }
-        }
-    }
-    private decimal price;
-    public decimal Price
-    {
-        get => price;
-        set
-        {
-            if (!value.Equals(price))
-            {
-                price = value;
-                OnPropertyChanged(nameof(Price));
-            }
-        }
-    }
-    private string description;
-    public string Description
-    {
-        get => description;
-        set
-        {
-            if (!value.Equals(description))
-            {
-                description = value;
-                OnPropertyChanged(nameof(Description));
-            }
-        }
-    }
-
-    public string GetId()
-    {
-        return Id;
-    }
 }

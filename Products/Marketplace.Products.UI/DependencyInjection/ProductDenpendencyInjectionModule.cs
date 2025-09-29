@@ -23,16 +23,17 @@ public static class ProductDenpendencyInjectionModule
     {
         services.AddSingleton<ProductCartViewModel>();
         services.AddSingleton<ProductCardsViewModel>();
+        services.AddSingleton<ProductViewModel>();
         return services;
     }
 
 
     private static IServiceCollection RegisterPages(this IServiceCollection services)
     {
-        services.AddScoped<ProductPage>();
-        services.AddScoped<ProductCardsPage>();
-        services.AddScoped<ProductCategoriesPage>();
-        services.AddScoped<ProductCartPage>();
+        services.AddSingleton<ProductPage>();
+        services.AddSingleton<ProductCardsPage>();
+        services.AddSingleton<ProductCategoriesPage>();
+        services.AddSingleton<ProductCartPage>();
         return services;
     }
 }

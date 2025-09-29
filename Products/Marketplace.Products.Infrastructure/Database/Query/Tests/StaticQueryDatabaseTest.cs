@@ -19,7 +19,7 @@ public class StaticQueryDatabaseTest : IProductQuery
                 Guid.NewGuid(),
                 "Monitor Gamer SuperFrame Prisma V2 — SFPFW‑27185‑QHD‑PRO ",
                 id+id+id+id+id+id,
-                decimal.Parse("123.11"),
+                369.33m,
                 "Eletronicos",
                 ["fallback.png", randomURL, randomURL, randomURL, randomURL]);
             list.Add(item);

@@ -1,4 +1,5 @@
 ﻿using Marketplace.Products.Core.State;
+using System.Diagnostics;
 
 namespace Marketplace.Products.Core.Model;
 
@@ -13,13 +14,14 @@ public class ProductCart
 
     // Properties ==========================================================
     public List<ProductCartInput> Products { get; } = [];
-    public decimal TotalPrice => Products.Sum(x => x.Price);
+    public decimal TotalPrice => Products.Sum(x => x.Price * x.Quantity); //Permanece com bug com +1 de um item - verificar posteriormente
+
 
     // Methods =============================================================
     public void Add(ProductCartInput product)
     {
         ArgumentNullException.ThrowIfNull(product);
-        var input = Products.FirstOrDefault(x => x.ProductId == product.ProductId);
+        var input = Products.FirstOrDefault(x => x.ProductId.Equals(product.ProductId));
         if (input != null)
         {
             input.Quantity++;
@@ -35,19 +37,18 @@ public class ProductCart
     public void Remove(ProductCartInput product)
     {
         ArgumentNullException.ThrowIfNull(product);
-        if (!Products.Contains(product)) return;
+        
         Products.Remove(product);
+
         RemovedItem?.Invoke(product);
     }
     public void Remove(string productId)
     {
         if (string.IsNullOrWhiteSpace(productId)) 
             return;
-        var product = Products.FirstOrDefault(
-            x => x.ProductId.Equals(productId));
+        var product = Products.FirstOrDefault(x => x.ProductId.Equals(productId));
         
-        if (product == null) 
-            return;
+        Products.Remove(product);
 
         RemovedItem?.Invoke(product); 
     }

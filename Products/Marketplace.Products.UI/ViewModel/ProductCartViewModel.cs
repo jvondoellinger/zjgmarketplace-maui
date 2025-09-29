@@ -4,12 +4,13 @@ using Marketplace.Products.Core.Query;
 using Marketplace.Products.Core.Workers;
 using Marketplace.Products.UI.Mapper;
 using Marketplace.Products.UI.ViewModel.Cards;
+using Marketplace.Products.UI.ViewModel.Notifiers;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
 namespace Marketplace.Products.UI.ViewModel;
 
-public class ProductCartViewModel : IAddProductOnCartEvent, IRemoveProductOnCartEvent
+public class ProductCartViewModel : PropertyNotifier, IAddProductOnCartEvent, IRemoveProductOnCartEvent 
 {
     private readonly IProductQuery query;
     private readonly ProductCart cart = ProductCart.Instance;
@@ -24,8 +25,24 @@ public class ProductCartViewModel : IAddProductOnCartEvent, IRemoveProductOnCart
         cart.RemovedItem += async (input) => await RemoveItemAsync(input); // After, use interface event/handler - Subscribe(this);
     }
 
-    public ObservableCollection<ProductCardViewModel> ProductCardViewModels { get; private set; }
 
+
+
+    // Properties =======================================================
+    public ObservableCollection<ProductCardViewModel> ProductCardViewModels { get; private set; }
+    public decimal TotalPrice
+    {
+        get => cart.TotalPrice;
+        set
+        {
+            OnPropertyChanged(nameof(TotalPrice));
+        }
+    }
+
+
+
+
+    // Methods ==========================================================
     public async Task LoadDataContext()
     {
         List<ProductCardViewModel> views = [];
@@ -45,27 +62,29 @@ public class ProductCartViewModel : IAddProductOnCartEvent, IRemoveProductOnCart
         ProductCardViewModels = [.. views];
     }
 
+
+
+
     // Events ===========================================================
     public async Task AddItemAsync(ProductCartInput input)
     {
-        Debug.WriteLine("Inserted ITEMMMM");
-
         ArgumentNullException.ThrowIfNull(input); // Validate input
-
-        if (string.IsNullOrWhiteSpace(input.ProductId))
-            return; // Invalid input     
         var product = await query.Find(input.ProductId)
             ?? throw new Exception("Current product added is not found."); // Get product details
 
         var view = ProductCardViewModelMapper.MapToCartCard(product); // Map to view model
         ProductCardViewModels.Add(view);
+        TotalPrice++;
     }
+
     public async Task RemoveItemAsync(ProductCartInput input)
     {
         if (input == null)
             return; // Invalid input
         var card = ProductCardViewModels.FirstOrDefault(x => x.Id.Equals(input.ProductId)); // Get same instance
+        
         ProductCardViewModels.Remove(card);
+        TotalPrice--;
     }
 
 }

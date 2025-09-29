@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Marketplace.Orders.UI.Views.CheckoutPage"
+             Title="Checkout">
+    <Grid 
+        Padding="15"
+        BackgroundColor="#F6F6F6"
+        RowDefinitions="Auto,Auto,Auto,Auto,*">
+        <Label 
+            Text="{Binding Id, StringFormat='Nº {0}'}"
+            VerticalOptions="Start"
+            Grid.Row="0"/>
+
+        <Image
+            Source="{Binding ImagePath}"
+            MinimumHeightRequest="150"
+            MinimumWidthRequest="150"
+            MaximumHeightRequest="300"
+            MaximumWidthRequest="300"
+            Grid.Row="1"/>
+        <Button 
+            Text="Copiar código copia e cola 📋"
+            Command="{Binding CopyCodeCommand}"
+            Grid.Row="2"/>
+        <Label
+            Text="{Binding Price, StringFormat='Total: {0:C}'}"
+            Margin="12"
+            TextColor="Green"
+            TextDecorations="Underline"
+            FontAttributes="Bold"
+            FontSize="Medium"
+            Grid.Row="3"/>
+        <Label
+            Text="Alguma dúvida? Fale com o vendedor"
+            HorizontalOptions="Center"
+            VerticalOptions="End"
+            Grid.Row="4"/>
+    </Grid>
+</ContentPage>

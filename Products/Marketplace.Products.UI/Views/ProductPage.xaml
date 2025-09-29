@@ -42,12 +42,12 @@
                 </CollectionView>
 
                 <Label 
-                    Text="{Binding ProductViewModel.Price, StringFormat='R$ {0:F2}'}"
+                    Text="{Binding Price, StringFormat='R$ {0:F2}'}"
                     FontSize="Body"
                     HorizontalOptions="End"
                     Grid.Row="3" />
                 <Label 
-                    Text="{Binding ProductViewModel.Description}" 
+                    Text="{Binding Description}" 
                     HorizontalOptions="Fill" 
                     Grid.Row="4"/>
             </Grid>
@@ -59,6 +59,7 @@
                 Grid.Row="1"
                 Margin="15,10,15,15"
                 HorizontalOptions="End"
+                Command="{Binding ButtonCommand}"
                 VerticalOptions="End"/>
                 <!-- Adicionar imagem de carrinho -->
     </Grid>

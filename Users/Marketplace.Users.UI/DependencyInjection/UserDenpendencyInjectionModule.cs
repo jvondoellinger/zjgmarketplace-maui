@@ -8,15 +8,23 @@ public static class ProductDenpendencyInjectionModule
 {
     public static IServiceCollection RegisterUserUIServices(this IServiceCollection services)
     {
-        services.AddScoped<UserLoginPage>();
-        services.AddScoped<UserSignupPage>();
-        services.AddScoped<AccountDashboardView>();
         services.AddSingleton<IPageResolver, PageResolver>();
 
-        services.AddDashboardItems();
+        services
+            .AddPages()
+            .AddDashboardItems();
 
         return services;
     }
+
+    private static IServiceCollection AddPages(this IServiceCollection services)
+    {
+        services.AddSingleton<UserLoginPage>();
+        services.AddSingleton<UserSignupPage>();
+        services.AddSingleton<AccountDashboardPage>();
+        return services;
+    }
+
 
     private static IServiceCollection AddDashboardItems(this IServiceCollection services)
     {

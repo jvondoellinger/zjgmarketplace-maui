@@ -4,12 +4,12 @@ using System.Collections.ObjectModel;
 
 namespace Marketplace.Users.UI.Views;
 
-public partial class AccountDashboardView : ContentPage, IDataLoader
+public partial class AccountDashboardPage : ContentPage, IDataLoader
 {
     private readonly List<DashboardItem> items;
 
     public ObservableCollection<DashboardItem> Items { get; private set; }
-    public AccountDashboardView(IEnumerable<DashboardItem> items)
+    public AccountDashboardPage(IEnumerable<DashboardItem> items)
 	{
 		InitializeComponent();
         this.items = [..items];

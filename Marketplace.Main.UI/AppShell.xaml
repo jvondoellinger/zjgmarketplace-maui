@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:Marketplace.Main.UI"
     xmlns:products="clr-namespace:Marketplace.Products.UI.Views;assembly=Marketplace.Products.UI"
     xmlns:user="clr-namespace:Marketplace.Users.UI.Views;assembly=Marketplace.Users.UI"
+    xmlns:orders="clr-namespace:Marketplace.Orders.UI.Views;assembly=Marketplace.Orders.UI"
     Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
@@ -32,7 +33,7 @@
         <ShellContent
             Title="Dashboard"
             Icon="fallback.png"
-            ContentTemplate="{DataTemplate user:AccountDashboardView}"
+            ContentTemplate="{DataTemplate user:AccountDashboardPage}"
             Route="AccountDashboardPage" />
 
     </TabBar>

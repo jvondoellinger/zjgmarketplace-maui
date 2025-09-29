@@ -10,6 +10,7 @@
                 Stroke="Black"
                 StrokeThickness="1"
                 Padding="0"
+                Margin="15,0,15,0"
                 BackgroundColor="#F6F6F6"
                 StrokeShape="RoundRectangle 12">
                 <Entry 
