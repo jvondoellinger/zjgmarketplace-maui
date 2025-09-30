@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Marketplace.Orders.UI.Views.OrderCardsPage"
+             xmlns:card="clr-namespace:Marketplace.Orders.UI.Views.Content"
+             Title="Pedidos">
+    <Grid RowDefinitions="*">
+        <CollectionView 
+            ItemsSource="{Binding OrderCardViews}"
+            SelectedItem="{Binding SelectedItem}"
+            SelectionMode="Single"
+            Grid.Row="0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <card:OrderCardView
+                        Margin="12"
+                        OrderCardViewModel="{Binding .}"/>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

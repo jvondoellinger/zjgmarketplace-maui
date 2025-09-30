@@ -25,7 +25,8 @@
                     x:Name="AddOnCartViewButton"
                     Margin="0,5,0,0"
                     Text="Buy"
-                    Command="{Binding Command}"/>
+                    Command="{Binding Command}"
+                    CommandParameter="{Binding .}"/>
                 <!-- Add cart -->
             </VerticalStackLayout>
     </Border>

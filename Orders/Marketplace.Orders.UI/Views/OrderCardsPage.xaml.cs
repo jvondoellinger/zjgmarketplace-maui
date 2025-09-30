@@ -2,11 +2,12 @@ using Marketplace.Orders.UI.ViewModels;
 
 namespace Marketplace.Orders.UI.Views;
 
-public partial class CheckoutPage : ContentPage
+public partial class OrderCardsPage : ContentPage
 {
-	public CheckoutPage(CheckoutViewModel viewModel)
+	public OrderCardsPage(OrderCardsViewModel viewModel)
 	{
 		InitializeComponent();
+
 		BindingContext = viewModel;
 	}
 }

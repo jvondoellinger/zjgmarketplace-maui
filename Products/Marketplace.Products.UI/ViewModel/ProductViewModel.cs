@@ -55,7 +55,7 @@ public class ProductViewModel : PropertyNotifier
                 Price = Price,
                 Title = Title
             };
-            ProductCart.Instance.Add(input);
+            ProductCart.Instance.Add(ref input);
         });
     }
 

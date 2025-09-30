@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Products.Core",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Main", "Main", "{9F778E19-D703-4D62-8833-005A18C16275}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Main.UI", "Marketplace.Main.UI\Marketplace.Main.UI.csproj", "{97A24F9D-E62C-42A2-8760-05D7430C8BA8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Main.UI", "Main\Marketplace.Main.UI\Marketplace.Main.UI.csproj", "{97A24F9D-E62C-42A2-8760-05D7430C8BA8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Products.UI", "Products\Marketplace.Products.UI\Marketplace.Products.UI.csproj", "{1774865E-6473-4804-AFE8-6CF5975AB391}"
 EndProject
@@ -30,6 +30,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Orders.UI", "Orders\Marketplace.Orders.UI\Marketplace.Orders.UI.csproj", "{CB5C3DEE-2204-41EE-9F44-C51EF1349C65}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.SharedLayer", "Shared\Marketplace.SharedLayer\Marketplace.SharedLayer.csproj", "{57DD53BC-BD62-443B-8D5E-B16D14783A91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Orders.Core", "Orders\Marketplace.Orders.Core\Marketplace.Orders.Core.csproj", "{466F3D5C-EF8C-49A6-9E53-2A1E3ACD0E76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Orders.Infrastructure", "Orders\Marketplace.Orders.Infrastructure\Marketplace.Orders.Infrastructure.csproj", "{3373FDC8-6054-4780-BAB9-96B38F9EDCFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Main.Infrastructure", "Main\Marketplace.Main.Infrastructure\Marketplace.Main.Infrastructure.csproj", "{5A609A23-AC27-4EA9-BB02-B176924F5B03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +81,18 @@ Global
 		{57DD53BC-BD62-443B-8D5E-B16D14783A91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57DD53BC-BD62-443B-8D5E-B16D14783A91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57DD53BC-BD62-443B-8D5E-B16D14783A91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{466F3D5C-EF8C-49A6-9E53-2A1E3ACD0E76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{466F3D5C-EF8C-49A6-9E53-2A1E3ACD0E76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{466F3D5C-EF8C-49A6-9E53-2A1E3ACD0E76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{466F3D5C-EF8C-49A6-9E53-2A1E3ACD0E76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3373FDC8-6054-4780-BAB9-96B38F9EDCFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3373FDC8-6054-4780-BAB9-96B38F9EDCFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3373FDC8-6054-4780-BAB9-96B38F9EDCFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3373FDC8-6054-4780-BAB9-96B38F9EDCFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A609A23-AC27-4EA9-BB02-B176924F5B03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A609A23-AC27-4EA9-BB02-B176924F5B03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A609A23-AC27-4EA9-BB02-B176924F5B03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A609A23-AC27-4EA9-BB02-B176924F5B03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,6 +107,9 @@ Global
 		{4D6A46D2-1613-4F98-B357-67925C4D629B} = {AAE07387-FB95-4BE8-BEB6-9CED01A1E056}
 		{CB5C3DEE-2204-41EE-9F44-C51EF1349C65} = {4698E50C-8DFD-4450-894F-3500FBB6A0FE}
 		{57DD53BC-BD62-443B-8D5E-B16D14783A91} = {7DCC3BFA-14EA-4896-A9A4-5F12F715A858}
+		{466F3D5C-EF8C-49A6-9E53-2A1E3ACD0E76} = {4698E50C-8DFD-4450-894F-3500FBB6A0FE}
+		{3373FDC8-6054-4780-BAB9-96B38F9EDCFC} = {4698E50C-8DFD-4450-894F-3500FBB6A0FE}
+		{5A609A23-AC27-4EA9-BB02-B176924F5B03} = {9F778E19-D703-4D62-8833-005A18C16275}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {411ADED1-DB9F-4C64-96F6-F3436C935714}

@@ -35,7 +35,7 @@ public class ProductCardsViewModel : PropertyNotifier
     {
         var data = await query.QueryPagination(0, 10);
 
-        var models = ProductCardViewModelMapper.MapToBuyCard(data, resolver, state);
+        var models = ProductCardViewModelMapper.MapToBuyCard(data);
         
         ProductViewModels = [.. models];
     }

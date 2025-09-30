@@ -7,12 +7,12 @@ namespace Marketplace.Products.UI.Mapper;
 
 internal class ProductCardViewModelMapper
 {
-    internal static List<ProductCardViewModel> MapToBuyCard(IEnumerable<Product> products, IPageResolver resolver, IProductState state)
+    internal static List<ProductCardViewModel> MapToBuyCard(IEnumerable<Product> products)
     {
         return [..
         products.Select((product) =>
         {
-            return new ProductCardBuyViewModel(resolver, state)
+            return new ProductCardBuyViewModel()
             {
                 ImageURL = product.ImagesURL.FirstOrDefault(),
                 Price = product.Price,

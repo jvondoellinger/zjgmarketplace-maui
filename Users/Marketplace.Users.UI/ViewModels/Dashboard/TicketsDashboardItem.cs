@@ -1,6 +1,5 @@
 ﻿using Marketplace.Users.Core.Interfaces;
 using Marketplace.Users.UI.Views;
-using System.Windows.Input;
 
 namespace Marketplace.Users.UI.ViewModels.Dashboard;
 

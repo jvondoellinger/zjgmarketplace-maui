@@ -8,20 +8,18 @@ namespace Marketplace.Products.UI.ViewModel.Cards;
 
 public class ProductCardBuyViewModel : ProductCardViewModel
 {
-    private readonly IPageResolver resolver;
 
-    public ProductCardBuyViewModel(IPageResolver resolver, IProductState state) // Constructor ==========
+    public ProductCardBuyViewModel() // Constructor ==========
     {
-        this.resolver = resolver;
-        base.Command = new Command(() =>
+        base.Command = new Command<ProductCardViewModel>((card) =>
         {
             var input = new ProductCartInput()
             {
-                ProductId = Id,
-                Price = Price,
-                Title = Title
+                ProductId = card.Id,
+                Price = card.Price,
+                Title = card.Title
             };
-            ProductCart.Instance.Add(input);
+            ProductCart.Instance.Add(ref input);
         });
     }
 }

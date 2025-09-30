@@ -18,14 +18,15 @@ public class ProductCart
 
 
     // Methods =============================================================
-    public void Add(ProductCartInput product)
+    public void Add(ref ProductCartInput product)
     {
         ArgumentNullException.ThrowIfNull(product);
-        var input = Products.FirstOrDefault(x => x.ProductId.Equals(product.ProductId));
-        if (input != null)
+        var index = Products.IndexOf(product);
+        if (index != -1)
         {
-            input.Quantity++;
-            Products[Products.IndexOf(input)] = product;
+            product.Quantity++;
+            Products[index] = product;
+            Debug.WriteLine("Caiu aqui.");
         } 
         else
         {
@@ -34,7 +35,7 @@ public class ProductCart
         AddedItem?.Invoke(product);
 
     }
-    public void Remove(ProductCartInput product)
+    public void Remove(ref ProductCartInput product)
     {
         ArgumentNullException.ThrowIfNull(product);
         
