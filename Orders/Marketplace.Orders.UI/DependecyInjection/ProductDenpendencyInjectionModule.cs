@@ -1,4 +1,5 @@
-﻿using Marketplace.Orders.UI.ViewModels;
+﻿using Marketplace.Orders.Core.Interfaces;
+using Marketplace.Orders.UI.ViewModels;
 using Marketplace.Orders.UI.Views;
 
 namespace Marketplace.Orders.UI.DependecyInjection;
@@ -16,6 +17,7 @@ public static class ProductDenpendencyInjectionModule
 
     private static IServiceCollection AddPages(this IServiceCollection services)
     {
+        services.AddSingleton<IPageResolver, PageResolver>();
         services.AddSingleton<CheckoutPage>();
         services.AddSingleton<OrderCardsPage>();
         return services;
@@ -24,8 +26,8 @@ public static class ProductDenpendencyInjectionModule
 
     private static IServiceCollection AddViewModels(this IServiceCollection services)
     {
-        services.AddScoped<CheckoutViewModel>();
-        services.AddScoped<OrderCardsViewModel>();
+        services.AddSingleton<CheckoutViewModel>();
+        services.AddSingleton<OrderCardsViewModel>();
         return services;
     }
 }

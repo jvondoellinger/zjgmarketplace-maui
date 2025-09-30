@@ -8,7 +8,7 @@
         Padding="10"
         RowDefinitions="Auto,*,Auto">
         <Label 
-            Text="*Arraste o item para a esqueda para removcr do carrinho"
+            Text="*Arraste o item para à esquerda para remover do carrinho"
             FontSize="Small"
             FontAttributes="Bold"
             TextColor="LightGrey"

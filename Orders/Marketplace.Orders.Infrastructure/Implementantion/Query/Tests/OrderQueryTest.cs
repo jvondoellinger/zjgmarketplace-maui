@@ -18,7 +18,7 @@ public class OrderQueryTest : IOrderQuery
                 Price = i*100,
                 Status = "Developing",
                 ImagePath = "fallback.png",
-                Code = "123",
+                Code = $"123_{i}" ,
                 CreatedAt = DateTime.Now
             };
             orders.Add(item);

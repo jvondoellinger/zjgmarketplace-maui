@@ -1,35 +1,95 @@
 ﻿using Marketplace.Orders.Core.Query;
 using Marketplace.Orders.Core.State;
 using Marketplace.Orders.Core.Workers;
+using Marketplace.Orders.UI.ViewModels.Notifiers;
 using System.Windows.Input;
 
 namespace Marketplace.Orders.UI.ViewModels;
 
-public class CheckoutViewModel
+public class CheckoutViewModel : PropertyNotifier
 {
     private readonly IOrderQuery query;
-    private readonly IOrderState selectedState;
+    private readonly IOrderState state;
 
-    public CheckoutViewModel(IOrderQuery query, IOrderState selectedState)
+    public CheckoutViewModel(IOrderQuery query, IOrderState state)
     {
         this.query = query;
-        this.selectedState = selectedState;
-        
-        AsyncWorker.RunAsync(LoadDataContext);
+        this.state = state;
 
+        state.SelectOrder += async (order) =>
+        {
+            await LoadDataContext();
+        };
         LoadCommands();
     }
 
-    public long Id { get; private set; }
-    public string ImagePath { get; private set; }
-    public string Code { get; private set; }
-    public ICommand CopyCodeCommand { get; private set; }  //Copiar o código pix do cliente
-    public decimal Price { get; private set; } 
-    public ICommand ContactUsCommand { get; private set; } // Fale conosco
+    // Variables ================================================
+    private long id;
+    private string imagePath;
+    private string code;
+    private ICommand copyCodeCommand;
+    private decimal price;
+    private ICommand contactUsCommand;
+
+    // Properties ===============================================
+    public long Id 
+    { 
+        get => id; 
+        set
+        {
+            id = value;
+            OnPropertyChanged(nameof(Id));
+        } 
+    }
+    public string ImagePath
+    {
+        get => imagePath;
+        set
+        {
+            imagePath = value;
+            OnPropertyChanged(nameof(ImagePath));
+        }
+    }
+    public string Code
+    {
+        get => code;
+        set
+        {
+            code = value;
+            OnPropertyChanged(nameof(Code));
+        }
+    }
+    public ICommand CopyCodeCommand
+    {
+        get => copyCodeCommand;
+        set
+        {
+            copyCodeCommand = value;
+            OnPropertyChanged(nameof(CopyCodeCommand));
+        }
+    }
+    public decimal Price
+    {
+        get => price;
+        set
+        {
+            price = value;
+            OnPropertyChanged(nameof(Price));
+        }
+    }
+    public ICommand ContactUsCommand
+    {
+        get => contactUsCommand;
+        set
+        {
+            contactUsCommand = value;
+            OnPropertyChanged(nameof(ContactUsCommand));
+        }
+    }
 
     private async Task LoadDataContext()
     {
-        var selected = await query.QueryId(1) ?? selectedState.SelectedOrder;
+        var selected = state.SelectedOrder;
         Id = selected.Id;
         ImagePath = "fallback.png";
         Code = selected.Code;

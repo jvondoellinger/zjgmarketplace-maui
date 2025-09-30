@@ -7,4 +7,6 @@ public interface IOrderState
     OrderModel SelectedOrder { get; }
 
     void Select(OrderModel order);
+
+    event Action<OrderModel> SelectOrder;
 }

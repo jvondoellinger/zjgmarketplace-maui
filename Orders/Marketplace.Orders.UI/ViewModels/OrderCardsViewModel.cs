@@ -4,7 +4,9 @@ using Marketplace.Orders.UI.Mapper;
 using Marketplace.Orders.UI.ViewModels.Card;
 using Marketplace.Orders.UI.ViewModels.Notifiers;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
+using Marketplace.Orders.Core.Interfaces;
+using Marketplace.Orders.UI.Views;
+using Marketplace.Orders.Core.State;
 
 namespace Marketplace.Orders.UI.ViewModels;
 
@@ -12,6 +14,8 @@ public class OrderCardsViewModel : PropertyNotifier
 {
     // Services ==========================================
     private readonly IOrderQuery query;
+    private readonly IOrderState state;
+    private readonly IPageResolver resolver;
 
 
     // Properties ========================================
@@ -23,16 +27,20 @@ public class OrderCardsViewModel : PropertyNotifier
         get => selectedItem;
         set
         {
+            AsyncWorker.RunAsync(Select(value));
+            Redirect();
             OnPropertyChanged(nameof(SelectedItem));
+            selectedItem = null;
         }
     }
 
 
     // Contructor ========================================
-    public OrderCardsViewModel(IOrderQuery query)
+    public OrderCardsViewModel(IOrderQuery query, IOrderState state, IPageResolver resolver)
     {
         this.query = query;
-
+        this.state = state;
+        this.resolver = resolver;
         AsyncWorker.RunAsync(LoadDataContext);
     }
 
@@ -42,4 +50,17 @@ public class OrderCardsViewModel : PropertyNotifier
         var viewModels = OrderCardViewModelMapper.Map(data);
         OrderCardViews = [.. viewModels];
     }
+
+    private async Task Select(OrderCardViewModel model)
+    {
+        var item = await query.QueryId(model.Id);
+        state.Select(item);
+    }
+    private void Redirect()
+    {
+        var page = resolver.Resolve<CheckoutPage>();
+        var task = Shell.Current.Navigation.PushAsync(page);
+        AsyncWorker.RunAsync(task);
+    }
+
 }
