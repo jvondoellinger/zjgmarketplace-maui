@@ -15,6 +15,7 @@ namespace Marketplace.Products.UI.Views;
 
 public partial class ProductCartPage : ContentPage
 {
+
     public ProductCartPage(ProductCartViewModel viewModel)
     {
 		InitializeComponent();

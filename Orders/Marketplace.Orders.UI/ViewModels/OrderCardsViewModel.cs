@@ -27,10 +27,9 @@ public class OrderCardsViewModel : PropertyNotifier
         get => selectedItem;
         set
         {
-            AsyncWorker.RunAsync(Select(value));
-            Redirect();
+            AsyncWorker.RunAsync(Select(value)); // Seleciona o item e ativa o evento para carregar os dados na UI
+            AsyncWorker.RunAsync(Redirect); // Redireciona mesmo sem item selecionado
             OnPropertyChanged(nameof(SelectedItem));
-            selectedItem = null;
         }
     }
 
@@ -56,11 +55,10 @@ public class OrderCardsViewModel : PropertyNotifier
         var item = await query.QueryId(model.Id);
         state.Select(item);
     }
-    private void Redirect()
+    private async Task Redirect()
     {
         var page = resolver.Resolve<CheckoutPage>();
-        var task = Shell.Current.Navigation.PushAsync(page);
-        AsyncWorker.RunAsync(task);
+        await Shell.Current.Navigation.PushAsync(page);
     }
 
 }

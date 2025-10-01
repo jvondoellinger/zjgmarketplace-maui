@@ -49,6 +49,7 @@
             Text="Proceed to checkout"
             VerticalOptions="End"
             HorizontalOptions="End"
+            Command="{Binding RedirectToCheckout}"
             Grid.Row="2"/>
     </Grid>
 </ContentPage>

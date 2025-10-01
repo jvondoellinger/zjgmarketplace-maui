@@ -1,26 +1,13 @@
-using Marketplace.Users.UI.Interfaces;
-using Marketplace.Users.UI.ViewModels.Dashboard;
-using System.Collections.ObjectModel;
+using Marketplace.Users.UI.ViewModels;
 
 namespace Marketplace.Users.UI.Views;
 
-public partial class AccountDashboardPage : ContentPage, IDataLoader
+public partial class AccountDashboardPage : ContentPage
 {
-    private readonly List<DashboardItem> items;
-
-    public ObservableCollection<DashboardItem> Items { get; private set; }
-    public AccountDashboardPage(IEnumerable<DashboardItem> items)
+    public AccountDashboardPage(DashboardViewModel viewModel)
 	{
 		InitializeComponent();
-        this.items = [..items];
 
-        _ = LoadDataContext();
-
-        BindingContext = this;
-    }
-
-    public async Task LoadDataContext()
-    {
-        Items = [.. items];
+        BindingContext = viewModel;
     }
 }

@@ -35,11 +35,6 @@
             Icon="fallback.png"
             ContentTemplate="{DataTemplate user:AccountDashboardPage}"
             Route="AccountDashboardPage" />
-        <ShellContent
-            Title="Checkout"
-            Icon="fallback.png"
-            ContentTemplate="{DataTemplate orders:CheckoutPage}"
-            Route="CheckoutPage" />
     </TabBar>
 
 </Shell>

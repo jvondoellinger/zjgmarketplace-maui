@@ -1,22 +1,26 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Marketplace.Users.Core.Models;
+namespace Marketplace.Users.Infrastructure.Implementation.Requests.RequestModel;
 
-public class UserModel
+public record UserRegisterRequestModel
 {
     public string Username { get; init; }
     public string Email { get; init; }
     public string Password { get; init; }
 
-    [StringLength(maximumLength: 14)]
     public Phone Phone { get; init; }
 
     [StringLength(maximumLength: 11)]
-    public string Cpf { get; init; }
+    public CPF Document { get; init; }
     public DateTime BirthDay { get; init; }
 }
 
-public class Phone
+public record CPF
+{
+    public string Cpf { get; set; }
+}
+
+public record Phone
 {
     public string CountryCode { get; internal set; }
     public string AreaCode { get; internal set; }

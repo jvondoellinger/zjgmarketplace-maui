@@ -1,6 +1,4 @@
-﻿using Marketplace.Orders.Core.Query;
-using Marketplace.Orders.Core.State;
-using Marketplace.Orders.Core.Workers;
+﻿using Marketplace.Orders.Core.State;
 using Marketplace.Orders.UI.ViewModels.Notifiers;
 using System.Windows.Input;
 
@@ -8,24 +6,24 @@ namespace Marketplace.Orders.UI.ViewModels;
 
 public class CheckoutViewModel : PropertyNotifier
 {
-    private readonly IOrderQuery query;
     private readonly IOrderState state;
 
-    public CheckoutViewModel(IOrderQuery query, IOrderState state)
+    public CheckoutViewModel(IOrderState state)
     {
-        this.query = query;
         this.state = state;
 
-        state.SelectOrder += async (order) =>
+        state.SelectOrder += (order) =>
         {
-            await LoadDataContext();
+             LoadDataContext();
         };
+
+        LoadDataContext();
         LoadCommands();
     }
 
     // Variables ================================================
     private long id;
-    private string imagePath;
+    private ImageSource  imageSource;
     private string code;
     private ICommand copyCodeCommand;
     private decimal price;
@@ -41,13 +39,13 @@ public class CheckoutViewModel : PropertyNotifier
             OnPropertyChanged(nameof(Id));
         } 
     }
-    public string ImagePath
+    public ImageSource ImageSource
     {
-        get => imagePath;
+        get => imageSource;
         set
         {
-            imagePath = value;
-            OnPropertyChanged(nameof(ImagePath));
+            imageSource = value;
+            OnPropertyChanged(nameof(ImageSource));
         }
     }
     public string Code
@@ -87,11 +85,12 @@ public class CheckoutViewModel : PropertyNotifier
         }
     }
 
-    private async Task LoadDataContext()
+    // Methods ===============================================================
+    private void LoadDataContext()
     {
         var selected = state.SelectedOrder;
         Id = selected.Id;
-        ImagePath = "fallback.png";
+        ImageSource = "fallback.png";
         Code = selected.Code;
         Price = selected.Price;
     }

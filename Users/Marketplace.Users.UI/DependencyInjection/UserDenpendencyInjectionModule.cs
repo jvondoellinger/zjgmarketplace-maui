@@ -1,4 +1,5 @@
 ﻿using Marketplace.Users.Core.Interfaces;
+using Marketplace.Users.UI.ViewModels;
 using Marketplace.Users.UI.ViewModels.Dashboard;
 using Marketplace.Users.UI.Views;
 
@@ -12,11 +13,17 @@ public static class ProductDenpendencyInjectionModule
 
         services
             .AddPages()
+            .AddViewModels()
             .AddDashboardItems();
 
         return services;
     }
 
+    private static IServiceCollection AddViewModels(this IServiceCollection services)
+    {
+        services.AddSingleton<DashboardViewModel>();
+        return services;
+    }
     private static IServiceCollection AddPages(this IServiceCollection services)
     {
         services.AddSingleton<UserLoginPage>();
@@ -29,7 +36,6 @@ public static class ProductDenpendencyInjectionModule
     private static IServiceCollection AddDashboardItems(this IServiceCollection services)
     {
         services.AddScoped<DashboardItem, OrdersDashboardItem>();
-        services.AddScoped<DashboardItem, TicketsDashboardItem>();
         return services;
     }
 }

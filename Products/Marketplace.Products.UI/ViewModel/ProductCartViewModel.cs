@@ -2,34 +2,38 @@
 using Marketplace.Products.Core.Model;
 using Marketplace.Products.Core.Query;
 using Marketplace.Products.Core.Workers;
+using Marketplace.Products.UI.Interfaces;
 using Marketplace.Products.UI.Mapper;
 using Marketplace.Products.UI.ViewModel.Cards;
 using Marketplace.Products.UI.ViewModel.Notifiers;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Windows.Input;
 
 namespace Marketplace.Products.UI.ViewModel;
 
 public class ProductCartViewModel : PropertyNotifier, IAddProductOnCartEvent, IRemoveProductOnCartEvent 
 {
     private readonly IProductQuery query;
+    private readonly ICheckoutPageRedirect redirect;
     private readonly ProductCart cart = ProductCart.Instance;
-
-    public ProductCartViewModel(IProductQuery query)
-    {
-        this.query = query;
-
-        AsyncWorker.RunAsync(LoadDataContext);
-
-        cart.AddedItem += async (input) => await AddItemAsync(input); // After, use interface event/handler
-        cart.RemovedItem += async (input) => await RemoveItemAsync(input); // After, use interface event/handler - Subscribe(this);
-    }
 
 
 
 
     // Properties =======================================================
+    public ProductCartViewModel(IProductQuery query, ICheckoutPageRedirect redirect)
+    {
+        this.query = query;
+        this.redirect = redirect;
+        AsyncWorker.RunAsync(this.InitializeDataContent);
+
+        this.InitializeCommands();
+        this.SubscribeOnEvents();
+    }
+
     public ObservableCollection<ProductCardViewModel> ProductCardViewModels { get; private set; }
+
     public decimal TotalPrice
     {
         get => cart.TotalPrice;
@@ -39,11 +43,11 @@ public class ProductCartViewModel : PropertyNotifier, IAddProductOnCartEvent, IR
         }
     }
 
-
+    public ICommand RedirectToCheckout { get; private set; }
 
 
     // Methods ==========================================================
-    public async Task LoadDataContext()
+    private async Task InitializeDataContent()
     {
         List<ProductCardViewModel> views = [];
 
@@ -61,8 +65,19 @@ public class ProductCartViewModel : PropertyNotifier, IAddProductOnCartEvent, IR
         }
         ProductCardViewModels = [.. views];
     }
+    private void SubscribeOnEvents()
+    {
+        cart.AddedItem += async (input) => await AddItemAsync(input); // After, use interface event/handler
+        cart.RemovedItem += async (input) => await RemoveItemAsync(input); // After, use interface event/handler - Subscribe(this);
 
-
+    }
+    private void InitializeCommands()
+    {
+        RedirectToCheckout = new Command(async () =>
+        {
+            await redirect.RedirectAsync();
+        });
+    }
 
 
     // Events ===========================================================
