@@ -16,16 +16,8 @@ internal sealed class UserRegisterRequestModelMapper
         {
             AreaCode = model.Phone.AreaCode,
             CountryCode = model.Phone.CountryCode,
-            Number = model.Phone.Number
+            TelNumber = model.Phone.Number
         };
-        return new()
-        {
-            Username = model.Username,
-            BirthDay = model.BirthDay,
-            Email = model.Email,
-            Password = model.Password,
-            Document = doc,
-            Phone = phone
-        };
+        return new(model.Username, model.Email, model.Password, phone, doc, model.BirthDay);
     } 
 }

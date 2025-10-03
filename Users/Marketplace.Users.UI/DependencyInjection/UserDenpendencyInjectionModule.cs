@@ -22,6 +22,7 @@ public static class ProductDenpendencyInjectionModule
     private static IServiceCollection AddViewModels(this IServiceCollection services)
     {
         services.AddSingleton<DashboardViewModel>();
+        services.AddSingleton<UserSignupViewModel>();
         return services;
     }
     private static IServiceCollection AddPages(this IServiceCollection services)

@@ -1,9 +1,22 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Marketplace.Users.Infrastructure.Serializer;
+using System.ComponentModel.DataAnnotations;
+using System.Numerics;
+using System.Text.Json.Serialization;
 
 namespace Marketplace.Users.Infrastructure.Implementation.Requests.RequestModel;
 
-public record UserRegisterRequestModel
+public class UserRegisterRequestModel
 {
+    public UserRegisterRequestModel(string username, string email, string password, Phone phone, CPF document, DateOnly birthDay)
+    {
+        Username = username;
+        Email = email;
+        Password = password;
+        Phone = phone;
+        Document = document;
+        BirthDay = birthDay;
+    }
+
     public string Username { get; init; }
     public string Email { get; init; }
     public string Password { get; init; }
@@ -12,7 +25,7 @@ public record UserRegisterRequestModel
 
     [StringLength(maximumLength: 11)]
     public CPF Document { get; init; }
-    public DateTime BirthDay { get; init; }
+    public DateOnly BirthDay { get; init; }
 }
 
 public record CPF
@@ -24,5 +37,7 @@ public record Phone
 {
     public string CountryCode { get; internal set; }
     public string AreaCode { get; internal set; }
-    public string Number { get; internal set; }
+    [JsonPropertyName("number")]
+    [JsonConverter(typeof(NumberAsStringConverter))]
+    public string TelNumber { get; internal set; }
 }

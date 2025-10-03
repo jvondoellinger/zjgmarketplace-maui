@@ -13,12 +13,12 @@ public class UserModel
 
     [StringLength(maximumLength: 11)]
     public string Cpf { get; init; }
-    public DateTime BirthDay { get; init; }
+    public DateOnly BirthDay { get; init; }
 }
 
 public class Phone
 {
-    public string CountryCode { get; internal set; }
-    public string AreaCode { get; internal set; }
-    public string Number { get; internal set; }
+    public string CountryCode { get; init; }
+    public string AreaCode { get; init; }
+    public string Number { get; init; }
 }

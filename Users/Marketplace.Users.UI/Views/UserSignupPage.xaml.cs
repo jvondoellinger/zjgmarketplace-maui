@@ -6,15 +6,11 @@ namespace Marketplace.Users.UI.Views;
 
 public partial class UserSignupPage : ContentPage
 {
-    public ICommand LoginRediredtCommand { get; }
-    public UserSignupViewModel UserSignupViewModel { get; } = new UserSignupViewModel();
-    public UserSignupPage()
+    public UserSignupPage(UserSignupViewModel viewModel)
 	{
-        this.LoginRediredtCommand = new Command(async () => await Navigation.PopAsync());
-
         InitializeComponent();
 
-        BindingContext = this;
+        BindingContext = viewModel;
     }
 
     private async void SignupButton_Clicked(object sender, EventArgs e)

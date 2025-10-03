@@ -16,39 +16,41 @@
 
             <Entry
                  Placeholder="Fullname: (ex: Jorge Armando)"
-                 Text="{Binding UserSignupViewModel.Fullname, Mode=TwoWay}"
+                 Text="{Binding Fullname, Mode=TwoWay}"
                  MinimumWidthRequest="150"/>
 
             <Entry
                  Placeholder="Email: (ex: example@domain.com)"
-                 Text="{Binding UserSignupViewModel.Email, Mode=TwoWay}"
+                 Text="{Binding Email, Mode=TwoWay}"
                  MinimumWidthRequest="150"/>
 
             <Entry
                  Placeholder="Password: "
                  MinimumWidthRequest="150"
-                 Text="{Binding UserSignupViewModel.Password, Mode=TwoWay}"
+                 Text="{Binding Password, Mode=TwoWay}"
                  IsPassword="True"/>
 
             <Grid 
                  ColumnSpacing="10"
                  ColumnDefinitions="Auto,Auto,*">
                 <Entry
-                     Placeholder="CC"
-                     Text="+55"
-                     Keyboard="Numeric"
-                     Grid.Column="0"
-                     MaxLength="4"/>
+                    Placeholder="CC"
+                    Keyboard="Numeric"
+                    Grid.Column="0"
+                    MaxLength="4"
+                    Text="{Binding CountryCode, Mode=TwoWay}"/>
                 <Entry
-                     Placeholder="DDD"
-                     Grid.Column="1"
-                     MaxLength="4"
-                     Keyboard="Numeric"/>
+                    Placeholder="DDD"
+                    Grid.Column="1"
+                    MaxLength="4"
+                    Keyboard="Numeric"
+                    Text="{Binding DDD, Mode=TwoWay}"/>
                 <Entry
-                     Placeholder="Number"
-                     Keyboard="Numeric"
-                     MaxLength="9"
-                     Grid.Column="2"/>
+                    Placeholder="Number"
+                    Keyboard="Numeric"
+                    MaxLength="9"
+                    Text="{Binding Number, Mode=TwoWay}"
+                    Grid.Column="2"/>
             </Grid>
 
 
@@ -63,7 +65,7 @@
                      Grid.Row="0"
                      Grid.Column="0"/>
                 <DatePicker
-                     Date="{Binding UserSignupViewModel.BirthDate, Mode=TwoWay}"
+                     Date="{Binding BirthDate, Mode=TwoWay}"
                      MinimumWidthRequest="150"
                      Format="dd/MM/yyyy"
                      Grid.Row="1"
@@ -76,16 +78,17 @@
                      Placeholder="CPF: (ex: 123.456.789.09)"
                      Keyboard="Numeric"
                      MinimumWidthRequest="150"
-                     Text="{Binding UserSignupViewModel.CPF, Mode=TwoWay}"
+                     Text="{Binding CPF, Mode=TwoWay}"
                      MaxLength="11"
                      Grid.Row="1"
                      Grid.Column="1"/>
             </Grid>
             <Button
-                 Text="Signup"
-                 MinimumWidthRequest="150"
-                 Padding="10"
-                 Clicked="SignupButton_Clicked"/>
+                Text="Signup"
+                MinimumWidthRequest="150"
+                Padding="10"
+                Command="{Binding SendRequestCommand}"
+                Clicked="SignupButton_Clicked"/>
             
             <controls:LoadingControl 
                 x:Name="LoadingControlView" />
