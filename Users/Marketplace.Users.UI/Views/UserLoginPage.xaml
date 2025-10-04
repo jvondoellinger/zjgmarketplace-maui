@@ -14,19 +14,19 @@
         <Entry
             Placeholder="Email: (ex: example@domain.com)"
             MinimumWidthRequest="250"
-            Text="{Binding UserLoginViewModel.Email, Mode=TwoWay}"/>
+            Text="{Binding Email, Mode=TwoWay}"/>
 
         <Entry
             Placeholder="Password: "
             MinimumWidthRequest="250"
             IsPassword="True"
-            Text="{Binding UserLoginViewModel.Password, Mode=TwoWay}"/>
+            Text="{Binding Password, Mode=TwoWay}"/>
 
         <Button
             Text="Login"
             MinimumWidthRequest="250"
             Padding="10"
-            Clicked="LoginButton_Clicked"/>
+            Command="{Binding LoginCommand}"/>
 
         <Label
             VerticalOptions="End"
@@ -46,6 +46,7 @@
             </Label.FormattedText>
         </Label>
 
-        <controls:LoadingControl x:Name="LoadingControlView" />
+        <controls:LoadingControl
+            IsLoading="{Binding Loading, Mode=TwoWay}" />
     </VerticalStackLayout>
 </ContentPage>

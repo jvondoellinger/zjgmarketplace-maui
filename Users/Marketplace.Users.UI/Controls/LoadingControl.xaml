@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Marketplace.Users.UI.Controls.LoadingControl">
     <Grid
+        x:Name="LoadingGrid"
         BackgroundColor="Transparent"
         IsVisible="{Binding IsLoading}">
         <ActivityIndicator  

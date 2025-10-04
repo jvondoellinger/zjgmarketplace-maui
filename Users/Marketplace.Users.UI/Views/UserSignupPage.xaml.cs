@@ -12,12 +12,4 @@ public partial class UserSignupPage : ContentPage
 
         BindingContext = viewModel;
     }
-
-    private async void SignupButton_Clicked(object sender, EventArgs e)
-    {
-        await LoadingControlView.RunWithLoadingIndicator(async () =>
-        {
-            await Task.Delay(1000);
-        });
-    }
 }

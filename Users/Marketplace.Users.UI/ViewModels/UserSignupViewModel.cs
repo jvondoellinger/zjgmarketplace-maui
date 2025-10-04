@@ -29,6 +29,7 @@ public class UserSignupViewModel : PropertyNotifier
     private string _phone;
     private string _cpf;
     private DateOnly _birthDate;
+    private bool _loading = false;
 
 
     // Properties ==============================================================================
@@ -117,15 +118,25 @@ public class UserSignupViewModel : PropertyNotifier
             }
         }
     }
-    public DateOnly BirthDate
+    public DateTime BirthDate
     {
-        get => _birthDate;
+        get => DateTime.Parse(_birthDate.ToShortDateString());
         set
         {
-            if (value.Equals(_birthDate))
+            _birthDate = DateOnly.FromDateTime(value);
+            OnPropertyChanged(nameof(BirthDate));
+        }
+    }
+
+    public bool Loading
+    {
+        get => _loading;
+        set
+        {
+            if (value != _loading)
             {
-                _birthDate = value;
-                OnPropertyChanged(nameof(BirthDate));
+                _loading = value;
+                OnPropertyChanged(nameof(Loading));
             }
         }
     }
@@ -135,16 +146,24 @@ public class UserSignupViewModel : PropertyNotifier
     {
         SendRequestCommand = new Command(async () =>
         {
-            var model = new UserModel()
+            try
             {
-                BirthDay = BirthDate,
-                Cpf = CPF,
-                Email = Email,
-                Password = Password,
-                Phone = new() { AreaCode = DDD, CountryCode = CountryCode, Number = Number },
-                Username = Fullname
-            };
-            await request.SendAsync(model);
+                var model = new UserModel()
+                {
+                    BirthDay = _birthDate,
+                    Cpf = CPF,
+                    Email = Email,
+                    Password = Password,
+                    Phone = new() { AreaCode = DDD, CountryCode = CountryCode, Number = Number },
+                    Username = Fullname
+                };
+                await request.SendAsync(model);
+
+            } 
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Erro ao registrar usuario", ex.Message, "Ok");
+            }
         });
     }
 }

@@ -23,6 +23,7 @@ public static class ProductDenpendencyInjectionModule
     {
         services.AddSingleton<DashboardViewModel>();
         services.AddSingleton<UserSignupViewModel>();
+        services.AddSingleton<UserLoginViewModel>();
         return services;
     }
     private static IServiceCollection AddPages(this IServiceCollection services)

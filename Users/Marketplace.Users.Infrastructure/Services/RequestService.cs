@@ -23,23 +23,32 @@ internal static class RequestService
     {
         using var client = new HttpClient();
         AddHeaders(client, authToken, headers);
+
+        Test(obj);
+
         var response = await client.PostAsJsonAsync(url, obj, serializerOptions);
 
-        if(!response.IsSuccessStatusCode)
-        {
-            return default;
-        }
+        if (!response.IsSuccessStatusCode)
+            throw new Exception($"POST failed. Message: {response.ReasonPhrase}");
+
         var json = await response.Content.ReadAsStringAsync();
-        Debug.WriteLine(json);
-        return JsonSerializer.Deserialize<T>(json, serializerOptions); // Erro na deserialização do DateTime
+        return JsonSerializer.Deserialize<T>(json, serializerOptions);
     }
 
     internal static async Task<T?> GetAsync<T>(string url, string authToken = null, Dictionary<string, string> headers = null)
     {
         using var client = new HttpClient();
         AddHeaders(client, authToken, headers);
+
         var response = await client.GetAsync(url);
         var json = await response.Content.ReadAsStringAsync();
+        
         return JsonSerializer.Deserialize<T>(json, serializerOptions);
+    }
+
+    private static void Test(object obj)
+    {
+        var json= JsonSerializer.Serialize(obj, serializerOptions);
+        Debug.WriteLine(json);
     }
 }

@@ -8,41 +8,29 @@ public partial class LoadingControl : ContentView
         BindableProperty.Create(nameof(IsLoading), 
             typeof(bool), 
             typeof(LoadingControl),
-            false);
+            false,
+            propertyChanged: OnIsLoadingIsChanged);
 
     public bool IsLoading
     {
         get => (bool) GetValue(IsLoadingProperty);
         set => SetValue(IsLoadingProperty, value);
+        
     }
 
     public LoadingControl()
 	{
         InitializeComponent();
-
-        BindingContext = this;
     }
 
-	private void Show()
-	{
-        if (IsLoading) return;
-        IsLoading = true;
-    }
-    private void Hide()
-	{
-        if (!IsLoading) return;
-        IsLoading = false;
-    }
-
-    public async Task RunWithLoadingIndicator(Func<Task> action)
+    private static void OnIsLoadingIsChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (!IsLoading)
+        if (bindable is LoadingControl view)
         {
-            Show();
-            await action.Invoke(); //Simulação
-            Hide();
+            var isLoading = (bool) newValue;
+
+            view.LoadingGrid.IsVisible = isLoading;
+            view.RunningIndicator.IsRunning = isLoading;
         }
     }
-
-
 }

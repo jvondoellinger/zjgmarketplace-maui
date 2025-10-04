@@ -13,7 +13,7 @@ public class UserModel
 
     [StringLength(maximumLength: 11)]
     public string Cpf { get; init; }
-    public DateOnly BirthDay { get; init; }
+    public DateOnly BirthDay { get; set; }
 }
 
 public class Phone
