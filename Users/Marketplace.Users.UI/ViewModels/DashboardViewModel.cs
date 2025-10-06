@@ -3,6 +3,7 @@ using Marketplace.Users.UI.Interfaces;
 using Marketplace.Users.UI.ViewModels.Dashboard;
 using Marketplace.Users.UI.ViewModels.Notifiers;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace Marketplace.Users.UI.ViewModels;
 
@@ -35,6 +36,7 @@ public class DashboardViewModel : PropertyNotifier
         {
             AsyncWorker.RunAsync(redirect.RedirectAsync); // Redireciona de forma async para a página
             OnPropertyChanged(nameof(SelectedItem));
+            selectedItem = null;
         }
     }
 }

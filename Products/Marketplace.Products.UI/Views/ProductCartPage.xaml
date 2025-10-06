@@ -8,7 +8,7 @@
         Padding="10"
         RowDefinitions="Auto,*,Auto">
         <Label 
-            Text="*Arraste o item para à esquerda para remover do carrinho"
+            Text="* Arraste o item para à esquerda para remover do carrinho"
             FontSize="Small"
             FontAttributes="Bold"
             TextColor="LightGrey"
@@ -49,7 +49,7 @@
             Text="Proceed to checkout"
             VerticalOptions="End"
             HorizontalOptions="End"
-            Command="{Binding RedirectToCheckout}"
+            Command="{Binding SendOrderCommand}"
             Grid.Row="2"/>
     </Grid>
 </ContentPage>

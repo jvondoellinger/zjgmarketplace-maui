@@ -1,13 +1,13 @@
 ﻿using Marketplace.Products.Core.Events;
 using Marketplace.Products.Core.Model;
 using Marketplace.Products.Core.Query;
+using Marketplace.Products.Core.Requests;
 using Marketplace.Products.Core.Workers;
 using Marketplace.Products.UI.Interfaces;
 using Marketplace.Products.UI.Mapper;
 using Marketplace.Products.UI.ViewModel.Cards;
 using Marketplace.Products.UI.ViewModel.Notifiers;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Windows.Input;
 
 namespace Marketplace.Products.UI.ViewModel;
@@ -16,21 +16,25 @@ public class ProductCartViewModel : PropertyNotifier, IAddProductOnCartEvent, IR
 {
     private readonly IProductQuery query;
     private readonly ICheckoutPageRedirect redirect;
+    private readonly IProductCartCommandRequest request;
     private readonly ProductCart cart = ProductCart.Instance;
 
 
-
-
-    // Properties =======================================================
-    public ProductCartViewModel(IProductQuery query, ICheckoutPageRedirect redirect)
+    public ProductCartViewModel(IProductQuery query, 
+        ICheckoutPageRedirect redirect, 
+        IProductCartCommandRequest request)
     {
         this.query = query;
         this.redirect = redirect;
+        this.request = request;
         AsyncWorker.RunAsync(this.InitializeDataContent);
 
         this.InitializeCommands();
         this.SubscribeOnEvents();
     }
+
+
+    // Properties =======================================================
 
     public ObservableCollection<ProductCardViewModel> ProductCardViewModels { get; private set; }
 
@@ -43,10 +47,10 @@ public class ProductCartViewModel : PropertyNotifier, IAddProductOnCartEvent, IR
         }
     }
 
-    public ICommand RedirectToCheckout { get; private set; }
+    public ICommand SendOrderCommand { get; private set; }
 
 
-    // Methods ==========================================================
+    // Initializes ==========================================================
     private async Task InitializeDataContent()
     {
         List<ProductCardViewModel> views = [];
@@ -73,9 +77,17 @@ public class ProductCartViewModel : PropertyNotifier, IAddProductOnCartEvent, IR
     }
     private void InitializeCommands()
     {
-        RedirectToCheckout = new Command(async () =>
+        SendOrderCommand = new Command(async () =>
         {
-            await redirect.RedirectAsync();
+            try
+            {
+                await request.SendAsync(cart);
+                await redirect.RedirectAsync();
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Erro ao finalizar pedido.", ex.Message, "Ok");
+            }
         });
     }
 

@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Marketplace.SharedLayer\Marketplace.SharedLayer.csproj" />
     <ProjectReference Include="..\Marketplace.Users.Core\Marketplace.Users.Core.csproj" />
   </ItemGroup>
 

@@ -146,6 +146,7 @@ public class UserSignupViewModel : PropertyNotifier
     {
         SendRequestCommand = new Command(async () =>
         {
+            Loading = true;
             try
             {
                 var model = new UserModel()
@@ -158,12 +159,14 @@ public class UserSignupViewModel : PropertyNotifier
                     Username = Fullname
                 };
                 await request.SendAsync(model);
+                await Shell.Current.DisplayAlert("Usuario registrado com sucesso", "Agora pode", "Ok");
 
-            } 
+            }
             catch (Exception ex)
             {
                 await Shell.Current.DisplayAlert("Erro ao registrar usuario", ex.Message, "Ok");
             }
+            Loading = false;
         });
     }
 }
