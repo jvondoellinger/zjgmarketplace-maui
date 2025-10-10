@@ -1,7 +1,6 @@
 ﻿using Marketplace.Products.Core.Events;
 using Marketplace.Products.Core.Model;
 using Marketplace.Products.Core.Query;
-using Marketplace.Products.Core.Requests;
 using Marketplace.Products.Core.Workers;
 using Marketplace.Products.UI.Interfaces;
 using Marketplace.Products.UI.Mapper;
@@ -16,17 +15,14 @@ public class ProductCartViewModel : PropertyNotifier, IAddProductOnCartEvent, IR
 {
     private readonly IProductQuery query;
     private readonly ICheckoutPageRedirect redirect;
-    private readonly IProductCartCommandRequest request;
     private readonly ProductCart cart = ProductCart.Instance;
 
 
     public ProductCartViewModel(IProductQuery query, 
-        ICheckoutPageRedirect redirect, 
-        IProductCartCommandRequest request)
+        ICheckoutPageRedirect redirect)
     {
         this.query = query;
         this.redirect = redirect;
-        this.request = request;
         AsyncWorker.RunAsync(this.InitializeDataContent);
 
         this.InitializeCommands();
@@ -59,8 +55,6 @@ public class ProductCartViewModel : PropertyNotifier, IAddProductOnCartEvent, IR
         {
             if (input == null)
                 continue;
-            if (string.IsNullOrWhiteSpace(input.ProductId))
-                continue;
             var product = await query.Find(input.ProductId) 
                 ?? throw new Exception("This identifier isn't found in this query.");
             
@@ -81,7 +75,6 @@ public class ProductCartViewModel : PropertyNotifier, IAddProductOnCartEvent, IR
         {
             try
             {
-                await request.SendAsync(cart);
                 await redirect.RedirectAsync();
             }
             catch (Exception ex)

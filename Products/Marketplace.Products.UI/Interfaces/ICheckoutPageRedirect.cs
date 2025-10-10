@@ -1,4 +1,6 @@
-﻿namespace Marketplace.Products.UI.Interfaces;
+﻿using Marketplace.Products.Core.Model;
+
+namespace Marketplace.Products.UI.Interfaces;
 
 public interface ICheckoutPageRedirect
 {

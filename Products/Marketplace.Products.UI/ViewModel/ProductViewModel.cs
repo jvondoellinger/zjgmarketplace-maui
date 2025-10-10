@@ -22,7 +22,7 @@ public class ProductViewModel : PropertyNotifier
     }
 
     // Properties ==================================================
-    public string Id { get; private set; }
+    public int Id { get; private set; }
     public List<string> ImagesURL { get; private set; }
     public string Title { get; private set; }
     public decimal Price { get; private set; }
@@ -34,7 +34,10 @@ public class ProductViewModel : PropertyNotifier
     public async Task LoadDataContext()
     {
         var selected = state.SelectedProductId;
-        var data = await query.Find(selected) ?? throw new Exception("Product can't be null");
+        if (selected == null) 
+            return;
+        var data = await query.Find((int) selected) ?? throw new Exception("Product can't be null");
+        
         LoadProperties(data);
     }
 
@@ -42,7 +45,7 @@ public class ProductViewModel : PropertyNotifier
     {
         if (product == null) 
             return; // Do nothing.
-        Id = product.Id.ToString();
+        Id = product.Id;
         Title = product.Title;
         Description = product.Description;
         Price = product.Price;

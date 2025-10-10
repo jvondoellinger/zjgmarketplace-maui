@@ -3,38 +3,48 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Marketplace.Orders.UI.Views.CheckoutPage"
              Title="Checkout">
-    <Grid 
-        Padding="15"
-        BackgroundColor="#F6F6F6"
-        RowDefinitions="Auto,Auto,Auto,Auto,*">
+    <VerticalStackLayout
+        Background="#F6F6F6"
+        Margin="20">
         <Label 
-            Text="{Binding Id, StringFormat='Nº {0}'}"
-            VerticalOptions="Start"
-            Grid.Row="0"/>
+            Text="Items selecionados:"
+            HorizontalOptions="Start"/>
+        <CollectionView 
+            ItemsSource="{Binding ItemsOnOrder}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid
+                        RowDefinitions="*,*, Auto"
+                        ColumnDefinitions="*,Auto">
+                        <Label 
+                            Text="{Binding Title}" 
+                            Grid.Row="0" 
+                            Grid.Column="0"/>
+                        <Label 
+                            Text="{Binding Price, StringFormat='{0:C}'}" 
+                            Grid.Row="0" 
+                            Grid.Column="1"/>
+                        <Label 
+                            Text="{Binding Quantity, StringFormat='Qntd: {0}'}" 
+                            Grid.Row="0" 
+                            Grid.Column="2"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
-        <Image
-            Source="{Binding ImageSource}"
-            MinimumHeightRequest="150"
-            MinimumWidthRequest="150"
-            MaximumHeightRequest="300"
-            MaximumWidthRequest="300"
-            Grid.Row="1"/>
+        <Label 
+            Text="{Binding Total, StringFormat='Price: {0:C}'}"/>
+
         <Button 
-            Text="Copiar código copia e cola 📋"
-            Command="{Binding CopyCodeCommand}"
-            Grid.Row="2"/>
+            Text="Ir para pagamento"
+            Command="{Binding RedirectToPaymentCommand}"
+            Padding="10"/>
+
         <Label
-            Text="{Binding Price, StringFormat='Total: {0:C}'}"
-            Margin="12"
-            TextColor="Green"
-            TextDecorations="Underline"
-            FontAttributes="Bold"
-            FontSize="Medium"
-            Grid.Row="3"/>
-        <Label
-            Text="Alguma dúvida? Fale com o vendedor"
-            HorizontalOptions="Center"
-            VerticalOptions="End"
-            Grid.Row="4"/>
-    </Grid>
+            Text="OBS: o item comprado chegará via e-mail, tendo em vista este marketplace realizar vendas SOMENTE de itens virtuais, como key de jogos, key do windows, etc.."
+            TextColor="Gray"
+            Margin="20"
+            VerticalOptions="End"/>
+    </VerticalStackLayout>
 </ContentPage>

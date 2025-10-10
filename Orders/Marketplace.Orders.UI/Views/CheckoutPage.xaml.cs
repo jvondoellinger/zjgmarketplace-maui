@@ -1,12 +1,9 @@
-using Marketplace.Orders.UI.ViewModels;
-
 namespace Marketplace.Orders.UI.Views;
 
 public partial class CheckoutPage : ContentPage
 {
-	public CheckoutPage(CheckoutViewModel viewModel)
+	public CheckoutPage()
 	{
 		InitializeComponent();
-		BindingContext = viewModel;
 	}
 }

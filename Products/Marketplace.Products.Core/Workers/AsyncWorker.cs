@@ -3,7 +3,7 @@
 public static class AsyncWorker
 {
     public static void RunAsync(Func<Task> func)
-    {
+    {       
         RunAsync(func());
     }
     public static void RunAsync(Task task)

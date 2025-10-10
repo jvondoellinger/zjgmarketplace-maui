@@ -16,7 +16,6 @@ public class StaticQueryDatabaseTest : IProductQuery
         {
             var id = Guid.NewGuid().ToString();
             var item = new Product(
-                Guid.NewGuid(),
                 "Monitor Gamer SuperFrame Prisma V2 — SFPFW‑27185‑QHD‑PRO ",
                 id+id+id+id+id+id,
                 369.33m,
@@ -27,9 +26,9 @@ public class StaticQueryDatabaseTest : IProductQuery
         return list;
     }
 
-    public async Task<Product?> Find(string id)
+    public async Task<Product?> Find(int id)
     {
-        return Products.Find(p => p.Id.ToString() == id);
+        return Products.Find(p => p.Id.Equals(id));
     }
 
 #pragma warning disable CS1998 

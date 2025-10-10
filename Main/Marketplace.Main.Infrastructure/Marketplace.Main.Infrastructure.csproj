@@ -26,6 +26,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Orders\Marketplace.Orders.UI\Marketplace.Orders.UI.csproj" />
 	  <ProjectReference Include="..\..\Products\Marketplace.Products.UI\Marketplace.Products.UI.csproj" />
+	  <ProjectReference Include="..\..\Shared\Marketplace.SharedLayer\Marketplace.SharedLayer.csproj" />
 	  <ProjectReference Include="..\..\Users\Marketplace.Users.UI\Marketplace.Users.UI.csproj" />
 	</ItemGroup>
 

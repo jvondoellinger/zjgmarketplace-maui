@@ -28,6 +28,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\PaymentPage.xaml.cs">
+	    <DependentUpon>PaymentPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\Content\OrderCardView.xaml.cs">
 	    <DependentUpon>OrderCardView.xaml</DependentUpon>
 	  </Compile>
@@ -35,6 +38,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Views\CheckoutPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PaymentPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Content\OrderCardView.xaml">

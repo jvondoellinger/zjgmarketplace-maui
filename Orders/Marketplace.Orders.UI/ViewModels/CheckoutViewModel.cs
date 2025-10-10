@@ -1,104 +1,34 @@
-﻿using Marketplace.Orders.Core.State;
-using Marketplace.Orders.UI.ViewModels.Notifiers;
+﻿using Marketplace.Orders.Core.Models;
+using Marketplace.Orders.Core.Requests;
+using Marketplace.Orders.UI.ViewModels.Card;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace Marketplace.Orders.UI.ViewModels;
 
-public class CheckoutViewModel : PropertyNotifier
+public class CheckoutViewModel
 {
-    private readonly IOrderState state;
+    private readonly ICreateOrderRequest request;
+    private readonly OrderCheckoutState state;
 
-    public CheckoutViewModel(IOrderState state)
+    public ObservableCollection<ItemOnOrderViewModel> ItemsOnOrder { get; private set; }
+    public CheckoutViewModel(ICreateOrderRequest request, OrderCheckoutState state)
     {
+        this.request = request;
         this.state = state;
 
-        state.SelectOrder += (order) =>
-        {
-             LoadDataContext();
-        };
-
-        LoadDataContext();
-        LoadCommands();
+        InitializeCommands();
     }
 
-    // Variables ================================================
-    private long id;
-    private ImageSource  imageSource;
-    private string code;
-    private ICommand copyCodeCommand;
-    private decimal price;
-    private ICommand contactUsCommand;
+    public int OrderId { get; private set; }
+    public decimal Total { get; init; }
+    public ICommand RedirectToPaymentCommand { get; private set; } 
 
-    // Properties ===============================================
-    public long Id 
-    { 
-        get => id; 
-        set
+    private void InitializeCommands()
+    {
+        RedirectToPaymentCommand = new Command(() =>
         {
-            id = value;
-            OnPropertyChanged(nameof(Id));
-        } 
-    }
-    public ImageSource ImageSource
-    {
-        get => imageSource;
-        set
-        {
-            imageSource = value;
-            OnPropertyChanged(nameof(ImageSource));
-        }
-    }
-    public string Code
-    {
-        get => code;
-        set
-        {
-            code = value;
-            OnPropertyChanged(nameof(Code));
-        }
-    }
-    public ICommand CopyCodeCommand
-    {
-        get => copyCodeCommand;
-        set
-        {
-            copyCodeCommand = value;
-            OnPropertyChanged(nameof(CopyCodeCommand));
-        }
-    }
-    public decimal Price
-    {
-        get => price;
-        set
-        {
-            price = value;
-            OnPropertyChanged(nameof(Price));
-        }
-    }
-    public ICommand ContactUsCommand
-    {
-        get => contactUsCommand;
-        set
-        {
-            contactUsCommand = value;
-            OnPropertyChanged(nameof(ContactUsCommand));
-        }
-    }
-
-    // Methods ===============================================================
-    private void LoadDataContext()
-    {
-        var selected = state.SelectedOrder;
-        Id = selected.Id;
-        ImageSource = "fallback.png";
-        Code = selected.Code;
-        Price = selected.Price;
-    }
-
-    private void LoadCommands()
-    {
-        this.CopyCodeCommand = new Command(async () => {
-            await Clipboard.SetTextAsync(Code);
+            request.SendAsync(state.Current);
         });
     }
 }

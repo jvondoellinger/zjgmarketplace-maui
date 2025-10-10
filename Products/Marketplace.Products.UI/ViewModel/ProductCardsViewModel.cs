@@ -54,7 +54,6 @@ public class ProductCardsViewModel : PropertyNotifier
                 var page = resolver.Resolve<ProductPage>();
                 await Shell.Current.Navigation.PushAsync(page);
             });
-            selected = null;
             OnPropertyChanged(nameof(SelectedItem));
         }
     }

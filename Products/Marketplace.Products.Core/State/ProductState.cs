@@ -2,9 +2,9 @@
 
 public class ProductState : IProductState
 {
-    public string? SelectedProductId { get; private set; }
+    public int? SelectedProductId { get; private set; }
 
-    public void SelectProduct(string productId)
+    public void SelectProduct(int productId)
     {
         SelectedProductId = productId;
     }

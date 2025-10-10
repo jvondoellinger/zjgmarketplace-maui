@@ -17,7 +17,7 @@ internal class ProductCardViewModelMapper
                 ImageURL = product.ImagesURL.FirstOrDefault(),
                 Price = product.Price,
                 Title = product.Title,
-                Id = product.Id.ToString()
+                Id = product.Id
             };
         }) ];
 
@@ -30,7 +30,7 @@ internal class ProductCardViewModelMapper
                 ImageURL = product.ImagesURL.FirstOrDefault(),
                 Price = product.Price,
                 Title = product.Title,
-                Id = product.Id.ToString()
+                Id = product.Id
             };
     }
 

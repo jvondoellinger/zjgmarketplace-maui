@@ -8,7 +8,7 @@ public abstract class ProductCardViewModel
     {
         
     }
-    public required string Id { get; init; }
+    public int Id { get; init; }
     public required string ImageURL { get; init; }
     public required string Title { get; init; }
     public required decimal Price { get; init; }

@@ -1,8 +1,4 @@
-﻿using Marketplace.Products.Core.Interfaces;
-using Marketplace.Products.Core.Model;
-using Marketplace.Products.Core.State;
-using Marketplace.Products.UI.Views;
-using System.Windows.Input;
+﻿using Marketplace.Products.Core.Model;
 
 namespace Marketplace.Products.UI.ViewModel.Cards;
 
@@ -11,7 +7,7 @@ public class ProductCardBuyViewModel : ProductCardViewModel
 
     public ProductCardBuyViewModel() // Constructor ==========
     {
-        base.Command = new Command<ProductCardViewModel>((card) =>
+        base.Command = new Command<ProductCardViewModel>((ProductCardViewModel card) =>
         {
             var input = new ProductCartInput()
             {
