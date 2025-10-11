@@ -1,5 +1,5 @@
 ﻿using Marketplace.Products.Core.Interfaces;
-using Marketplace.Products.Core.Query;
+using Marketplace.Products.Core.Requests;
 using Marketplace.Products.Core.State;
 using Marketplace.Products.Core.Workers;
 using Marketplace.Products.UI.Mapper;
@@ -8,19 +8,18 @@ using Marketplace.Products.UI.ViewModel.Notifiers;
 using Marketplace.Products.UI.Views;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Windows.Input;
 
 namespace Marketplace.Products.UI.ViewModel;
 
 public class ProductCardsViewModel : PropertyNotifier
 {
-    private readonly IProductQuery query;
+    private readonly IQueryProductRequest request;
     private readonly IProductState state;
     private readonly IPageResolver resolver;
 
-    public ProductCardsViewModel(IProductQuery query, IProductState state, IPageResolver resolver)
+    public ProductCardsViewModel(IQueryProductRequest request, IProductState state, IPageResolver resolver)
     {
-        this.query = query;
+        this.request = request;
         this.state = state;
         this.resolver = resolver;
 
@@ -33,11 +32,13 @@ public class ProductCardsViewModel : PropertyNotifier
 
     public async Task LoadDataContext()
     {
-        var data = await query.QueryPagination(0, 10);
+        var data = await request.SendPaginationAsync(0, 10);
 
         var models = ProductCardViewModelMapper.MapToBuyCard(data);
         
         ProductViewModels = [.. models];
+
+        OnPropertyChanged(nameof(ProductViewModels));
     }
 
     private ProductCardViewModel selected;

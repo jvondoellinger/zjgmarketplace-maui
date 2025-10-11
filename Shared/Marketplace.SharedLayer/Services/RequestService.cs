@@ -35,13 +35,27 @@ public static class RequestService
 
     public static async Task<T?> GetAsync<T>(string url, string authToken = null, Dictionary<string, string> headers = null)
     {
-        using var client = new HttpClient();
-        AddHeaders(client, authToken, headers);
+        try
+        {
+            using var client = new HttpClient();
+            AddHeaders(client, authToken, headers);
 
-        var response = await client.GetAsync(url);
-        var json = await response.Content.ReadAsStringAsync();
-        
-        return JsonSerializer.Deserialize<T>(json, serializerOptions);
+            var response = await client.GetAsync(url);
+            if (!response.IsSuccessStatusCode)
+            {
+                Debug.WriteLine($"Fudeo demais: Erro: {response.ReasonPhrase}");
+            }
+
+            var json = await response.Content.ReadAsStringAsync();
+
+            return JsonSerializer.Deserialize<T>(json, serializerOptions);
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+            return default;
+        }
+
     }
 
     private static void Test(object obj)
