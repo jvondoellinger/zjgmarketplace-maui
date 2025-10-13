@@ -26,10 +26,6 @@ public class QueryProductRequest : IQueryProductRequest
         var mapper= new ProductRequestMapper();
         var data = await RequestService.GetAsync<List<QueryProductRequestOutputModel>>(Uri.ToString(), await token);
 
-        if (data == null) throw new Exception("Esta null isso auqi");
-        if (data.Count > 0) Debug.WriteLine($"Items: {data.Count}");
-        if (data.Count > 0) Debug.WriteLine($"Items: {data.First().Title}");
-
         return mapper.Map(data);
     }
 
