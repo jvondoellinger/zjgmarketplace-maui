@@ -15,6 +15,8 @@ public static class ProductInfrastructureInjection
         services.AddSingleton<IProductCategoryQuery, StaticProductCategoryQueryTest>(); 
         services.AddSingleton<IProductState, ProductState>(); 
         services.AddSingleton<IQueryProductRequest, QueryProductRequest>(); 
+        services.AddSingleton<ProductRequestMapper>(); 
         return services;
+
     }
 }

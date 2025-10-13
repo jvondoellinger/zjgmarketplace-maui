@@ -1,4 +1,6 @@
-﻿using Marketplace.Main.UI.DependencyInjection;
+﻿using Marketplace.Main.Infrastructure.DependecyInjection;
+using Marketplace.Main.UI.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace Marketplace.Main.UI
@@ -19,8 +21,16 @@ namespace Marketplace.Main.UI
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+            // Add settings file (.json)
+            builder
+                .Configuration
+                .AddJsonFile("Settings/settings.json", optional: false, reloadOnChange: true);
 
-            builder.Services.InjectLayers();
+            // Add services on container of injection dependecy
+            builder.Services
+                .RegisterMainOnDependecyInjection()
+                .ConfigureLayers(builder.Configuration);
+
 
             return builder.Build();
         }

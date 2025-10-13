@@ -1,48 +1,44 @@
 ﻿using Marketplace.Products.Core.Model;
 using Marketplace.Products.Core.Requests;
+using Marketplace.Products.Infrastructure.Implementations.Requests.Configs;
 using Marketplace.Products.Infrastructure.Implementations.Requests.Model;
-using Marketplace.SharedLayer.Configs;
-using Marketplace.SharedLayer.Headers;
 using Marketplace.SharedLayer.Services;
-using System.Diagnostics;
 
 namespace Marketplace.Products.Infrastructure.Implementations.Requests;
 
 public class QueryProductRequest : IQueryProductRequest
 {
-    private readonly BearerTokenAuthentication authentication;
-    private readonly GuestTokenRequest guestTokenRequest;
-    private Uri Uri;
-    public QueryProductRequest(CurrentRequestURI uri, BearerTokenAuthentication authentication, GuestTokenRequest guestTokenRequest)
+    private readonly RequestService request;
+    private readonly ProductRoutesUriConfig config;
+    private readonly ProductRequestMapper mapper;
+
+    public QueryProductRequest(RequestService request, ProductRoutesUriConfig config, ProductRequestMapper mapper)
     {
-        this.Uri = new (uri.Uri, "/api/product");
-        this.authentication = authentication;
-        this.guestTokenRequest = guestTokenRequest;
+        this.request = request;
+        this.config = config;
+        this.mapper = mapper;
     }
 
     public async Task<List<Product>> SendPaginationAsync(long offset, int limit)
     {
-        var token = guestTokenRequest.GetGuestTokenAsync();
-        var mapper= new ProductRequestMapper();
-        var data = await RequestService.GetAsync<List<QueryProductRequestOutputModel>>(Uri.ToString(), await token);
+        var data = await request.GetAsync<List<QueryProductRequestOutputModel>>(config.QueryPagination);
 
         return mapper.Map(data);
     }
-
-    
 }
 
 public class ProductRequestMapper
 {
     public Product Map(QueryProductRequestOutputModel model)
     {
-        var paths = model.Paths?.Paths?.Select(x => x.CompletePath).ToList();
+        var paths = model.Paths?.Paths?.Select(x => x.CompletePath).ToList() ?? [];
+
         return new Product(
             model.Title,
             model.Description,
             model.Amount,
             "n/a",
-            paths ?? [ "fallback.png" ]);
+            paths);
     }
     public List<Product> Map(IEnumerable<QueryProductRequestOutputModel> models) => [..models.Select(Map)];
 }

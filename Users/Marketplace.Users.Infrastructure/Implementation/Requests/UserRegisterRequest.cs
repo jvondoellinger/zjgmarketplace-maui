@@ -1,31 +1,27 @@
-﻿using Marketplace.SharedLayer.Configs;
+﻿using Marketplace.SharedLayer.Services;
 using Marketplace.Users.Core.Models;
 using Marketplace.Users.Core.Requests;
+using Marketplace.Users.Infrastructure.Implementation.Requests.Configs;
 using Marketplace.Users.Infrastructure.Implementation.Requests.Mapper;
 using Marketplace.Users.Infrastructure.Implementation.Requests.RequestModel;
-using Marketplace.Users.Infrastructure.Implementation.Utils;
-using Marketplace.Users.Infrastructure.Services;
 
 namespace Marketplace.Users.Infrastructure.Implementation.Requests;
 
 public class UserRegisterRequest : IUserRegisterRequest
 {
-    private readonly GuestTokenRequest guestTokenRequest;
     private readonly Uri userRegisterUri;
+    private readonly UserRoutesConfig config;
+    private readonly RequestService request;
 
-    public UserRegisterRequest(GuestTokenRequest guestTokenRequest)
+    public UserRegisterRequest(UserRoutesConfig config, RequestService request)
     {
-        this.guestTokenRequest = guestTokenRequest;
-        var uri = CurrentRequestURI.Default().Uri;
-        userRegisterUri = new(uri, "/api/user/register");
+        this.config = config;
+        this.request = request;
     }
 
     public async Task SendAsync(UserModel model) 
     {
-        var request = UserRegisterRequestModelMapper.Map(model);
-        var token = await guestTokenRequest.GetGuestTokenAsync();
-        await RequestService.PostAsync<UserRegisterRequestModel>(userRegisterUri.ToString(), request, token);
+        var requestModel = UserRegisterRequestModelMapper.Map(model);
+        await request.PostAsync<UserRegisterRequestModel>(config.RegisterUri, requestModel);
     }
-
-
 }

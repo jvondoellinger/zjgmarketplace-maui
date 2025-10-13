@@ -1,5 +1,4 @@
-﻿using Marketplace.Products.Core.Interfaces;
-using Marketplace.Products.Core.Requests;
+﻿using Marketplace.Products.Core.Interfaces;using Marketplace.Products.Core.Requests;
 using Marketplace.Products.Core.State;
 using Marketplace.Products.Core.Workers;
 using Marketplace.Products.UI.Mapper;
@@ -32,13 +31,22 @@ public class ProductCardsViewModel : PropertyNotifier
 
     public async Task LoadDataContext()
     {
-        var data = await request.SendPaginationAsync(0, 10);
+        try
+        {
+            var data = await request.SendPaginationAsync(0, 10);
+            var models = ProductCardViewModelMapper.MapToBuyCard(data);
 
-        var models = ProductCardViewModelMapper.MapToBuyCard(data);
-        
-        ProductViewModels = [.. models];
+            ProductViewModels = [ ..models];
 
-        OnPropertyChanged(nameof(ProductViewModels));
+            OnPropertyChanged(nameof(ProductViewModels));
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+            throw ex;
+        }
+
+
     }
 
     private ProductCardViewModel selected;

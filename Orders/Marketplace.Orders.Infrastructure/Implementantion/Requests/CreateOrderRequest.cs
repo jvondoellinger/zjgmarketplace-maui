@@ -1,24 +1,24 @@
 ﻿using Marketplace.Orders.Core.Models;
 using Marketplace.Orders.Core.Requests;
+using Marketplace.Orders.Infrastructure.Implementantion.Requests.Config;
 using Marketplace.Orders.Infrastructure.Implementantion.Requests.Models;
-using Marketplace.SharedLayer.Headers;
 using Marketplace.SharedLayer.Services;
 
 namespace Marketplace.Orders.Infrastructure.Implementantion.Requests;
 
 public class CreateOrderRequest : ICreateOrderRequest
 {
-    private readonly BearerTokenAuthentication authentication;
+    private readonly RequestService service;
+    private readonly OrderRoutesConfig config;
 
-    public CreateOrderRequest(BearerTokenAuthentication authentication)
+    public CreateOrderRequest(RequestService service, OrderRoutesConfig config)
     {
-        this.authentication = authentication;
+        this.service = service;
+        this.config = config;
     }
-
-    private readonly Uri _default = new ("http://127.0.0.1:5055/api/order");
     public async Task<OrderCheckoutModel> SendAsync(OrderCheckoutModel model)
     {
-        var output = await RequestService.PostAsync<CreateOrderRequestOutputModel>(_default.ToString(), model, authentication.Token);
+        var output = await service.PostAsync<object>(config.QueryOrdersUri, model);
         return model;
     }
 }

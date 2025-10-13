@@ -1,0 +1,18 @@
+{
+  "Api": {
+    "Authorization": {
+      "GuestTokenUri": "http://127.0.0.1:5055/api/guest",
+      "UserTokenUri": "http://127.0.0.1:5055/api/guest"
+    },
+    "ProductRoutes": {
+      "QueryPagination": "http://127.0.0.1:5055/api/products",
+      "Query": "http://127.0.0.1:5055/api/product/query"
+    },
+    "UserRoutes": {
+      "RegisterUri": "htpp://127.0.0.1:5055/api/user"
+    },
+    "OrderRoutes": {
+      "QueryOrdersUri": "http://127.0.0.1:5055/api/orders"
+    }
+  }
+}

@@ -57,19 +57,26 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.2" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
+		<PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Orders\Marketplace.Orders.Infrastructure\Marketplace.Orders.Infrastructure.csproj" />
 	  <ProjectReference Include="..\..\Orders\Marketplace.Orders.UI\Marketplace.Orders.UI.csproj" />
-	  <ProjectReference Include="..\..\Products\Marketplace.Products.Infrastructure\Marketplace.Products.Infrastructure.csproj" />
 	  <ProjectReference Include="..\..\Products\Marketplace.Products.UI\Marketplace.Products.UI.csproj" />
-	  <ProjectReference Include="..\..\Users\Marketplace.Users.Infrastructure\Marketplace.Users.Infrastructure.csproj" />
 	  <ProjectReference Include="..\..\Users\Marketplace.Users.UI\Marketplace.Users.UI.csproj" />
 	  <ProjectReference Include="..\Marketplace.Main.Infrastructure\Marketplace.Main.Infrastructure.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="Settings\settings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 	</ItemGroup>
 
 </Project>
