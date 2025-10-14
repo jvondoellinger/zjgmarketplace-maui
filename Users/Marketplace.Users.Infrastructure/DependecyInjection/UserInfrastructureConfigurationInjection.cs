@@ -9,7 +9,8 @@ public static class UserInfrastructureConfigurationInjection
     public static IServiceCollection ConfigureUserInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         var section = configuration.GetRequiredSection("Api:UserRoutes");
-        services.Configure<UserRoutesConfig>(opts => section.Bind(opts));
+        
+        services.Configure<UserRoutesConfig>(section.Bind);
         return services;
     }
 }

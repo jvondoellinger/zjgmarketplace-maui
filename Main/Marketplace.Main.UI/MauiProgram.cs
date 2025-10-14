@@ -28,8 +28,8 @@ namespace Marketplace.Main.UI
 
             // Add services on container of injection dependecy
             builder.Services
-                .RegisterMainOnDependecyInjection()
-                .ConfigureLayers(builder.Configuration);
+                .ConfigureLayers(builder.Configuration)
+                .RegisterMainOnDependecyInjection();
 
 
             return builder.Build();

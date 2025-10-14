@@ -16,13 +16,13 @@ public class ProductCardsViewModel : PropertyNotifier
     private readonly IProductState state;
     private readonly IPageResolver resolver;
 
-    public ProductCardsViewModel(IQueryProductRequest request, IProductState state, IPageResolver resolver)
+    public ProductCardsViewModel(/*IQueryProductRequest request, IProductState state, IPageResolver resolver*/)
     {
-        this.request = request;
+/*        this.request = request;
         this.state = state;
         this.resolver = resolver;
 
-        AsyncWorker.RunAsync(LoadDataContext);
+        AsyncWorker.RunAsync(LoadDataContext);*/
     }
 
     // Properties ==================================================================================

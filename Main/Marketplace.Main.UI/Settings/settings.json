@@ -8,8 +8,11 @@
       "QueryPagination": "http://127.0.0.1:5055/api/products",
       "Query": "http://127.0.0.1:5055/api/product/query"
     },
+    "ImageRoutes": {
+      "QueryByPath": "http://127.0.0.1:5055/api/image/"
+    },
     "UserRoutes": {
-      "RegisterUri": "htpp://127.0.0.1:5055/api/user"
+      "RegisterUri": "http://127.0.0.1:5055/api/user"
     },
     "OrderRoutes": {
       "QueryOrdersUri": "http://127.0.0.1:5055/api/orders"

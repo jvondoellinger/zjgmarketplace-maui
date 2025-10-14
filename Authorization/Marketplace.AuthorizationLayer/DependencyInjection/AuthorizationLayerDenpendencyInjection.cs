@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Marketplace.Main.Infrastructure.DependecyInjection;
 
-public static class AuthorizationLayerDenpendencyInjectionModule
+public static class AuthorizationLayerDenpendencyInjection
 {
     public static IServiceCollection RegisterAuthorizationLayer(this IServiceCollection services)
     {

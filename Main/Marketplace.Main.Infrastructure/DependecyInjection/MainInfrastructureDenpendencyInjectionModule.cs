@@ -16,8 +16,7 @@ public static class MainInfrastructureDenpendencyInjectionModule
     {
         services
             .AddLayersInjection()
-            .AddRedirections()
-            .AddSharedLayerOnDependecyInjection();
+            .AddRedirections();
 
         return services;
     }

@@ -8,8 +8,8 @@ public static class OrderInfrastructureConfigurationInjection
 {
     public static IServiceCollection ConfigureOrderLayer(this IServiceCollection services, IConfiguration configuration)
     {
-        IConfigurationSection? section = configuration.GetRequiredSection("Api:OrderRoutes");
-        services.Configure<OrderRoutesConfig>(opts => section.Bind(opts));
+        var section = configuration.GetRequiredSection("Api:OrderRoutes");
+        services.Configure<OrderRoutesConfig>(section.Bind);
         return services;
     } 
         
