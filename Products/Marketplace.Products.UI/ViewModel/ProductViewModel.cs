@@ -1,5 +1,6 @@
 ﻿using Marketplace.Products.Core.Model;
 using Marketplace.Products.Core.Query;
+using Marketplace.Products.Core.Requests;
 using Marketplace.Products.Core.State;
 using Marketplace.Products.Core.Workers;
 using Marketplace.Products.UI.ViewModel.Notifiers;
@@ -10,19 +11,19 @@ namespace Marketplace.Products.UI.ViewModel;
 public class ProductViewModel : PropertyNotifier
 {
     private readonly IProductState state;
-    private readonly IProductQuery query;
+    private readonly IQueryProductRequest request;
     private Product? product;
 
-    public ProductViewModel(IProductQuery query, IProductState state)
+    public ProductViewModel(IQueryProductRequest request, IProductState state)
     {
-        this.query = query;
+        this.request = request;
         this.state = state;
 
         AsyncWorker.RunAsync(LoadDataContext);
     }
 
     // Properties ==================================================
-    public int Id { get; private set; }
+    public string Id { get; private set; }
     public List<string> ImagesURL { get; private set; }
     public string Title { get; private set; }
     public decimal Price { get; private set; }
@@ -36,7 +37,7 @@ public class ProductViewModel : PropertyNotifier
         var selected = state.SelectedProductId;
         if (selected == null) 
             return;
-        var data = await query.Find((int) selected) ?? throw new Exception("Product can't be null");
+        var data = await request.QueryIdAsync(selected) ?? throw new Exception("Product can't be null");
         
         LoadProperties(data);
     }
@@ -49,7 +50,7 @@ public class ProductViewModel : PropertyNotifier
         Title = product.Title;
         Description = product.Description;
         Price = product.Price;
-        ImagesURL = product.ImagesURL;
+        ImagesURL = product.ImagesURL.Select(x => x.ToString()).ToList();
         ButtonCommand = new Command(() =>
         {
             var input = new ProductCartInput()

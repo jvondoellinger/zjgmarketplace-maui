@@ -4,5 +4,6 @@ namespace Marketplace.Products.Core.Requests;
 
 public interface IQueryProductRequest
 {
-    Task<List<Product>> SendPaginationAsync(long offset, int limit);
+    Task<List<Product>> QueryPaginationAsync(long offset, int limit);
+    Task<Product> QueryIdAsync(string id);
 }

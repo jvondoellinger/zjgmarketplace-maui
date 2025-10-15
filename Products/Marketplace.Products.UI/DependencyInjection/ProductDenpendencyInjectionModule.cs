@@ -1,7 +1,9 @@
 ﻿using Marketplace.Products.Core.Interfaces;
+using Marketplace.Products.Core.Model;
 using Marketplace.Products.Infrastructure.DependecyInjection;
 using Marketplace.Products.UI.ViewModel;
 using Marketplace.Products.UI.Views;
+using System.Diagnostics;
 
 namespace Marketplace.Products.UI.DependencyInjection;
 
@@ -30,6 +32,8 @@ public static class ProductDenpendencyInjectionModule
 
     private static IServiceCollection RegisterPages(this IServiceCollection services)
     {
+        services.AddSingleton<ProductCart>(x => ProductCart.Instance);
+
         services.AddSingleton<ProductPage>();
         services.AddSingleton<ProductCardsPage>();
         services.AddSingleton<ProductCategoriesPage>();

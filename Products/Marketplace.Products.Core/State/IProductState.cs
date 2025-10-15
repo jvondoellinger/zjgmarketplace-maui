@@ -2,6 +2,6 @@
 
 public interface IProductState
 {
-    int? SelectedProductId { get; }
-    void SelectProduct(int productId);
+    string? SelectedProductId { get; }
+    void SelectProduct(string productId);
 }

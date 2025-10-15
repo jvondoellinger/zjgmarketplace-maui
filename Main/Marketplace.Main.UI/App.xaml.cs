@@ -1,4 +1,6 @@
-﻿namespace Marketplace.Main.UI
+﻿using Marketplace.Products.UI.Views;
+
+namespace Marketplace.Main.UI
 {
     public partial class App : Application
     {
@@ -6,10 +8,9 @@
         public App(IServiceProvider provider)
         {
             InitializeComponent();
-
             Services = provider;
             
-            MainPage = new AppShell();
+            MainPage = new AppShell(Services);
         }
     }
 }

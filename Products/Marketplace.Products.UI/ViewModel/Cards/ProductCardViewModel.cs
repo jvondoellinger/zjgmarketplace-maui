@@ -8,10 +8,11 @@ public abstract class ProductCardViewModel
     {
         
     }
-    public int Id { get; init; }
-    public required string ImageURL { get; init; }
+    public string Id { get; init; }
+    public required ImageSource Image { get; init; }
+    public string? ImagePath { get; init; }
     public required string Title { get; init; }
     public required decimal Price { get; init; }
-    public ICommand Command { get; protected init; }
+    public ICommand Command { get; protected set; }
 
 }

@@ -43,9 +43,9 @@ public class ProductCart
 
         RemovedItem?.Invoke(product);
     }
-    public void Remove(int productId)
+    public void Remove(string productId)
     {
-        if (productId <= 0) 
+        if (productId.Length == 0) 
             return;
         var product = Products.FirstOrDefault(x => x.ProductId.Equals(productId));
         

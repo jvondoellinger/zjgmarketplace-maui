@@ -8,7 +8,7 @@
         StrokeShape="RoundRectangle 12">
         <VerticalStackLayout>
                 <Image 
-                    Source="{Binding ImageURL}"
+                    Source="{Binding Image}"
                     Aspect="AspectFit" 
                     HeightRequest="150"/>
                 <Label 

@@ -5,7 +5,8 @@
       "UserTokenUri": "http://127.0.0.1:5055/api/guest"
     },
     "ProductRoutes": {
-      "QueryPagination": "http://127.0.0.1:5055/api/products",
+      "QueryPagination": "http://127.0.0.1:5055/api/product",
+      "QueryIdentifier": "http://127.0.0.1:5055/api/product/", 
       "Query": "http://127.0.0.1:5055/api/product/query"
     },
     "ImageRoutes": {

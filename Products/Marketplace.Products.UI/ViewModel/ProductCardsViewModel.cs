@@ -16,13 +16,13 @@ public class ProductCardsViewModel : PropertyNotifier
     private readonly IProductState state;
     private readonly IPageResolver resolver;
 
-    public ProductCardsViewModel(/*IQueryProductRequest request, IProductState state, IPageResolver resolver*/)
+    public ProductCardsViewModel(IQueryProductRequest request, IProductState state, IPageResolver resolver)
     {
-/*        this.request = request;
+        this.request = request;
         this.state = state;
         this.resolver = resolver;
 
-        AsyncWorker.RunAsync(LoadDataContext);*/
+        AsyncWorker.RunAsync(LoadDataContext);
     }
 
     // Properties ==================================================================================
@@ -33,7 +33,7 @@ public class ProductCardsViewModel : PropertyNotifier
     {
         try
         {
-            var data = await request.SendPaginationAsync(0, 10);
+            var data = await request.QueryPaginationAsync(0, 10);   
             var models = ProductCardViewModelMapper.MapToBuyCard(data);
 
             ProductViewModels = [ ..models];

@@ -2,6 +2,7 @@
 using Marketplace.Orders.Infrastructure.DependencyInjection;
 using Marketplace.Orders.UI.DependecyInjection;
 using Marketplace.Products.Infrastructure.DependecyInjection;
+using Marketplace.Products.UI.DependencyInjection;
 using Marketplace.Products.UI.Interfaces;
 using Marketplace.SharedLayer.DependencyInjection;
 using Marketplace.Users.Infrastructure.DependecyInjection;
@@ -24,13 +25,14 @@ public static class MainInfrastructureDenpendencyInjectionModule
     private static IServiceCollection AddLayersInjection(this IServiceCollection services)
     {
         services
-            .AddSharedLayerOnDependecyInjection()
             .RegisterAuthorizationLayer()
+            .RegisterProductUIServices()
             .RegisterProductInfrastructureServices()
             .RegisterUserUIServices()
             .RegisterUserInfrastructureServices()
             .RegisterOrderUIServices()
-            .RegisterOrderInfrastructureServices();
+            .RegisterOrderInfrastructureServices()
+            .AddSharedLayerOnDependecyInjection();
         return services;
     }
 

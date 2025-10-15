@@ -11,26 +11,31 @@
 
     <TabBar>
         <ShellContent
+            x:Name="ProductTab"
             Title="Produtos"
             Icon="fallback.png"
             ContentTemplate="{DataTemplate products:ProductCardsPage}"
             Route="ProductsPage" />
         <ShellContent
+            x:Name="CategoryTab"
             Title="Categorias"
             Icon="fallback.png"
             ContentTemplate="{DataTemplate products:ProductCategoriesPage}"
             Route="ProductsCategoriesPage" />
         <ShellContent
+            x:Name="ProfileTab"
             Title="Perfil"
             Icon="fallback.png"
             ContentTemplate="{DataTemplate user:UserLoginPage}"
             Route="UserLoginPage" />
         <ShellContent
+            x:Name="CartTab"
             Title="Carrinho"
             Icon="fallback.png"
             ContentTemplate="{DataTemplate products:ProductCartPage}"
             Route="ProductCartPage" />
         <ShellContent
+            x:Name="DashboardTab"
             Title="Dashboard"
             Icon="fallback.png"
             ContentTemplate="{DataTemplate user:AccountDashboardPage}"

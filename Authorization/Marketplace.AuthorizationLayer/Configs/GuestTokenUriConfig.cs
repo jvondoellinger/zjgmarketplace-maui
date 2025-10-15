@@ -2,5 +2,5 @@
 
 public class GuestTokenUriConfig
 {
-    public Uri GuestApiRoute { get; init; }
+    public Uri GuestTokenUri { get; init; }
 }

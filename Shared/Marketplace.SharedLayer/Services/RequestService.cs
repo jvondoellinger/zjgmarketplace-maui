@@ -32,8 +32,13 @@ public class RequestService
             var response = await client.GetAsync(url);
             var jsonTask = response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
+            {
+                Debug.WriteLine(url.ToString());
                 Debug.WriteLine($"Get failed. Erro: {response.ReasonPhrase}");
+                var a = client.DefaultRequestHeaders.Authorization?.ToString();
+            }
             var json = await jsonTask;
+            Debug.WriteLine(json);
             return JsonSerializer.Deserialize<T>(json, serializerOptions);
         }
         catch (Exception ex)

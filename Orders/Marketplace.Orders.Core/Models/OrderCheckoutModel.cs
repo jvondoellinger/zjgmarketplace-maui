@@ -2,7 +2,7 @@
 
 public class OrderCheckoutModel
 {
-    public List<int> ProductIds { get; set; }
+    public List<string> ProductIds { get; set; }
     public string Status { get; set; }
     public decimal Total { get; init; }
 }

@@ -1,6 +1,7 @@
 ﻿using Marketplace.Products.Core.Events;
 using Marketplace.Products.Core.Model;
 using Marketplace.Products.Core.Query;
+using Marketplace.Products.Core.Requests;
 using Marketplace.Products.Core.Workers;
 using Marketplace.Products.UI.Interfaces;
 using Marketplace.Products.UI.Mapper;
@@ -13,15 +14,15 @@ namespace Marketplace.Products.UI.ViewModel;
 
 public class ProductCartViewModel : PropertyNotifier, IAddProductOnCartEvent, IRemoveProductOnCartEvent 
 {
-    private readonly IProductQuery query;
+    private readonly IQueryProductRequest request;
     private readonly ICheckoutPageRedirect redirect;
     private readonly ProductCart cart = ProductCart.Instance;
 
 
-    public ProductCartViewModel(IProductQuery query, 
+    public ProductCartViewModel(IQueryProductRequest request, 
         ICheckoutPageRedirect redirect)
     {
-        this.query = query;
+        this.request = request;
         this.redirect = redirect;
         AsyncWorker.RunAsync(this.InitializeDataContent);
 
@@ -55,7 +56,7 @@ public class ProductCartViewModel : PropertyNotifier, IAddProductOnCartEvent, IR
         {
             if (input == null)
                 continue;
-            var product = await query.Find(input.ProductId) 
+            var product = await request.QueryIdAsync(input.ProductId) 
                 ?? throw new Exception("This identifier isn't found in this query.");
             
             var view = ProductCardViewModelMapper.MapToCartCard(product);
@@ -89,7 +90,7 @@ public class ProductCartViewModel : PropertyNotifier, IAddProductOnCartEvent, IR
     public async Task AddItemAsync(ProductCartInput input)
     {
         ArgumentNullException.ThrowIfNull(input); // Validate input
-        var product = await query.Find(input.ProductId)
+        var product = await request.QueryIdAsync(input.ProductId)
             ?? throw new Exception("Current product added is not found."); // Get product details
 
         var view = ProductCardViewModelMapper.MapToCartCard(product); // Map to view model

@@ -4,14 +4,16 @@ using Marketplace.Users.Core.Requests;
 using Marketplace.Users.Infrastructure.Implementation.Requests.Configs;
 using Marketplace.Users.Infrastructure.Implementation.Requests.Mapper;
 using Marketplace.Users.Infrastructure.Implementation.Requests.RequestModel;
+using Microsoft.Extensions.Options;
+
 namespace Marketplace.Users.Infrastructure.Implementation.Requests;
 
 public class UserLoginRequest : IUserLoginRequest
 {
-    private readonly UserRoutesConfig config;
+    private readonly IOptionsMonitor<UserRoutesConfig> config;
     private readonly RequestService request;
 
-    public UserLoginRequest(UserRoutesConfig config, RequestService request)
+    public UserLoginRequest(IOptionsMonitor<UserRoutesConfig> config, RequestService request)
     {
         this.config = config;
         this.request = request;

@@ -2,5 +2,5 @@
 
 public class UserTokenUriConfig
 {
-    public Uri UserApiRoute { get; init; }
+    public Uri UserTokenUri { get; init; }
 }

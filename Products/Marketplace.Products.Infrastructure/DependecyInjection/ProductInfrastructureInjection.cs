@@ -11,11 +11,15 @@ public static class ProductInfrastructureInjection
 {
     public static IServiceCollection RegisterProductInfrastructureServices(this IServiceCollection services)
     {        
+        // Tests
         services.AddSingleton<IProductQuery, StaticQueryDatabaseTest>();
         services.AddSingleton<IProductCategoryQuery, StaticProductCategoryQueryTest>(); 
+        // -
+
         services.AddSingleton<IProductState, ProductState>(); 
         services.AddSingleton<IQueryProductRequest, QueryProductRequest>(); 
-        services.AddSingleton<ProductRequestMapper>(); 
+        services.AddSingleton<IQueryProductImageRequest, QueryProductImageRequest>(); 
+        services.AddSingleton<ProductRequestMapper>();
         return services;
 
     }

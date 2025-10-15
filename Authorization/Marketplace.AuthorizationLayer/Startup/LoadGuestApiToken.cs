@@ -20,12 +20,18 @@ public class LoadGuestApiToken : BackgroundService
 
     public override async Task StartAsync(CancellationToken stoppingToken)
     {
-        Debug.WriteLine("Starting service...");
+        try
+        {
+            await guestApiTokenRequest.ConfigureTokenAsync();
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+        }
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        await guestApiTokenRequest.ConfigureTokenAsync();
     }
 
     public override async Task StopAsync(CancellationToken stoppingToken)
