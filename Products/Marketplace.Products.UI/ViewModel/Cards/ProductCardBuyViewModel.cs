@@ -6,23 +6,11 @@ namespace Marketplace.Products.UI.ViewModel.Cards;
 
 public class ProductCardBuyViewModel : ProductCardViewModel
 {
-    private readonly IQueryProductImageRequest request;
-
-    public ProductCardBuyViewModel(IQueryProductImageRequest request) // Constructor ==========
+    public ProductCardBuyViewModel() // Constructor ==========
     {
-        this.request = request;
 
         InitializeCommands();
-        LoadImages();
-    }
 
-    private void LoadImages()
-    {
-        if (base.ImagePath == null) return;
-        AsyncWorker.RunAsync(async () =>
-        {
-            await request.QueryImages(base.ImagePath);
-        });
     }
     private void InitializeCommands()
     {

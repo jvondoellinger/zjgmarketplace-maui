@@ -6,6 +6,6 @@ namespace Marketplace.Products.Core.Requests;
 
 public interface IQueryProductImageRequest
 {
-    Task<List<byte[]>> QueryImages(string path);
-    Task<byte[]> QueryFirstImage(IEnumerable<string> paths);
+    Task<List<byte[]>> QueryImages(IEnumerable<string> paths);
+    Task<byte[]> QueryFirstImage(string path);
 }

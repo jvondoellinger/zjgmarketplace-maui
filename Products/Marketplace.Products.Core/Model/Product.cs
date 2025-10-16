@@ -14,7 +14,8 @@ public class Product
 
     public string Id { get; init; }
     public string Title { get; init; }
-    public List<string> ImagesURL { get; init; }
+    public List<string> ImagesURL { get; init; } // After remove
+    public IEnumerable<byte[]>? Images { get; set; }
     public string Description { get; init; }
     public decimal Price { get; init; }
     public string Category { get; init; }

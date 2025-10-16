@@ -27,7 +27,7 @@ public class QueryProductRequest : IQueryProductRequest
         return mapper.Map(data);
     }
 
-    public async Task<List<Product>> QueryPaginationAsync(long offset, int limit)
+    public async Task<IEnumerable<Product>> QueryPaginationAsync(long offset, int limit)
     {
         var uri = config.CurrentValue.QueryPagination;
         var data = await request.GetAsync<List<QueryProductRequestOutputModel>>(uri);

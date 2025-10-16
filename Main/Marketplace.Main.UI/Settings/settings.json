@@ -1,22 +1,22 @@
 {
   "Api": {
     "Authorization": {
-      "GuestTokenUri": "http://127.0.0.1:5055/api/guest",
-      "UserTokenUri": "http://127.0.0.1:5055/api/guest"
+      "GuestTokenUri": "https://nonrealizing-dartingly-kaylie.ngrok-free.dev/api/guest",
+      "UserTokenUri": "https://nonrealizing-dartingly-kaylie.ngrok-free.dev/api/guest"
     },
     "ProductRoutes": {
-      "QueryPagination": "http://127.0.0.1:5055/api/product",
-      "QueryIdentifier": "http://127.0.0.1:5055/api/product/", 
-      "Query": "http://127.0.0.1:5055/api/product/query"
+      "QueryPagination": "https://nonrealizing-dartingly-kaylie.ngrok-free.dev/api/product",
+      "QueryIdentifier": "https://nonrealizing-dartingly-kaylie.ngrok-free.dev/api/product/",
+      "Query": "https://nonrealizing-dartingly-kaylie.ngrok-free.dev/api/product/query"
     },
     "ImageRoutes": {
-      "QueryByPath": "http://127.0.0.1:5055/api/image/"
+      "QueryByPath": "https://nonrealizing-dartingly-kaylie.ngrok-free.dev/api/images/"
     },
     "UserRoutes": {
-      "RegisterUri": "http://127.0.0.1:5055/api/user"
+      "RegisterUri": "https://nonrealizing-dartingly-kaylie.ngrok-free.dev/api/user"
     },
     "OrderRoutes": {
-      "QueryOrdersUri": "http://127.0.0.1:5055/api/orders"
+      "QueryOrdersUri": "https://nonrealizing-dartingly-kaylie.ngrok-free.dev/api/orders"
     }
   }
 }

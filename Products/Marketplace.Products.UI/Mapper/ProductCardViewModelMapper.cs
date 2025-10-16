@@ -16,8 +16,16 @@ internal class ProductCardViewModelMapper
     {
         List<ProductCardViewModel> models = [];
         foreach(var product in products)
-        {   
+        {
             var source = ImageSource.FromFile("fallback.png");
+            if (product.Images.Count() > 0)
+            {
+                if (product.Images.FirstOrDefault() != null)
+                {
+                    var bytes = product.Images.First();
+                    source = ImageSource.FromStream(() => new MemoryStream(bytes));
+                }
+            }
 
             var item = new ProductCardBuyViewModel()
             {

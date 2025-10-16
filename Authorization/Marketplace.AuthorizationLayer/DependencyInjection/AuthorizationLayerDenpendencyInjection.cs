@@ -18,7 +18,12 @@ public static class AuthorizationLayerDenpendencyInjection
 
     private static IServiceCollection AddHttpClient(this IServiceCollection services)
     {
-        services.AddSingleton<HttpClient>();
+        services.AddSingleton<HttpClient>(x =>
+        {
+            var handler = new HttpClientHandler();
+            handler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+            return new HttpClient(handler);
+        });
         return services;
     }
 

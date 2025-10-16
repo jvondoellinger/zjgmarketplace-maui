@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Runtime;
 using System.Text.Json;
 
 namespace Marketplace.SharedLayer.Services;
@@ -23,6 +25,19 @@ public class RequestService
             throw new Exception($"POST failed. Message: {response.ReasonPhrase}");
         var json = await jsonTask;
         return JsonSerializer.Deserialize<T>(json, serializerOptions);
+    }
+
+    public async Task<byte[]> GetByteArrayAsync(Uri url, Dictionary<string, string> headers = null)
+    {
+        var response = await client.GetAsync(url);
+        var jsonTask = response.Content.ReadAsStringAsync();
+        if (!response.IsSuccessStatusCode)
+        {
+            Debug.WriteLine(url.ToString());
+            Debug.WriteLine($"Get failed. Erro: {response.ReasonPhrase}");
+            var a = client.DefaultRequestHeaders.Authorization?.ToString();
+        }
+        return await response.Content.ReadAsByteArrayAsync();
     }
 
     public async Task<T?> GetAsync<T>(Uri url, Dictionary<string, string> headers = null)

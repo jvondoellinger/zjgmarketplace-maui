@@ -19,6 +19,7 @@ public static class ProductInfrastructureInjection
         services.AddSingleton<IProductState, ProductState>(); 
         services.AddSingleton<IQueryProductRequest, QueryProductRequest>(); 
         services.AddSingleton<IQueryProductImageRequest, QueryProductImageRequest>(); 
+        services.AddSingleton<ProductQueryImageProxy>(); 
         services.AddSingleton<ProductRequestMapper>();
         return services;
 

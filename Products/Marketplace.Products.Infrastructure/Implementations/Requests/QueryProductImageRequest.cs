@@ -17,25 +17,28 @@ public class QueryProductImageRequest : IQueryProductImageRequest
         this.requestService = requestService;
         this.config = config;
     }
-    public async Task<byte[]> QueryFirstImage(Product product)
+
+    public async Task<byte[]> QueryFirstImage(string path)
     {
-        var first = product.ImagesURL.FirstOrDefault() ?? throw new Exception("This product don't have any path to search in API");
+        var first = (path == null || string.IsNullOrEmpty(path)) 
+            ? throw new Exception("This product don't have any path to search in API") 
+            : path;
         var uri = config.CurrentValue.GetQueryByPath(first);
 
-        return await requestService.GetAsync<byte[]>(uri);
+        return await requestService.GetByteArrayAsync(uri);
     }
 
-    public async Task<List<byte[]>> QueryImages(Product product)
+
+    public async Task<List<byte[]>> QueryImages(IEnumerable<string> paths)
     {
-        var bytes = new List<byte[]>();
+        var list = new List<byte[]>();
 
-        foreach(var path in product.ImagesURL)
+        await Parallel.ForEachAsync(paths, async (path, cancelationToken) =>
         {
-            var uri = config.CurrentValue.GetQueryByPath(path);
-            var byteArray = await requestService.GetAsync<byte[]>(uri);
+            var bytes = await QueryFirstImage(path);
+            list.Add(bytes);
+        });
 
-            bytes.Add(byteArray);
-        }
-        return bytes;
+        return list;
     }
 }

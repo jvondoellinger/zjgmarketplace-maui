@@ -3,6 +3,7 @@ using Marketplace.Main.Infrastructure.Services;
 using Marketplace.Main.UI.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System.Reflection;
 
 namespace Marketplace.Main.UI;
 
@@ -23,9 +24,13 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
         // Add settings file (.json)
-        builder
-        .Configuration
-        .AddJsonFile("Settings/settings.json", optional: false, reloadOnChange: true);
+        var assembly = Assembly.GetExecutingAssembly();
+        using var stream = assembly.GetManifestResourceStream("Marketplace.Main.UI.Settings.settings.json");
+
+        if (stream != null)
+            builder
+            .Configuration
+            .AddJsonStream(stream);
 
         // Add services on container of injection dependecy
         builder.Services

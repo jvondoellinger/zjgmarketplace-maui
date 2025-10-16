@@ -22,6 +22,7 @@ public class LoadGuestApiToken : BackgroundService
     {
         try
         {
+            Debug.WriteLine("LAODING DATA"); 
             await guestApiTokenRequest.ConfigureTokenAsync();
         }
         catch (Exception ex)
